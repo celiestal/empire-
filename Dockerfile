@@ -12,4 +12,5 @@ WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=build /app ./
 EXPOSE 3000
-CMD ["npx", "next", "start", "-p", "3000"]
+# Railway and most hosts pass the port in $PORT.
+CMD ["sh", "-c", "npx next start -p ${PORT:-3000}"]

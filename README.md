@@ -37,14 +37,24 @@ Auto-edit from the command line (needs ffmpeg):
 npx tsx scripts/auto-edit.ts raw.mp4 out.mp4 --hook "You're pricing this wrong" --script script.txt --emphasis "wrong,value"
 ```
 
-## Deploy
+## Deploy on Railway (recommended)
 
-1. Create a Supabase project and run `supabase/migrations/0001_init.sql`.
-2. Set the environment variables from `.env.example`.
-3. Host it:
-   - **Docker host with ffmpeg** (Railway, Render, Fly): use the `Dockerfile`. Everything works, including the auto editor.
-   - **Vercel**: everything except the auto editor works (Vercel functions don't include ffmpeg). `vercel.json` schedules the daily agent cycle.
-4. In Stripe, create a monthly Premium price, set `STRIPE_PREMIUM_PRICE_ID`, and add a webhook to `/api/billing/webhook` for `checkout.session.completed`, `customer.subscription.updated` and `customer.subscription.deleted`.
+1. New Project, then Deploy from GitHub repo, pick this repo. `railway.json` tells Railway to build the `Dockerfile` (which installs ffmpeg for the auto editor).
+2. In the same project, add a **Postgres** database.
+3. On the web service's Variables tab set:
+   - `DATABASE_URL` = `${{Postgres.DATABASE_URL}}`
+   - `AUTH_SECRET` = `${{secret(64)}}`
+   - `OWNER_EMAIL` = your email
+   - `ANTHROPIC_API_KEY` = your key (for AI scripts and agents)
+4. Settings, Networking, Generate Domain.
+
+The `records` table is created automatically on first request.
+
+Other hosts: any Docker host works the same way. On Vercel everything except the auto editor works (no ffmpeg there), and `vercel.json` schedules the daily agent cycle. With Supabase instead of Postgres, run `supabase/migrations/0001_init.sql` and set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`.
+
+## Payments
+
+In Stripe, create a monthly Premium price, set `STRIPE_PREMIUM_PRICE_ID`, and add a webhook to `/api/billing/webhook` for `checkout.session.completed`, `customer.subscription.updated` and `customer.subscription.deleted`.
 
 ## Checks
 

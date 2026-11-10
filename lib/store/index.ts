@@ -16,6 +16,7 @@ import type {
 } from "@/lib/types";
 import { DEFAULT_CONTENT_SETTINGS, DEFAULT_SETTINGS } from "@/lib/types";
 import { MemoryStore } from "./memory";
+import { PostgresStore } from "./postgres";
 import { SupabaseStore } from "./supabase";
 
 /** Every collection the platform keeps, and the record type it holds. */
@@ -137,13 +138,22 @@ export class Store {
 let shared: Store | null = null;
 
 /**
- * Supabase when SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are set, otherwise an
- * in-memory store (fine for local development; it resets on every restart).
+ * Postgres when DATABASE_URL is set (e.g. Railway), else Supabase when
+ * SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are set, else an in-memory store
+ * (fine for local development; it resets on every restart).
  */
 export function getStore(): Store {
   if (shared) return shared;
+  const dbUrl = process.env.DATABASE_URL;
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  shared = new Store(url && key ? new SupabaseStore(url, key) : MemoryStore.shared());
+  if (dbUrl) shared = new Store(new PostgresStore(dbUrl));
+  else if (url && key) shared = new Store(new SupabaseStore(url, key));
+  else {
+    if (process.env.NODE_ENV === "production") {
+      console.warn("No DATABASE_URL or Supabase settings: data is kept in memory and lost on restart.");
+    }
+    shared = new Store(MemoryStore.shared());
+  }
   return shared;
 }
