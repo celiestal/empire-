@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { accountsOpen } from "@/lib/env";
 import { signUp } from "@/app/actions";
 
 export default async function Signup({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
@@ -8,6 +9,7 @@ export default async function Signup({ searchParams }: { searchParams: Promise<{
       <h1>Create your account</h1>
       <p className="muted small">Basic is free. No card needed.</p>
       {error && <p className="notice error">{error}</p>}
+      {!accountsOpen() && <p className="notice">Accounts open very soon. Check back shortly.</p>}
       <form action={signUp} className="stack">
         <div>
           <label htmlFor="email">Email</label>
@@ -17,7 +19,7 @@ export default async function Signup({ searchParams }: { searchParams: Promise<{
           <label htmlFor="password">Password (8+ characters)</label>
           <input id="password" name="password" type="password" required minLength={8} autoComplete="new-password" />
         </div>
-        <button className="primary">Create account</button>
+        <button className="primary" disabled={!accountsOpen()}>Create account</button>
       </form>
       <p className="small muted">
         Already have one? <Link href="/login">Log in</Link>

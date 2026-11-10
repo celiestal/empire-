@@ -16,6 +16,7 @@ import type {
 } from "@/lib/types";
 import { DEFAULT_CONTENT_SETTINGS, DEFAULT_SETTINGS } from "@/lib/types";
 import { MemoryStore } from "./memory";
+import { databaseUrl } from "@/lib/env";
 import { PostgresStore } from "./postgres";
 import { SupabaseStore } from "./supabase";
 
@@ -144,7 +145,7 @@ let shared: Store | null = null;
  */
 export function getStore(): Store {
   if (shared) return shared;
-  const dbUrl = process.env.DATABASE_URL;
+  const dbUrl = databaseUrl();
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (dbUrl) shared = new Store(new PostgresStore(dbUrl));

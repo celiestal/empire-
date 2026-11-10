@@ -5,6 +5,7 @@ import { hasFeature } from "@/lib/auth";
 import { currentUser } from "@/lib/session";
 import { getStore } from "@/lib/store";
 import { autoEdit } from "@/lib/video/render";
+import { editorAvailable } from "@/lib/env";
 
 export const runtime = "nodejs";
 export const maxDuration = 300;
@@ -16,6 +17,7 @@ function fail(status: number, error: string) {
 }
 
 export async function POST(req: Request) {
+  if (!editorAvailable()) return fail(503, "The auto editor is coming soon.");
   const user = await currentUser();
   if (!user) return fail(401, "Log in first.");
   if (!hasFeature(user, "auto_edit")) return fail(402, "The auto editor is part of Premium.");

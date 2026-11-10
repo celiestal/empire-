@@ -15,6 +15,7 @@ import {
 } from "@/lib/auth";
 import { billingEnabled, createCheckoutUrl, createPortalUrl } from "@/lib/billing";
 import { aiEnabled } from "@/lib/ai";
+import { accountsOpen } from "@/lib/env";
 import { buildHashtags, hashtagProblems, upcomingWeek } from "@/lib/content";
 import { generateContent } from "@/lib/content-ai";
 import { runCeoCycle } from "@/lib/agents/runtime";
@@ -45,6 +46,7 @@ async function startSession(userId: string) {
 // --- Accounts ---------------------------------------------------------------
 
 export async function signUp(fd: FormData) {
+  if (!accountsOpen()) redirect("/signup");
   const email = normalizeEmail(str(fd, "email"));
   const password = str(fd, "password");
   if (!validEmail(email)) redirect("/signup?error=Enter+a+valid+email");

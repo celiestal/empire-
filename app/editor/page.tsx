@@ -4,6 +4,7 @@ import { scriptText } from "@/lib/content-ai";
 import { requireUser } from "@/lib/session";
 import { getStore } from "@/lib/store";
 import { TECHNIQUES } from "@/lib/video/techniques";
+import { editorAvailable } from "@/lib/env";
 import { EditorForm } from "./EditorForm";
 
 export default async function Editor({ searchParams }: { searchParams: Promise<{ post?: string }> }) {
@@ -21,7 +22,14 @@ export default async function Editor({ searchParams }: { searchParams: Promise<{
         your hook on screen, sound on the cuts and a progress bar.
       </p>
 
-      {premium ? (
+      {!editorAvailable() ? (
+        <div className="card stack">
+          <p>
+            <strong>Coming soon.</strong> The auto editor is being moved to a video server. Everything below is what it
+            will do to your videos.
+          </p>
+        </div>
+      ) : premium ? (
         <EditorForm
           defaultHook={mine?.script?.hook ?? ""}
           defaultScript={mine?.script ? scriptText(mine.script) : ""}
