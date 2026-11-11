@@ -1,0 +1,41 @@
+{
+  "id": "all-in-one",
+  "scenes": [
+    {
+      "type": "hook",
+      "duration": 2.4,
+      "text": "Plan. Script. *Edit.*",
+      "punch": "One free tool."
+    },
+    {
+      "type": "feature",
+      "duration": 3.0,
+      "label": "PLAN",
+      "text": "Your week, planned in *one tap*",
+      "shot": "studio_week",
+      "tap_at": 2.0
+    },
+    {
+      "type": "stat",
+      "duration": 2.4,
+      "top": "Hook options for every video",
+      "from": 0,
+      "to": 3,
+      "decimals": 0,
+      "text": "Pick the *strongest* one"
+    },
+    {
+      "type": "feature",
+      "duration": 3.2,
+      "label": "EDIT",
+      "text": "Then it *edits* the video for you",
+      "shot": "editor_form",
+      "tap_at": 2.3
+    },
+    {
+      "type": "cta",
+      "duration": 3.6,
+      "text": "Everything a creator needs in *one place.*"
+    }
+  ]
+}

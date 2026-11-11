@@ -1,0 +1,34 @@
+{
+  "id": "stop-fyp",
+  "scenes": [
+    {
+      "type": "hook",
+      "duration": 2.6,
+      "text": "Stop putting *#fyp* on every video.",
+      "punch": "It does nothing."
+    },
+    {
+      "type": "feature",
+      "duration": 3.4,
+      "label": "BRAND + HASHTAGS",
+      "text": "Empire picks tags that *fit the video*",
+      "shot": "studio_brand"
+    },
+    {
+      "type": "list",
+      "duration": 3.4,
+      "title": "The *hashtag rules*",
+      "items": [
+        "3 to 5 tags per post",
+        "Your brand tag every time",
+        "Same niche tags every week",
+        "No #fyp, #viral, #explore"
+      ]
+    },
+    {
+      "type": "cta",
+      "duration": 3.6,
+      "text": "Get found by the *right people.*"
+    }
+  ]
+}

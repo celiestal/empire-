@@ -1,0 +1,42 @@
+{
+  "id": "weekly-planner",
+  "scenes": [
+    {
+      "type": "hook",
+      "duration": 2.6,
+      "text": "Never wonder *what to post* again.",
+      "punch": "Plan the week in 1 hour."
+    },
+    {
+      "type": "feature",
+      "duration": 3.4,
+      "label": "CONTENT STUDIO",
+      "text": "One tap plans your *whole week*",
+      "shot": "studio_week",
+      "tap_at": 2.4
+    },
+    {
+      "type": "feature",
+      "duration": 3.0,
+      "label": "CONTENT GAPS",
+      "text": "Turn your comments into *ideas*",
+      "shot": "studio_gaps",
+      "tap_at": 2.1
+    },
+    {
+      "type": "list",
+      "duration": 3.2,
+      "title": "Your new *routine*",
+      "items": [
+        "Sunday: plan (1 hour)",
+        "Monday: film + edit",
+        "Mon, Wed, Fri: post"
+      ]
+    },
+    {
+      "type": "cta",
+      "duration": 3.6,
+      "text": "Post *consistently* without burning out."
+    }
+  ]
+}

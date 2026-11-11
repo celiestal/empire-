@@ -1,0 +1,44 @@
+{
+  "id": "auto-editor",
+  "scenes": [
+    {
+      "type": "hook",
+      "duration": 2.6,
+      "text": "Editing one short takes *2 hours.*",
+      "punch": "Not anymore."
+    },
+    {
+      "type": "feature",
+      "duration": 3.4,
+      "label": "AUTO EDITOR",
+      "text": "Upload a raw take. Hit *one button.*",
+      "shot": "editor_form",
+      "tap_at": 2.5
+    },
+    {
+      "type": "stat",
+      "duration": 2.6,
+      "top": "Raw take: 20.0 seconds",
+      "from": 20.0,
+      "to": 13.4,
+      "suffix": "s",
+      "text": "After Empire cut every *pause*"
+    },
+    {
+      "type": "list",
+      "duration": 3.4,
+      "title": "Then it adds *everything*",
+      "items": [
+        "Punch-in zooms",
+        "Word-by-word captions",
+        "Your hook on screen",
+        "Sound effects + progress bar"
+      ]
+    },
+    {
+      "type": "cta",
+      "duration": 3.6,
+      "text": "Your next short, edited in *minutes.*"
+    }
+  ]
+}
