@@ -4,7 +4,7 @@ import { runCeoCycle } from "@/lib/agents/runtime";
 import { getStore } from "@/lib/store";
 
 export const runtime = "nodejs";
-export const maxDuration = 800;
+export const maxDuration = 300;
 
 function authorized(req: Request): boolean {
   const secret = process.env.CRON_SECRET;
