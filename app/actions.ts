@@ -18,6 +18,7 @@ import { aiEnabled } from "@/lib/ai";
 import { accountsOpen } from "@/lib/env";
 import { buildHashtags, hashtagProblems, upcomingWeek } from "@/lib/content";
 import { generateContent } from "@/lib/content-ai";
+import { ideaStarters, templateContent } from "@/lib/content-free";
 import { runCeoCycle } from "@/lib/agents/runtime";
 import { requireOwner, requireUser } from "@/lib/session";
 import { getStore, newId, now } from "@/lib/store";
@@ -216,6 +217,46 @@ export async function generateForPost(fd: FormData) {
     errorMsg = err instanceof Error ? err.message : "Generation failed";
   }
   redirect(`/studio/posts/${id}${errorMsg ? `?error=${encodeURIComponent(errorMsg)}` : ""}`);
+}
+
+/** Free script writer: fills the post from templates, no paid AI. Open to every plan. */
+export async function writeFreeScript(fd: FormData) {
+  const user = await requireUser();
+  const id = str(fd, "id");
+  const store = getStore();
+  const post = await store.get("contentPosts", id);
+  if (!post || post.userId !== user.id) redirect("/studio");
+  const settings = await store.contentSettings(user.id);
+  const variant = post.script ? Math.floor(Math.random() * 1000) : 0;
+  const g = templateContent(post.topic, settings, variant);
+  await store.update("contentPosts", id, {
+    script: g.script,
+    caption: g.caption,
+    hashtags: g.hashtags,
+    status: post.status === "idea" ? "scripted" : post.status,
+  });
+  redirect(`/studio/posts/${id}?saved=1`);
+}
+
+/** Add starter questions for the user's niche to the idea list, skipping ones already there. */
+export async function suggestIdeas() {
+  const user = await requireUser();
+  const store = getStore();
+  const settings = await store.contentSettings(user.id);
+  const existing = new Set((await store.listFor("contentIdeas", user.id)).map((i) => i.question.toLowerCase()));
+  for (const question of ideaStarters(settings)) {
+    if (existing.has(question.toLowerCase())) continue;
+    await store.insert("contentIdeas", {
+      id: newId("idea"),
+      userId: user.id,
+      question,
+      source: "starter",
+      asks: 1,
+      status: "open",
+      createdAt: now(),
+    });
+  }
+  revalidatePath("/studio");
 }
 
 export async function savePost(fd: FormData) {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { addIdea, bumpIdea, connectAccount, createPost, planWeek, saveContentSettings } from "@/app/actions";
+import { addIdea, bumpIdea, connectAccount, createPost, planWeek, saveContentSettings, suggestIdeas } from "@/app/actions";
 import { hasFeature } from "@/lib/auth";
 import { dayName, rankIdeas, upcomingWeek } from "@/lib/content";
 import { requireUser } from "@/lib/session";
@@ -109,6 +109,9 @@ export default async function Studio() {
               </select>
               <button>Add idea</button>
             </div>
+          </form>
+          <form action={suggestIdeas}>
+            <button title="Adds starter questions for your niche. Free.">Suggest ideas for my niche</button>
           </form>
         </div>
       </section>

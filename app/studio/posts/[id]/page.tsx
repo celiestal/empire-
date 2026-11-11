@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { generateForPost, savePost } from "@/app/actions";
+import { generateForPost, savePost, writeFreeScript } from "@/app/actions";
+import { aiEnabled } from "@/lib/ai";
 import { hasFeature } from "@/lib/auth";
 import { hashtagProblems } from "@/lib/content";
+import { chatPrompt } from "@/lib/content-free";
 import { requireUser } from "@/lib/session";
 import { getStore } from "@/lib/store";
 import { SOCIAL_PLATFORMS } from "@/lib/types";
@@ -22,6 +24,8 @@ export default async function PostPage({
   const post = await getStore().get("contentPosts", id);
   if (!post || post.userId !== user.id) notFound();
   const premium = hasFeature(user, "ai_content");
+  const ai = aiEnabled();
+  const settings = await getStore().contentSettings(user.id);
   const s = post.script;
   const problems = hashtagProblems(post.hashtags);
   const fullCaption = `${post.caption}\n\n${post.hashtags.join(" ")}`.trim();
@@ -37,18 +41,30 @@ export default async function PostPage({
 
       <section className="card stack">
         <div className="row" style={{ justifyContent: "space-between" }}>
-          <h2>AI script</h2>
-          <form action={generateForPost}>
-            <input type="hidden" name="id" value={post.id} />
-            {premium ? (
-              <button className="primary">{s ? "Write it again" : "Write hooks, script and hashtags"}</button>
-            ) : (
-              <Link href="/pricing?from=ai" className="btn">
-                Premium: write it with AI
-              </Link>
+          <h2>Script</h2>
+          <div className="row">
+            <form action={writeFreeScript}>
+              <input type="hidden" name="id" value={post.id} />
+              <button className={ai && premium ? "" : "primary"}>{s ? "New hooks and outline" : "Write hooks and outline (free)"}</button>
+            </form>
+            {ai && (
+              <form action={generateForPost}>
+                <input type="hidden" name="id" value={post.id} />
+                {premium ? (
+                  <button className="primary">{s ? "Write it again with AI" : "Write the full script with AI"}</button>
+                ) : (
+                  <Link href="/pricing?from=ai" className="btn">
+                    Premium: write it with AI
+                  </Link>
+                )}
+              </form>
             )}
-          </form>
+          </div>
         </div>
+        <p className="muted small">
+          The free writer gives you three proven hooks, the setup, a close, a caption and hashtags. Fill in the three
+          value points in brackets with what you know.
+        </p>
         {s && (
           <div className="stack">
             <label>Hook options (pick one and paste it into Hook below)</label>
@@ -137,6 +153,13 @@ export default async function PostPage({
           </Link>
         </div>
       </form>
+
+      <details className="card">
+        <summary>
+          <strong>Want the whole script written for you, free?</strong> Copy this into the free version of Claude or ChatGPT.
+        </summary>
+        <pre style={{ whiteSpace: "pre-wrap" }}>{chatPrompt(post.topic, settings)}</pre>
+      </details>
 
       <section className="card stack">
         <h2>Ready to paste</h2>
