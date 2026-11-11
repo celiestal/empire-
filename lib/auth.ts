@@ -21,7 +21,7 @@ export async function verifyPassword(password: string, stored: string): Promise<
   return timingSafeEqual(expected, actual);
 }
 
-function secret(): string {
+export function authSecret(): string {
   const s = process.env.AUTH_SECRET;
   if (s && s.length >= 32) return s;
   if (process.env.NODE_ENV === "production") {
@@ -31,7 +31,21 @@ function secret(): string {
 }
 
 function sign(payload: string): string {
-  return createHmac("sha256", secret()).update(payload).digest("base64url");
+  return createHmac("sha256", authSecret()).update(payload).digest("base64url");
+}
+
+/** Sign any short value (used for OAuth state). Returns "<value>.<signature>". */
+export function signValue(value: string): string {
+  return `${value}.${sign(value)}`;
+}
+
+export function verifySignedValue(signed: string): string | null {
+  const i = signed.lastIndexOf(".");
+  if (i <= 0) return null;
+  const value = signed.slice(0, i);
+  const a = Buffer.from(signed.slice(i + 1));
+  const b = Buffer.from(sign(value));
+  return a.length === b.length && timingSafeEqual(a, b) ? value : null;
 }
 
 /** Session token: "<userId>.<expiresAtMs>.<signature>". */

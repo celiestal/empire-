@@ -1,5 +1,18 @@
 import Link from "next/link";
-import { addIdea, bumpIdea, connectAccount, createPost, planWeek, saveContentSettings, suggestIdeas } from "@/app/actions";
+import {
+  addIdea,
+  bumpIdea,
+  connectAccount,
+  createPost,
+  disconnectAccount,
+  planWeek,
+  runAutopilotNow,
+  saveContentSettings,
+  suggestIdeas,
+  toggleAutopilot,
+} from "@/app/actions";
+import { freeAiEnabled } from "@/lib/free-ai";
+import { NOT_SUPPORTED, provider, providerReady } from "@/lib/social";
 import { hasFeature } from "@/lib/auth";
 import { dayName, rankIdeas, upcomingWeek } from "@/lib/content";
 import { requireUser } from "@/lib/session";
@@ -8,15 +21,26 @@ import { SOCIAL_PLATFORMS } from "@/lib/types";
 
 const DAYS = [0, 1, 2, 3, 4, 5, 6];
 
-export default async function Studio() {
+export const maxDuration = 300;
+
+export default async function Studio({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string; connected?: string; ran?: string }>;
+}) {
+  const { error, connected, ran } = await searchParams;
   const user = await requireUser();
   const store = getStore();
-  const [settings, ideas, posts, accounts] = await Promise.all([
+  const [settings, ideas, posts, accounts, news, runs] = await Promise.all([
     store.contentSettings(user.id),
     store.listFor("contentIdeas", user.id),
     store.listFor("contentPosts", user.id),
     store.listFor("socialAccounts", user.id),
+    store.list("news"),
+    store.list("autopilotRuns"),
   ]);
+  const lastRun = runs[0];
+  const ai = freeAiEnabled();
   const week = upcomingWeek(settings);
   const ranked = rankIdeas(ideas);
   const premium = hasFeature(user, "ai_content");
@@ -34,6 +58,50 @@ export default async function Studio() {
           </Link>
         )}
       </div>
+
+      {error && <p className="notice error">{error}</p>}
+      {connected && <p className="notice ok">{connected}</p>}
+      {ran && <p className="notice ok">Autopilot finished. See what it did below.</p>}
+
+      <section className="card stack">
+        <div className="row" style={{ justifyContent: "space-between" }}>
+          <h2>Autopilot</h2>
+          {premium && (
+            <div className="row">
+              <form action={toggleAutopilot}>
+                <button className={settings.autopilot ? "" : "primary"}>{settings.autopilot ? "Turn autopilot off" : "Turn autopilot on"}</button>
+              </form>
+              <form action={runAutopilotNow}>
+                <button>Run it now</button>
+              </form>
+            </div>
+          )}
+        </div>
+        <p className="small muted">
+          Every morning: two news scouts read the latest AI news and starting-a-business news, an idea agent turns the
+          best stories into video questions, the planner fills your posting days, three writer agents (Teacher,
+          Storyteller, Myth-buster) each script every post and an editor picks the best. Posts that have a video and
+          auto-post on go out on their day to your connected accounts.{" "}
+          {ai ? "Writing uses the free Gemini AI." : "Writing uses free templates until a free Gemini key is added."}
+        </p>
+        {premium ? (
+          <p className="small">
+            Status: <span className={`pill ${settings.autopilot ? "good" : ""}`}>{settings.autopilot ? "on" : "off"}</span>
+          </p>
+        ) : (
+          <p className="small">Autopilot is part of Premium.</p>
+        )}
+        {lastRun && premium && (
+          <details>
+            <summary className="small">Last run {lastRun.createdAt.slice(0, 16).replace("T", " ")} UTC</summary>
+            <ul className="small">
+              {lastRun.lines.map((l, i) => (
+                <li key={i}>{l}</li>
+              ))}
+            </ul>
+          </details>
+        )}
+      </section>
 
       <section className="card">
         <h2>This week</h2>
@@ -119,11 +187,18 @@ export default async function Studio() {
       <section className="grid two">
         <div className="card stack">
           <h2>Social accounts</h2>
-          <ul className="clean">
+          <p className="small muted">
+            Type the exact account to post to (for example @anthro_agent), then Connect and log in to that account.
+            Empire refuses any other account.
+          </p>
+          <ul className="clean stack">
             {SOCIAL_PLATFORMS.map((p) => {
               const acct = accounts.find((a) => a.platform === p.id);
+              const prov = provider(p.id);
+              const ready = !!prov && providerReady(prov);
+              const isConnected = acct?.status === "connected";
               return (
-                <li key={p.id}>
+                <li key={p.id} className="stack">
                   <form action={connectAccount} className="row">
                     <input type="hidden" name="platform" value={p.id} />
                     <strong style={{ minWidth: 130 }}>{p.label}</strong>
@@ -134,21 +209,35 @@ export default async function Studio() {
                       defaultValue={acct ? `@${acct.handle}` : ""}
                       style={{ maxWidth: 170 }}
                     />
-                    <button>{acct ? "Update" : "Add"}</button>
-                    {acct && (
-                      <span className={`pill ${acct.status === "connected" ? "good" : ""}`}>
-                        {acct.status === "connected" ? "connected" : "saved"}
-                      </span>
-                    )}
+                    <button>Save</button>
+                    {isConnected && <span className="pill good">connected</span>}
                   </form>
+                  <div className="row small">
+                    {NOT_SUPPORTED[p.id] ? (
+                      <span className="muted">{NOT_SUPPORTED[p.id]}</span>
+                    ) : !ready ? (
+                      <span className="muted">Auto-posting needs a free developer app on the server first.</span>
+                    ) : acct && acct.status !== "disconnected" ? (
+                      <>
+                        <a className="btn" href={`/api/social/${p.id}/connect`}>
+                          {isConnected ? "Reconnect" : `Connect @${acct.handle}`}
+                        </a>
+                        {isConnected && (
+                          <form action={disconnectAccount}>
+                            <input type="hidden" name="id" value={acct.id} />
+                            <button>Disconnect</button>
+                          </form>
+                        )}
+                      </>
+                    ) : (
+                      <span className="muted">Save the handle first, then connect.</span>
+                    )}
+                    {acct?.lastError && <span style={{ color: "var(--bad)" }}>Last error: {acct.lastError}</span>}
+                  </div>
                 </li>
               );
             })}
           </ul>
-          <p className="small muted">
-            Automatic posting needs each platform to approve the app (Meta, TikTok and Google review apps that post on
-            your behalf). Until then, Empire keeps your schedule and gives you the caption and hashtags to paste.
-          </p>
         </div>
 
         <div className="card stack">
@@ -204,6 +293,27 @@ export default async function Studio() {
             <button>Save</button>
           </form>
         </div>
+      </section>
+      <section className="grid two">
+        {(["ai", "business"] as const).map((kind) => (
+          <div key={kind} className="card stack">
+            <h2>{kind === "ai" ? "AI news" : "Business news"}</h2>
+            <ul className="clean small">
+              {news
+                .filter((n) => n.kind === kind)
+                .slice(0, 6)
+                .map((n) => (
+                  <li key={n.id}>
+                    <a href={n.link} target="_blank" rel="noreferrer">
+                      {n.title}
+                    </a>{" "}
+                    <span className="muted">{n.source}</span>
+                  </li>
+                ))}
+            </ul>
+            {!news.some((n) => n.kind === kind) && <p className="small muted">The news scout fills this on the next autopilot run.</p>}
+          </div>
+        ))}
       </section>
     </>
   );

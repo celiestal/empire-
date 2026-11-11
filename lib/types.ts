@@ -141,6 +141,12 @@ export interface SocialAccount {
   /** "connected" only once a real OAuth token is stored server-side. */
   status: "connected" | "pending" | "disconnected";
   connectedAt: string | null;
+  /** The platform's own id for the connected account or page. */
+  externalId?: string;
+  /** Access or refresh token, encrypted with AUTH_SECRET. Never sent to the browser. */
+  tokenEnc?: string;
+  tokenExpiresAt?: string | null;
+  lastError?: string | null;
 }
 
 /** One line on the content gap list: a question the audience asks that nobody answers well. */
@@ -179,6 +185,50 @@ export interface ContentPost {
   status: PostStatus;
   approvalId: string | null;
   createdAt: string;
+  /** Public URL of the finished vertical video (stored in Vercel Blob). */
+  videoUrl?: string | null;
+  /** When on, the autopilot posts this on its scheduled day to every connected account in `platforms`. */
+  autoPost?: boolean;
+  /** Scripts from the writer sub-agents, one per angle. */
+  scriptVariants?: ScriptVariant[];
+  /** What happened on each platform when the post went out. */
+  postResults?: PostResult[];
+}
+
+export interface ScriptVariant {
+  angle: string;
+  script: VideoScript;
+  caption: string;
+  hashtags: string[];
+}
+
+export interface PostResult {
+  platform: SocialPlatform;
+  ok: boolean;
+  /** The platform's id for the published post. */
+  externalId?: string;
+  error?: string;
+  at: string;
+}
+
+/** A headline found by the news scouts. */
+export interface NewsItem {
+  id: string;
+  kind: "ai" | "business";
+  title: string;
+  link: string;
+  source: string;
+  publishedAt: string | null;
+  /** True once the idea agent has looked at it. */
+  used: boolean;
+  createdAt: string;
+}
+
+/** One autopilot run, for the activity log. */
+export interface AutopilotRun {
+  id: string;
+  lines: string[];
+  createdAt: string;
 }
 
 export interface ContentSettings {
@@ -193,6 +243,8 @@ export interface ContentSettings {
   filmingDay: number;
   targetSeconds: number;
   maxSeconds: number;
+  /** When on, the daily autopilot finds news, adds ideas, plans the week, writes scripts and posts. */
+  autopilot?: boolean;
 }
 
 export const DEFAULT_CONTENT_SETTINGS: Omit<ContentSettings, "id"> = {

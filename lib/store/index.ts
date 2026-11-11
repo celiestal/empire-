@@ -7,6 +7,8 @@ import type {
   ContentSettings,
   KnowledgeEntry,
   LedgerEntry,
+  NewsItem,
+  AutopilotRun,
   Opportunity,
   Project,
   Settings,
@@ -35,6 +37,8 @@ export interface Collections {
   contentPosts: ContentPost;
   contentProfiles: ContentSettings;
   users: User;
+  news: NewsItem;
+  autopilotRuns: AutopilotRun;
 }
 
 export type CollectionName = keyof Collections;

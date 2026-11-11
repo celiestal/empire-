@@ -16,10 +16,15 @@ import {
 import { billingEnabled, createCheckoutUrl, createPortalUrl } from "@/lib/billing";
 import { aiEnabled } from "@/lib/ai";
 import { accountsOpen } from "@/lib/env";
-import { buildHashtags, hashtagProblems, upcomingWeek } from "@/lib/content";
+import { buildHashtags, hashtagProblems } from "@/lib/content";
 import { generateContent } from "@/lib/content-ai";
 import { ideaStarters, templateContent } from "@/lib/content-free";
 import { runCeoCycle } from "@/lib/agents/runtime";
+import { runAutopilot } from "@/lib/autopilot";
+import { writeVariants } from "@/lib/agents/free-writers";
+import { freeAiEnabled } from "@/lib/free-ai";
+import { planWeekFor } from "@/lib/planner";
+import { publishPost } from "@/lib/poster";
 import { requireOwner, requireUser } from "@/lib/session";
 import { getStore, newId, now } from "@/lib/store";
 import type { PostStatus, SocialPlatform } from "@/lib/types";
@@ -144,30 +149,7 @@ export async function bumpIdea(fd: FormData) {
 /** Plan the coming week: turn the top ideas into posts on the posting days. */
 export async function planWeek() {
   const user = await requireUser();
-  const store = getStore();
-  const settings = await store.contentSettings(user.id);
-  const week = upcomingWeek(settings);
-  const ideas = (await store.listFor("contentIdeas", user.id))
-    .filter((i) => i.status === "open")
-    .sort((a, b) => b.asks - a.asks || a.createdAt.localeCompare(b.createdAt))
-    .slice(0, week.posts.length);
-  for (const [i, idea] of ideas.entries()) {
-    await store.insert("contentPosts", {
-      id: newId("post"),
-      userId: user.id,
-      ideaId: idea.id,
-      topic: idea.question,
-      script: null,
-      caption: "",
-      hashtags: buildHashtags([], settings),
-      platforms: ["instagram", "facebook"],
-      scheduledFor: week.posts[i],
-      status: "idea",
-      approvalId: null,
-      createdAt: now(),
-    });
-    await store.update("contentIdeas", idea.id, { status: "planned" });
-  }
+  await planWeekFor(getStore(), user.id);
   revalidatePath("/studio");
 }
 
@@ -227,14 +209,27 @@ export async function writeFreeScript(fd: FormData) {
   const post = await store.get("contentPosts", id);
   if (!post || post.userId !== user.id) redirect("/studio");
   const settings = await store.contentSettings(user.id);
-  const variant = post.script ? Math.floor(Math.random() * 1000) : 0;
-  const g = templateContent(post.topic, settings, variant);
-  await store.update("contentPosts", id, {
-    script: g.script,
-    caption: g.caption,
-    hashtags: g.hashtags,
-    status: post.status === "idea" ? "scripted" : post.status,
-  });
+  if (freeAiEnabled()) {
+    const w = await writeVariants(post.topic, settings);
+    const best = w.variants[w.best];
+    await store.update("contentPosts", id, {
+      script: best.script,
+      caption: best.caption,
+      hashtags: best.hashtags,
+      scriptVariants: w.variants,
+      status: post.status === "idea" ? "scripted" : post.status,
+    });
+    if (w.error) redirect(`/studio/posts/${id}?error=${encodeURIComponent(`Free AI didn't answer, so templates were used. ${w.error}`)}`);
+  } else {
+    const variant = post.script ? Math.floor(Math.random() * 1000) : 0;
+    const g = templateContent(post.topic, settings, variant);
+    await store.update("contentPosts", id, {
+      script: g.script,
+      caption: g.caption,
+      hashtags: g.hashtags,
+      status: post.status === "idea" ? "scripted" : post.status,
+    });
+  }
   redirect(`/studio/posts/${id}?saved=1`);
 }
 
@@ -289,6 +284,8 @@ export async function savePost(fd: FormData) {
     scheduledFor: str(fd, "scheduledFor") || null,
     status: (str(fd, "status") as PostStatus) || post.status,
     script,
+    autoPost: fd.get("autoPost") === "on",
+    videoUrl: /^https:\/\//.test(str(fd, "videoUrl")) ? str(fd, "videoUrl") : post.videoUrl ?? null,
   });
   const q = problems.length ? `?error=${encodeURIComponent(problems.join(" "))}` : "?saved=1";
   redirect(`/studio/posts/${id}${q}`);
@@ -302,18 +299,79 @@ export async function connectAccount(fd: FormData) {
   if (!handle) return;
   const store = getStore();
   const existing = (await store.listFor("socialAccounts", user.id)).find((a) => a.platform === platform);
-  const record = {
+  if (existing && existing.handle.toLowerCase() === handle.toLowerCase()) return;
+  // A new handle means a new login: the old token is dropped so nothing posts to the wrong account.
+  await store.insert("socialAccounts", {
     id: existing?.id ?? newId("soc"),
     userId: user.id,
     platform,
     handle,
-    // Real posting needs OAuth with each platform's developer app; until that is
-    // set up the account is saved as "pending".
-    status: "pending" as const,
+    status: "pending",
     connectedAt: null,
-  };
-  await store.insert("socialAccounts", record);
+  });
   revalidatePath("/studio");
+}
+
+export async function disconnectAccount(fd: FormData) {
+  const user = await requireUser();
+  const store = getStore();
+  const acct = await store.get("socialAccounts", str(fd, "id"));
+  if (!acct || acct.userId !== user.id) return;
+  await store.insert("socialAccounts", { id: acct.id, userId: user.id, platform: acct.platform, handle: acct.handle, status: "disconnected", connectedAt: null });
+  revalidatePath("/studio");
+}
+
+export async function setPostVideo(fd: FormData) {
+  const user = await requireUser();
+  const store = getStore();
+  const post = await store.get("contentPosts", str(fd, "id"));
+  const url = str(fd, "videoUrl");
+  if (!post || post.userId !== user.id || !/^https:\/\//.test(url)) return;
+  await store.update("contentPosts", post.id, { videoUrl: url, status: post.status === "posted" ? "posted" : "filmed" });
+  revalidatePath(`/studio/posts/${post.id}`);
+}
+
+export async function useVariant(fd: FormData) {
+  const user = await requireUser();
+  const store = getStore();
+  const post = await store.get("contentPosts", str(fd, "id"));
+  const v = post?.scriptVariants?.[Number(str(fd, "index"))];
+  if (!post || post.userId !== user.id || !v) return;
+  await store.update("contentPosts", post.id, { script: v.script, caption: v.caption, hashtags: v.hashtags });
+  redirect(`/studio/posts/${post.id}?saved=1`);
+}
+
+export async function postNow(fd: FormData) {
+  const user = await requireUser();
+  const store = getStore();
+  const post = await store.get("contentPosts", str(fd, "id"));
+  if (!post || post.userId !== user.id) redirect("/studio");
+  let q = "saved=1";
+  try {
+    const results = await publishPost(store, post);
+    const failed = results.filter((r) => !r.ok);
+    if (failed.length) q = `error=${encodeURIComponent(failed.map((r) => `${r.platform}: ${r.error}`).join(" "))}`;
+    await store.audit(user.email, "posted", post.topic);
+  } catch (err) {
+    q = `error=${encodeURIComponent(err instanceof Error ? err.message : "Posting failed")}`;
+  }
+  redirect(`/studio/posts/${post.id}?${q}`);
+}
+
+export async function toggleAutopilot() {
+  const user = await requireUser();
+  if (!hasFeature(user, "ai_content")) redirect("/pricing?from=autopilot");
+  const store = getStore();
+  const s = await store.contentSettings(user.id);
+  await store.updateContentSettings(user.id, { autopilot: !s.autopilot });
+  revalidatePath("/studio");
+}
+
+export async function runAutopilotNow() {
+  const user = await requireUser();
+  if (!hasFeature(user, "ai_content")) redirect("/pricing?from=autopilot");
+  await runAutopilot(getStore(), { userId: user.id, deadlineMs: 250_000 });
+  redirect("/studio?ran=1");
 }
 
 // --- Owner dashboard --------------------------------------------------------

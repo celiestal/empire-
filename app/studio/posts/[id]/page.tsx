@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { generateForPost, savePost, writeFreeScript } from "@/app/actions";
+import { generateForPost, postNow, savePost, useVariant, writeFreeScript } from "@/app/actions";
+import { VideoUpload } from "./VideoUpload";
 import { aiEnabled } from "@/lib/ai";
+import { freeAiEnabled } from "@/lib/free-ai";
 import { hasFeature } from "@/lib/auth";
 import { hashtagProblems } from "@/lib/content";
 import { chatPrompt } from "@/lib/content-free";
@@ -10,6 +12,8 @@ import { getStore } from "@/lib/store";
 import { SOCIAL_PLATFORMS } from "@/lib/types";
 
 const STATUSES = ["idea", "scripted", "filmed", "scheduled", "posted"] as const;
+
+export const maxDuration = 300;
 
 export default async function PostPage({
   params,
@@ -45,7 +49,7 @@ export default async function PostPage({
           <div className="row">
             <form action={writeFreeScript}>
               <input type="hidden" name="id" value={post.id} />
-              <button className={ai && premium ? "" : "primary"}>{s ? "New hooks and outline" : "Write hooks and outline (free)"}</button>
+              <button className={ai && premium ? "" : "primary"}>{freeAiEnabled() ? (s ? "Write 3 new versions (free AI)" : "Write 3 versions (free AI)") : s ? "New hooks and outline" : "Write hooks and outline (free)"}</button>
             </form>
             {ai && (
               <form action={generateForPost}>
@@ -74,6 +78,26 @@ export default async function PostPage({
               ))}
             </ol>
           </div>
+        )}
+        {post.scriptVariants && post.scriptVariants.length > 1 && (
+          <details>
+            <summary className="small">
+              {post.scriptVariants.length} versions from the writer agents. Pick a different one if you like it better.
+            </summary>
+            <div className="stack">
+              {post.scriptVariants.map((v, i) => (
+                <form key={i} action={useVariant} className="card stack">
+                  <input type="hidden" name="id" value={post.id} />
+                  <input type="hidden" name="index" value={i} />
+                  <strong>{v.angle}</strong>
+                  <p className="small">
+                    <em>{v.script.hook}</em> {v.script.setup} {v.script.valuePoints.join(" ")} {v.script.close}
+                  </p>
+                  <button>Use this version</button>
+                </form>
+              ))}
+            </div>
+          </details>
         )}
         {!s && (
           <p className="muted small">
@@ -146,6 +170,14 @@ export default async function PostPage({
             ))}
           </div>
         </div>
+        <div>
+          <label htmlFor="videoUrl">Finished video link (public https link to an MP4)</label>
+          <input id="videoUrl" name="videoUrl" type="text" defaultValue={post.videoUrl ?? ""} placeholder="Filled in for you when you upload below" />
+        </div>
+        <label className="row small">
+          <input type="checkbox" name="autoPost" defaultChecked={!!post.autoPost} style={{ width: "auto" }} />
+          Auto-post on the scheduled day to every connected account ticked above
+        </label>
         <div className="row">
           <button className="primary">Save</button>
           <Link href={`/editor?post=${post.id}`} className="btn">
@@ -153,6 +185,30 @@ export default async function PostPage({
           </Link>
         </div>
       </form>
+
+      <section className="card stack">
+        <h2>Video and posting</h2>
+        <VideoUpload postId={post.id} enabled={!!process.env.BLOB_READ_WRITE_TOKEN} />
+        {post.videoUrl && (
+          <video src={post.videoUrl} controls playsInline style={{ maxWidth: 270, borderRadius: 8 }} />
+        )}
+        <form action={postNow} className="row">
+          <input type="hidden" name="id" value={post.id} />
+          <button className="primary" disabled={!post.videoUrl || !post.platforms.length}>
+            Post now
+          </button>
+          {!post.videoUrl && <span className="small muted">Upload the finished video first.</span>}
+        </form>
+        {post.postResults && post.postResults.length > 0 && (
+          <ul className="clean small">
+            {post.postResults.map((r) => (
+              <li key={r.platform}>
+                {r.platform}: {r.ok ? `posted (${r.externalId})` : `not posted: ${r.error}`}
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
 
       <details className="card">
         <summary>
