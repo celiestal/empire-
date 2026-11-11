@@ -25,8 +25,8 @@ export default async function Editor({ searchParams }: { searchParams: Promise<{
       {!editorAvailable() ? (
         <div className="card stack">
           <p>
-            <strong>Coming soon.</strong> The auto editor is being moved to a video server. Everything below is what it
-            will do to your videos.
+            <strong>Almost ready.</strong> The auto editor needs video storage switched on for this site. Everything
+            below is what it will do to your videos.
           </p>
         </div>
       ) : premium ? (
@@ -34,6 +34,7 @@ export default async function Editor({ searchParams }: { searchParams: Promise<{
           defaultHook={mine?.script?.hook ?? ""}
           defaultScript={mine?.script ? scriptText(mine.script) : ""}
           maxSeconds={120}
+          postId={mine?.id}
         />
       ) : (
         <div className="card stack">

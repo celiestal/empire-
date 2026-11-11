@@ -1,10 +1,13 @@
 /** Where the site is running and what it can do there. */
 
-/** The auto editor needs ffmpeg, which Vercel functions don't have. */
+/**
+ * The auto editor uses the ffmpeg bundled with the site. On Vercel it also needs
+ * Blob storage, because uploads there go to storage instead of through the server.
+ */
 export function editorAvailable(): boolean {
   if (process.env.EDITOR_ENABLED === "on") return true;
   if (process.env.EDITOR_ENABLED === "off") return false;
-  return !process.env.VERCEL;
+  return !process.env.VERCEL || !!process.env.BLOB_READ_WRITE_TOKEN;
 }
 
 export function databaseUrl(): string | undefined {

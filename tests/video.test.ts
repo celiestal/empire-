@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildFilterGraph, fitFontSize, wrapLines } from "@/lib/video/ffmpeg";
+import { assTime, buildAss, buildFilterGraph, fitFontSize, wrapLines } from "@/lib/video/ffmpeg";
 import { buildEditPlan, chunkWords, keepIntervals, parseSilences, toOutputTime, DEFAULT_EDIT_OPTIONS } from "@/lib/video/plan";
 
 describe("edit plan", () => {
@@ -54,8 +54,17 @@ describe("ffmpeg graph", () => {
     expect(graph).toContain("sidechaincompress");
     expect(graph).toContain("loudnorm=I=-14");
     expect(graph).toContain("overlay=x='-W+W*t/");
-    expect(files).toContain("hook0");
-    expect(files.filter((f) => f.startsWith("cap"))).toHaveLength(2);
+    expect(files).toEqual(["subs.ass"]);
+    expect(graph).toContain("ass=filename='/tmp/subs.ass.txt':fontsdir='/'");
+  });
+
+  it("writes the hook and captions as ASS subtitles", () => {
+    const plan = buildEditPlan({ duration: 12, silences: [], hookText: "Stop doing {this}", scriptText: "one two three four", emphasisWords: ["three"] });
+    const ass = buildAss(plan, 1080, 1920);
+    expect(ass).toContain("PlayResY: 1920");
+    expect(ass).toMatch(/Dialogue: 1,0:00:00\.00,0:00:02\.50,Hook,,0,0,0,,Stop doing this/);
+    expect(ass).toContain("\\c&H0000D4FF&");
+    expect(assTime(65.5)).toBe("0:01:05.50");
   });
 
   it("wraps and sizes text to fit", () => {

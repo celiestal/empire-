@@ -1,8 +1,20 @@
 "use client";
 
+import { upload } from "@vercel/blob/client";
 import { useState } from "react";
 
-export function EditorForm(props: { defaultHook: string; defaultScript: string; maxSeconds: number }) {
+async function toStorage(file: File, onPct: (n: number) => void): Promise<string> {
+  const blob = await upload(`raw/${Date.now()}-${file.name.replace(/[^\w.-]/g, "_")}`, file, {
+    access: "public",
+    handleUploadUrl: "/api/upload",
+    clientPayload: "editor",
+    multipart: file.size > 20 * 1024 * 1024,
+    onUploadProgress: (p) => onPct(Math.round(p.percentage)),
+  });
+  return blob.url;
+}
+
+export function EditorForm(props: { defaultHook: string; defaultScript: string; maxSeconds: number; postId?: string }) {
   const [state, setState] = useState<"idle" | "working" | "done" | "error">("idle");
   const [message, setMessage] = useState("");
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
@@ -11,18 +23,34 @@ export function EditorForm(props: { defaultHook: string; defaultScript: string; 
     e.preventDefault();
     setState("working");
     setMessage("Editing your video. This takes about as long as the video itself.");
-    if (videoUrl) URL.revokeObjectURL(videoUrl);
     setVideoUrl(null);
     try {
-      const res = await fetch("/api/editor/render", { method: "POST", body: new FormData(e.currentTarget) });
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({ error: res.statusText }));
-        throw new Error(body.error ?? "The edit failed.");
-      }
-      const summary = res.headers.get("x-edit-summary");
-      setVideoUrl(URL.createObjectURL(await res.blob()));
+      const fd = new FormData(e.currentTarget);
+      const video = fd.get("video");
+      const music = fd.get("music");
+      if (!(video instanceof File) || !video.size) throw new Error("Choose a video file.");
+      const videoUrlIn = await toStorage(video, (n) => setMessage(`Uploading your video: ${n}%`));
+      const musicUrl = music instanceof File && music.size ? await toStorage(music, (n) => setMessage(`Uploading music: ${n}%`)) : undefined;
+      setMessage("Editing your video. This takes one to three minutes.");
+      const res = await fetch("/api/editor/render", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          videoUrl: videoUrlIn,
+          musicUrl,
+          hook: fd.get("hook"),
+          script: fd.get("script"),
+          emphasis: fd.get("emphasis"),
+          sfx: fd.get("sfx") === "on",
+          progress: fd.get("progress") === "on",
+          postId: props.postId,
+        }),
+      });
+      const body = await res.json().catch(() => ({ error: res.statusText }));
+      if (!res.ok) throw new Error(body.error ?? "The edit failed.");
+      setVideoUrl(body.url);
       setState("done");
-      setMessage(summary ?? "Done.");
+      setMessage(body.summary ?? "Done.");
     } catch (err) {
       setState("error");
       setMessage(err instanceof Error ? err.message : "The edit failed.");
@@ -71,7 +99,7 @@ export function EditorForm(props: { defaultHook: string; defaultScript: string; 
       {videoUrl && (
         <div className="stack">
           <video src={videoUrl} controls playsInline style={{ width: "100%", maxWidth: 360, borderRadius: 12 }} />
-          <a className="btn" href={videoUrl} download="empire-edit.mp4">
+          <a className="btn" href={videoUrl} target="_blank" rel="noreferrer" download="empire-edit.mp4">
             Download
           </a>
         </div>

@@ -1,4 +1,5 @@
 import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
+import { hasFeature } from "@/lib/auth";
 import { currentUser } from "@/lib/session";
 import { getStore } from "@/lib/store";
 
@@ -16,6 +17,15 @@ export async function POST(req: Request) {
       onBeforeGenerateToken: async (_pathname, clientPayload) => {
         const user = await currentUser();
         if (!user) throw new Error("Log in first");
+        if (clientPayload === "editor") {
+          // Raw footage and music for the auto editor.
+          if (!hasFeature(user, "auto_edit")) throw new Error("The auto editor is part of Premium");
+          return {
+            allowedContentTypes: ["video/mp4", "video/quicktime", "video/webm", "audio/mpeg", "audio/mp4", "audio/wav", "audio/x-wav", "audio/aac", "audio/x-m4a"],
+            maximumSizeInBytes: 400 * 1024 * 1024,
+            addRandomSuffix: true,
+          };
+        }
         const post = clientPayload ? await getStore().get("contentPosts", clientPayload) : null;
         if (!post || post.userId !== user.id) throw new Error("Post not found");
         return {

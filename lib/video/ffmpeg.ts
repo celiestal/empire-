@@ -18,6 +18,8 @@ export interface RenderInputs {
   width?: number;
   height?: number;
   fps?: number;
+  /** x264 speed preset; "veryfast" keeps serverless renders inside the time limit. */
+  preset?: string;
 }
 
 const f = (n: number) => n.toFixed(3);
@@ -45,6 +47,56 @@ export function fitFontSize(lines: string[], width: number, base: number): numbe
   const longest = Math.max(1, ...lines.map((l) => l.length));
   // Bold sans glyphs average roughly 0.6 em wide.
   return Math.round(Math.min(width * base, (width * 0.9) / (longest * 0.6)));
+}
+
+/** ASS time: h:mm:ss.cc */
+export function assTime(t: number): string {
+  const cs = Math.max(0, Math.round(t * 100));
+  const h = Math.floor(cs / 360000);
+  const m = Math.floor((cs % 360000) / 6000);
+  const sec = Math.floor((cs % 6000) / 100);
+  return `${h}:${String(m).padStart(2, "0")}:${String(sec).padStart(2, "0")}.${String(cs % 100).padStart(2, "0")}`;
+}
+
+const assText = (t: string) => t.replace(/\\/g, "\\\\").replace(/[{}]/g, "").replace(/\r?\n/g, " ");
+
+/** Font family name of the bundled font, used by libass to find it in fontsdir. */
+export const FONT_FAMILY = "DejaVu Sans";
+
+/**
+ * The hook (top, white on a dark box) and captions (lower third, white with a
+ * black outline, emphasis words bigger and yellow) as an ASS subtitle file.
+ */
+export function buildAss(plan: EditPlan, W: number, H: number): string {
+  const hookLines = plan.hook ? wrapLines(plan.hook.text, 18) : [];
+  const hookSize = fitFontSize(hookLines, W, 0.075);
+  const outline = Math.round(W * 0.007);
+  const out = [
+    "[Script Info]",
+    "ScriptType: v4.00+",
+    `PlayResX: ${W}`,
+    `PlayResY: ${H}`,
+    "WrapStyle: 2",
+    "ScaledBorderAndShadow: yes",
+    "",
+    "[V4+ Styles]",
+    "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
+    // BorderStyle 3 draws an opaque box in OutlineColour (alpha 40 = 75% opaque black).
+    `Style: Hook,${FONT_FAMILY},${hookSize},&H00FFFFFF,&H00FFFFFF,&H40000000,&H40000000,-1,0,0,0,100,100,0,0,3,${Math.round(hookSize * 0.3)},0,8,40,40,${Math.round(H * 0.12)},1`,
+    `Style: Cap,${FONT_FAMILY},${Math.round(W * 0.078)},&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,${outline},0,2,40,40,${Math.round(H * 0.25)},1`,
+    "",
+    "[Events]",
+    "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
+  ];
+  if (plan.hook) {
+    out.push(`Dialogue: 1,${assTime(plan.hook.start)},${assTime(plan.hook.end)},Hook,,0,0,0,,${hookLines.map(assText).join("\\N")}`);
+  }
+  for (const c of plan.captions) {
+    const size = fitFontSize([c.text], W, c.emphasis ? 0.088 : 0.078);
+    const style = c.emphasis ? `{\\fs${size}\\c&H0000D4FF&}` : `{\\fs${size}}`;
+    out.push(`Dialogue: 0,${assTime(c.start)},${assTime(c.end)},Cap,,0,0,0,,${style}${assText(c.text)}`);
+  }
+  return out.join("\n") + "\n";
 }
 
 export function buildFilterGraph(plan: EditPlan, inp: RenderInputs): string {
@@ -86,26 +138,14 @@ export function buildFilterGraph(plan: EditPlan, inp: RenderInputs): string {
     v = "vbar";
   }
 
-  const font = `fontfile=${quote(inp.fontFile)}`;
-  const draws: string[] = [];
-  if (plan.hook) {
-    const lines = wrapLines(plan.hook.text, 18);
-    const size = fitFontSize(lines, W, 0.075);
-    lines.forEach((line, li) => {
-      draws.push(
-        `drawtext=${font}:textfile=${quote(inp.textFile(`hook${li}`, line))}:fontsize=${size}:fontcolor=white:box=1:boxcolor=black@0.75:boxborderw=${Math.round(size * 0.3)}:x=(w-text_w)/2:y=h*0.12+${Math.round(li * size * 1.5)}:enable='between(t,${f(plan.hook!.start)},${f(plan.hook!.end)})'`,
-      );
-    });
-  }
-  plan.captions.forEach((c, i) => {
-    // Lower third, above the bottom ~15% of the screen the app's buttons cover.
-    const size = fitFontSize([c.text], W, c.emphasis ? 0.088 : 0.078);
-    draws.push(
-      `drawtext=${font}:textfile=${quote(inp.textFile(`cap${i}`, c.text))}:fontsize=${size}:fontcolor=${c.emphasis ? "0xFFD400" : "white"}:borderw=${Math.round(W * 0.007)}:bordercolor=black:x=(w-text_w)/2:y=h*0.70:enable='between(t,${f(c.start)},${f(c.end)})'`,
-    );
-  });
-  if (draws.length) {
-    lines.push(`[${v}]${draws.join(",")}[vout]`);
+  // Hook and captions are drawn from one ASS subtitle file (libass), which
+  // the bundled ffmpeg supports and which needs no filter-level text escaping.
+  if (plan.hook || plan.captions.length) {
+    const assPath = inp.textFile("subs.ass", buildAss(plan, W, H));
+    const fontPath = inp.fontFile.replace(/\\/g, "/");
+    const cut = fontPath.lastIndexOf("/");
+    const fontsDir = cut > 0 ? fontPath.slice(0, cut) : cut === 0 ? "/" : ".";
+    lines.push(`[${v}]ass=filename=${quote(assPath)}:fontsdir=${quote(fontsDir)}[vout]`);
   } else {
     lines.push(`[${v}]null[vout]`);
   }
@@ -159,7 +199,7 @@ export function buildFfmpegArgs(plan: EditPlan, inp: RenderInputs): string[] {
     "-c:v",
     "libx264",
     "-preset",
-    "medium",
+    inp.preset ?? "medium",
     "-crf",
     "20",
     "-pix_fmt",
