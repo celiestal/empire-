@@ -1,0 +1,45 @@
+{
+ "experimentId": "exp-trend-daily-2026-11",
+ "startedAt": 1794614400000,
+ "startedAtIso": "2026-11-14T00:00:00.000Z",
+ "totalCash": 10000,
+ "why": "Market-filtered trend rule exactly as it passed E1 (docs/research/2026-11-13-e1-results.md), on all 13 researched coins, equal weight. Forward evidence only; thin pass, not proven.",
+ "markets": [
+  "BTC_USD",
+  "ETH_USD",
+  "SOL_USD",
+  "XRP_USD",
+  "DOGE_USD",
+  "ADA_USD",
+  "LINK_USD",
+  "AVAX_USD",
+  "LTC_USD",
+  "DOT_USD",
+  "XLM_USD",
+  "NEAR_USD",
+  "BCH_USD"
+ ],
+ "params": {
+  "lookback": 30,
+  "volTarget": 0.4,
+  "volLen": 20,
+  "feePerSide": 0.001,
+  "slippage": 0.0002
+ },
+ "warmupDays": 60,
+ "statusDir": ".paper-data/live-trend",
+ "reportPath": "docs/research/exp-trend-daily/status.json",
+ "feeScenarios": [
+  {
+   "label": "fee 0.25% + slip 0.02%",
+   "feePerSide": 0.0025,
+   "slippage": 0.0002
+  },
+  {
+   "label": "fee 0.5% + slip 0.05%",
+   "feePerSide": 0.005,
+   "slippage": 0.0005
+  }
+ ],
+ "killLinePct": 43.8
+}
