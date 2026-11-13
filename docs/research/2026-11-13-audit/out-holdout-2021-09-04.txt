@@ -1,0 +1,92 @@
+span 2021-09-04T00:00:00.000Z -> 2024-11-13T05:00:00.000Z | B&H over OOS: BTC 54% ETH -29% SOL -13% XRP -31% DOGE 78%
+data gaps: {"BTC_USD":{"missingHours":32,"tfBars":6987,"expectedTfBars":6997},"ETH_USD":{"missingHours":30,"tfBars":6989,"expectedTfBars":6997},"SOL_USD":{"missingHours":30,"tfBars":6989,"expectedTfBars":6997},"XRP_USD":{"missingHours":30,"tfBars":6989,"expectedTfBars":6997},"DOGE_USD":{"missingHours":30,"tfBars":6989,"expectedTfBars":6997}}
+
+=== 4h breakout/long: OOS 5.58%/coin  trades 352 (2.01/coin/mo)  win 40.9%  PF 1.25  E[R] 0.155 t=1.87  P(<=0) 0.025  +win 19/35
+  portfolio ann 1.92% sharpe 0.91 sortino 1.56 maxDD 3.3% | fees 33% of gross | dropTop10 -5.1
+  random-entry p5/p50/p95 0.98/4.72/9.13 -> strategy pctile 67 | plateau 70% positive, med 0.96
+  costs {"fee0.05%_slip0.02%":7.22,"fee0.1%_slip0.02%":5.58,"fee0.1%_slip0.1%":1.39,"fee0.15%_slip0.02%":1.39,"fee0.2%_slip0.02%":2.46,"fee0.25%_slip0.02%":0.81}
+  exits {"stopsWithMfeAbove1R":58,"stops":203,"stopsThatLaterReached2R":58,"targetsMedianPostRunR":4.98,"targetsRanFurther2RBeyond":76,"targets":125,"timeExitMedianR":1.22,"timeExits":3,"medianMfeR_losers":0.64,"medianMfeR_winners":2.4}
+  bySide {"long":{"n":352,"pnlPct":5.5,"win":41,"avgR":0.15}}
+  byReason {"target":{"n":125,"pnlPct":26.04,"win":100,"avgR":2.07},"stop":{"n":203,"pnlPct":-22.05,"win":0,"avgR":-1.08},"end":{"n":21,"pnlPct":1.07,"win":76,"avgR":0.51},"time":{"n":3,"pnlPct":0.45,"win":100,"avgR":1.47}}
+  byRegime {"up":{"n":343,"pnlPct":4.22,"win":40,"avgR":0.12},"chop":{"n":7,"pnlPct":1,"win":86,"avgR":1.43},"range":{"n":2,"pnlPct":0.29,"win":100,"avgR":1.44}}
+  byBtc {"btcUp":{"n":299,"pnlPct":7.42,"win":43,"avgR":0.25},"btcDown":{"n":28,"pnlPct":-1.4,"win":18,"avgR":-0.5},"btcMixed":{"n":25,"pnlPct":-0.51,"win":40,"avgR":-0.2}}
+  byVol {"lowVol":{"n":121,"pnlPct":0.85,"win":39,"avgR":0.07},"highVol":{"n":135,"pnlPct":4.83,"win":46,"avgR":0.36},"midVol":{"n":96,"pnlPct":-0.18,"win":36,"avgR":-0.02}}
+  byCoin {"SOL":{"n":85,"pnlPct":4.15,"win":48,"avgR":0.49},"XRP":{"n":61,"pnlPct":-1.96,"win":26,"avgR":-0.32},"DOGE":{"n":87,"pnlPct":-1.19,"win":31,"avgR":-0.14},"BTC":{"n":62,"pnlPct":1.5,"win":47,"avgR":0.24},"ETH":{"n":57,"pnlPct":3,"win":54,"avgR":0.52}}
+  byHold {">3d":{"n":50,"pnlPct":2.19,"win":50,"avgR":0.44},"<=8h":{"n":114,"pnlPct":-0.09,"win":38,"avgR":-0.01},"8-24h":{"n":105,"pnlPct":-0.21,"win":34,"avgR":-0.02},"1-3d":{"n":83,"pnlPct":3.62,"win":48,"avgR":0.43}}
+  byYear {"2021":{"n":4,"pnlPct":-0.17,"win":25,"avgR":-0.42},"2022":{"n":103,"pnlPct":1.74,"win":50,"avgR":0.17},"2023":{"n":135,"pnlPct":4.52,"win":41,"avgR":0.33},"2024":{"n":110,"pnlPct":-0.59,"win":33,"avgR":-0.05}}
+  signals 500 -> skippedEdge 7, taken 352; distinct param sets 25/35
+
+=== 4h breakout/both: OOS 1.37%/coin  trades 636 (3.63/coin/mo)  win 34.3%  PF 1.03  E[R] 0.019 t=0.31  P(<=0) 0.365  +win 17/35
+  portfolio ann 0.42% sharpe 0.16 sortino 0.27 maxDD 4.47% | fees 80% of gross | dropTop10 -17.49
+  random-entry p5/p50/p95 -11.17/-4.39/2.29 -> strategy pctile 94 | plateau 94% positive, med 3.85
+  costs {"fee0.05%_slip0.02%":3.38,"fee0.1%_slip0.02%":1.37,"fee0.1%_slip0.1%":-2,"fee0.15%_slip0.02%":0.12,"fee0.2%_slip0.02%":-4.85,"fee0.25%_slip0.02%":-2.04}
+  exits {"stopsWithMfeAbove1R":129,"stops":404,"stopsThatLaterReached2R":126,"targetsMedianPostRunR":4.89,"targetsRanFurther2RBeyond":122,"targets":204,"timeExitMedianR":1.24,"timeExits":1,"medianMfeR_losers":0.6,"medianMfeR_winners":2.94}
+  bySide {"short":{"n":313,"pnlPct":1.09,"win":35,"avgR":0.03},"long":{"n":323,"pnlPct":0.18,"win":33,"avgR":0}}
+  byReason {"target":{"n":204,"pnlPct":44.43,"win":100,"avgR":2.17},"stop":{"n":404,"pnlPct":-44.06,"win":0,"avgR":-1.09},"time":{"n":1,"pnlPct":0.12,"win":100,"avgR":1.24},"end":{"n":27,"pnlPct":0.79,"win":48,"avgR":0.29}}
+  byRegime {"down":{"n":308,"pnlPct":0.93,"win":35,"avgR":0.03},"up":{"n":314,"pnlPct":-0.42,"win":32,"avgR":-0.01},"chop":{"n":12,"pnlPct":0.57,"win":50,"avgR":0.47},"range":{"n":2,"pnlPct":0.19,"win":50,"avgR":0.94}}
+  byBtc {"btcDown":{"n":297,"pnlPct":0.13,"win":34,"avgR":0},"btcMixed":{"n":64,"pnlPct":-1.27,"win":28,"avgR":-0.2},"btcUp":{"n":275,"pnlPct":2.4,"win":36,"avgR":0.09}}
+  byVol {"highVol":{"n":271,"pnlPct":1.59,"win":35,"avgR":0.06},"lowVol":{"n":169,"pnlPct":0.05,"win":35,"avgR":0},"midVol":{"n":196,"pnlPct":-0.37,"win":32,"avgR":-0.02}}
+  byCoin {"BTC":{"n":117,"pnlPct":1.11,"win":38,"avgR":0.09},"ETH":{"n":123,"pnlPct":1.22,"win":37,"avgR":0.1},"SOL":{"n":146,"pnlPct":3.41,"win":38,"avgR":0.23},"XRP":{"n":104,"pnlPct":-3.3,"win":25,"avgR":-0.32},"DOGE":{"n":146,"pnlPct":-1.17,"win":31,"avgR":-0.08}}
+  byHold {"8-24h":{"n":223,"pnlPct":-3.92,"win":28,"avgR":-0.18},"1-3d":{"n":129,"pnlPct":2.87,"win":36,"avgR":0.22},">3d":{"n":80,"pnlPct":5.23,"win":55,"avgR":0.65},"<=8h":{"n":204,"pnlPct":-2.92,"win":31,"avgR":-0.14}}
+  byYear {"2021":{"n":15,"pnlPct":-0.31,"win":33,"avgR":-0.21},"2022":{"n":222,"pnlPct":4.97,"win":41,"avgR":0.22},"2023":{"n":193,"pnlPct":-0.32,"win":32,"avgR":-0.02},"2024":{"n":206,"pnlPct":-3.07,"win":30,"avgR":-0.15}}
+  signals 838 -> skippedEdge 12, taken 636; distinct param sets 24/35
+
+=== 4h breakout/short: OOS 5.09%/coin  trades 392 (2.24/coin/mo)  win 36.7%  PF 1.19  E[R] 0.127 t=1.52  P(<=0) 0.059  +win 14/35
+  portfolio ann 1.72% sharpe 0.61 sortino 1.22 maxDD 4.29% | fees 40% of gross | dropTop10 -6.83
+  random-entry p5/p50/p95 -5.24/-0.14/5.27 -> strategy pctile 95 | plateau 94% positive, med 2.73
+  costs {"fee0.05%_slip0.02%":9.95,"fee0.1%_slip0.02%":5.09,"fee0.1%_slip0.1%":0.63,"fee0.15%_slip0.02%":2.75,"fee0.2%_slip0.02%":-2.15,"fee0.25%_slip0.02%":-2.32}
+  exits {"stopsWithMfeAbove1R":76,"stops":244,"stopsThatLaterReached2R":80,"targetsMedianPostRunR":4.99,"targetsRanFurther2RBeyond":84,"targets":137,"timeExitMedianR":null,"timeExits":0,"medianMfeR_losers":0.59,"medianMfeR_winners":3.15}
+  bySide {"short":{"n":392,"pnlPct":5.05,"win":37,"avgR":0.13}}
+  byReason {"target":{"n":137,"pnlPct":31.66,"win":100,"avgR":2.3},"stop":{"n":244,"pnlPct":-26.85,"win":0,"avgR":-1.1},"end":{"n":11,"pnlPct":0.24,"win":64,"avgR":0.22}}
+  byRegime {"down":{"n":380,"pnlPct":3.23,"win":36,"avgR":0.08},"chop":{"n":11,"pnlPct":1.93,"win":73,"avgR":1.74},"range":{"n":1,"pnlPct":-0.11,"win":0,"avgR":-1.07}}
+  byBtc {"btcDown":{"n":327,"pnlPct":5.2,"win":38,"avgR":0.16},"btcMixed":{"n":50,"pnlPct":-0.11,"win":34,"avgR":-0.02},"btcUp":{"n":15,"pnlPct":-0.04,"win":27,"avgR":-0.03}}
+  byVol {"highVol":{"n":173,"pnlPct":1.49,"win":34,"avgR":0.08},"lowVol":{"n":81,"pnlPct":2.21,"win":43,"avgR":0.27},"midVol":{"n":138,"pnlPct":1.36,"win":36,"avgR":0.1}}
+  byCoin {"BTC":{"n":76,"pnlPct":1.71,"win":42,"avgR":0.23},"ETH":{"n":81,"pnlPct":0.5,"win":33,"avgR":0.06},"SOL":{"n":87,"pnlPct":1.52,"win":37,"avgR":0.17},"XRP":{"n":69,"pnlPct":0.61,"win":36,"avgR":0.08},"DOGE":{"n":79,"pnlPct":0.71,"win":35,"avgR":0.09}}
+  byHold {"8-24h":{"n":135,"pnlPct":-0.99,"win":31,"avgR":-0.08},"1-3d":{"n":86,"pnlPct":3.8,"win":44,"avgR":0.44},"<=8h":{"n":137,"pnlPct":-0.82,"win":31,"avgR":-0.06},">3d":{"n":34,"pnlPct":3.06,"win":62,"avgR":0.9}}
+  byYear {"2021":{"n":11,"pnlPct":-0.12,"win":36,"avgR":-0.11},"2022":{"n":180,"pnlPct":8.63,"win":44,"avgR":0.47},"2023":{"n":85,"pnlPct":-1.17,"win":31,"avgR":-0.14},"2024":{"n":116,"pnlPct":-2.28,"win":29,"avgR":-0.2}}
+  signals 516 -> skippedEdge 13, taken 392; distinct param sets 21/35
+
+=== 4h tsmom/both: OOS 1.63%/coin  trades 1137 (6.5/coin/mo)  win 37.8%  PF 1.02  E[R] 0.012 t=0.3  P(<=0) 0.392  +win 18/35
+  portfolio ann 0.5% sharpe 0.14 sortino 0.22 maxDD 7.55% | fees 77% of gross | dropTop10 -37.39
+  random-entry p5/p50/p95 -10.03/-3/4.02 -> strategy pctile 81 | plateau 97% positive, med 6.38
+  costs {"fee0.05%_slip0.02%":3.13,"fee0.1%_slip0.02%":1.63,"fee0.1%_slip0.1%":-3.84,"fee0.15%_slip0.02%":0.06,"fee0.2%_slip0.02%":-0.27,"fee0.25%_slip0.02%":-4.22}
+  exits {"stopsWithMfeAbove1R":88,"stops":509,"stopsThatLaterReached2R":44,"targetsMedianPostRunR":4.6,"targetsRanFurther2RBeyond":29,"targets":86,"timeExitMedianR":0.22,"timeExits":404,"medianMfeR_losers":0.39,"medianMfeR_winners":1.72}
+  bySide {"short":{"n":560,"pnlPct":-3.53,"win":36,"avgR":-0.06},"long":{"n":577,"pnlPct":4.86,"win":39,"avgR":0.08}}
+  byReason {"target":{"n":86,"pnlPct":29.6,"win":100,"avgR":3.44},"stop":{"n":509,"pnlPct":-53.38,"win":0,"avgR":-1.05},"time":{"n":404,"pnlPct":19.51,"win":64,"avgR":0.48},"end":{"n":138,"pnlPct":5.6,"win":63,"avgR":0.41}}
+  byRegime {"range":{"n":169,"pnlPct":0.96,"win":32,"avgR":0.06},"down":{"n":364,"pnlPct":0.92,"win":42,"avgR":0.03},"up":{"n":416,"pnlPct":-0.63,"win":37,"avgR":-0.01},"chop":{"n":188,"pnlPct":0.08,"win":37,"avgR":0}}
+  byBtc {"btcDown":{"n":496,"pnlPct":2.14,"win":38,"avgR":0.04},"btcUp":{"n":486,"pnlPct":-0.54,"win":37,"avgR":-0.01},"btcMixed":{"n":155,"pnlPct":-0.28,"win":42,"avgR":-0.02}}
+  byVol {"midVol":{"n":342,"pnlPct":-0.64,"win":37,"avgR":-0.02},"highVol":{"n":397,"pnlPct":2.28,"win":40,"avgR":0.06},"lowVol":{"n":398,"pnlPct":-0.31,"win":36,"avgR":-0.01}}
+  byCoin {"BTC":{"n":232,"pnlPct":0.61,"win":38,"avgR":0.03},"ETH":{"n":240,"pnlPct":-1.06,"win":34,"avgR":-0.04},"SOL":{"n":217,"pnlPct":4.11,"win":46,"avgR":0.19},"XRP":{"n":232,"pnlPct":-2.64,"win":34,"avgR":-0.11},"DOGE":{"n":216,"pnlPct":0.32,"win":38,"avgR":0.02}}
+  byHold {"1-3d":{"n":266,"pnlPct":-7.69,"win":20,"avgR":-0.29},">3d":{"n":662,"pnlPct":22.32,"win":53,"avgR":0.34},"8-24h":{"n":163,"pnlPct":-11,"win":12,"avgR":-0.67},"<=8h":{"n":46,"pnlPct":-2.3,"win":24,"avgR":-0.5}}
+  byYear {"2021":{"n":26,"pnlPct":-0.43,"win":23,"avgR":-0.16},"2022":{"n":440,"pnlPct":-0.8,"win":37,"avgR":-0.02},"2023":{"n":380,"pnlPct":0.99,"win":38,"avgR":0.03},"2024":{"n":291,"pnlPct":1.57,"win":41,"avgR":0.05}}
+  signals 21119 -> skippedEdge 0, taken 1137; distinct param sets 27/35
+
+=== 4h tsmom/long: OOS 6.52%/coin  trades 603 (3.45/coin/mo)  win 39.6%  PF 1.21  E[R] 0.105 t=1.66  P(<=0) 0.044  +win 17/35
+  portfolio ann 2.21% sharpe 0.64 sortino 1 maxDD 3.54% | fees 27% of gross | dropTop10 -16.98
+  random-entry p5/p50/p95 3.92/6.07/8.56 -> strategy pctile 60 | plateau 96% positive, med 8.61
+  costs {"fee0.05%_slip0.02%":8.08,"fee0.1%_slip0.02%":6.52,"fee0.1%_slip0.1%":6.04,"fee0.15%_slip0.02%":3.94,"fee0.2%_slip0.02%":3.05,"fee0.25%_slip0.02%":3.94}
+  exits {"stopsWithMfeAbove1R":59,"stops":255,"stopsThatLaterReached2R":24,"targetsMedianPostRunR":7.44,"targetsRanFurther2RBeyond":20,"targets":34,"timeExitMedianR":0.33,"timeExits":220,"medianMfeR_losers":0.4,"medianMfeR_winners":1.62}
+  bySide {"long":{"n":603,"pnlPct":6.33,"win":40,"avgR":0.1}}
+  byReason {"end":{"n":94,"pnlPct":4.62,"win":62,"avgR":0.49},"stop":{"n":255,"pnlPct":-26.89,"win":0,"avgR":-1.05},"time":{"n":220,"pnlPct":14.5,"win":67,"avgR":0.66},"target":{"n":34,"pnlPct":14.1,"win":100,"avgR":4.13}}
+  byRegime {"up":{"n":334,"pnlPct":1.85,"win":37,"avgR":0.05},"range":{"n":92,"pnlPct":0.74,"win":40,"avgR":0.08},"chop":{"n":91,"pnlPct":3.05,"win":46,"avgR":0.34},"down":{"n":86,"pnlPct":0.68,"win":42,"avgR":0.08}}
+  byBtc {"btcUp":{"n":381,"pnlPct":6.35,"win":41,"avgR":0.17},"btcDown":{"n":124,"pnlPct":1.18,"win":39,"avgR":0.1},"btcMixed":{"n":98,"pnlPct":-1.21,"win":36,"avgR":-0.12}}
+  byVol {"lowVol":{"n":208,"pnlPct":2.38,"win":37,"avgR":0.12},"highVol":{"n":226,"pnlPct":2.42,"win":43,"avgR":0.11},"midVol":{"n":169,"pnlPct":1.53,"win":38,"avgR":0.09}}
+  byCoin {"BTC":{"n":125,"pnlPct":1.31,"win":40,"avgR":0.1},"ETH":{"n":121,"pnlPct":1.82,"win":37,"avgR":0.15},"SOL":{"n":111,"pnlPct":3.57,"win":43,"avgR":0.32},"XRP":{"n":131,"pnlPct":-1.82,"win":38,"avgR":-0.14},"DOGE":{"n":115,"pnlPct":1.45,"win":40,"avgR":0.13}}
+  byHold {">3d":{"n":367,"pnlPct":14.07,"win":50,"avgR":0.38},"8-24h":{"n":81,"pnlPct":-5.65,"win":15,"avgR":-0.69},"<=8h":{"n":28,"pnlPct":-1.84,"win":18,"avgR":-0.65},"1-3d":{"n":127,"pnlPct":-0.25,"win":30,"avgR":-0.02}}
+  byYear {"2021":{"n":8,"pnlPct":-0.4,"win":13,"avgR":-0.5},"2022":{"n":174,"pnlPct":-0.7,"win":40,"avgR":-0.04},"2023":{"n":226,"pnlPct":4.54,"win":37,"avgR":0.2},"2024":{"n":195,"pnlPct":2.89,"win":44,"avgR":0.15}}
+  signals 9419 -> skippedEdge 0, taken 603; distinct param sets 23/35
+
+=== 4h tsmom/short: OOS 3.62%/coin  trades 743 (4.25/coin/mo)  win 41.2%  PF 1.09  E[R] 0.047 t=0.82  P(<=0) 0.199  +win 16/35
+  portfolio ann 1.18% sharpe 0.31 sortino 0.52 maxDD 5.03% | fees 48% of gross | dropTop10 -22.09
+  random-entry p5/p50/p95 1.29/3.85/6.17 -> strategy pctile 45 | plateau 74% positive, med 1.13
+  costs {"fee0.05%_slip0.02%":4.07,"fee0.1%_slip0.02%":3.62,"fee0.1%_slip0.1%":-0.56,"fee0.15%_slip0.02%":1.64,"fee0.2%_slip0.02%":-1.76,"fee0.25%_slip0.02%":-2.95}
+  exits {"stopsWithMfeAbove1R":49,"stops":308,"stopsThatLaterReached2R":26,"targetsMedianPostRunR":5.21,"targetsRanFurther2RBeyond":28,"targets":66,"timeExitMedianR":0.29,"timeExits":285,"medianMfeR_losers":0.39,"medianMfeR_winners":1.65}
+  bySide {"short":{"n":743,"pnlPct":3.43,"win":41,"avgR":0.05}}
+  byReason {"target":{"n":66,"pnlPct":22.81,"win":100,"avgR":3.45},"stop":{"n":308,"pnlPct":-34.13,"win":0,"avgR":-1.1},"time":{"n":285,"pnlPct":14.27,"win":70,"avgR":0.5},"end":{"n":84,"pnlPct":0.48,"win":49,"avgR":0.06}}
+  byRegime {"range":{"n":126,"pnlPct":4.04,"win":45,"avgR":0.32},"down":{"n":412,"pnlPct":1.56,"win":44,"avgR":0.04},"chop":{"n":119,"pnlPct":-0.39,"win":34,"avgR":-0.03},"up":{"n":86,"pnlPct":-1.78,"win":33,"avgR":-0.21}}
+  byBtc {"btcDown":{"n":437,"pnlPct":1.65,"win":39,"avgR":0.04},"btcMixed":{"n":141,"pnlPct":2.43,"win":47,"avgR":0.17},"btcUp":{"n":165,"pnlPct":-0.65,"win":43,"avgR":-0.04}}
+  byVol {"midVol":{"n":208,"pnlPct":4.53,"win":45,"avgR":0.22},"highVol":{"n":262,"pnlPct":-1.17,"win":38,"avgR":-0.04},"lowVol":{"n":273,"pnlPct":0.08,"win":41,"avgR":0}}
+  byCoin {"BTC":{"n":144,"pnlPct":1.01,"win":40,"avgR":0.07},"ETH":{"n":145,"pnlPct":1.38,"win":40,"avgR":0.09},"SOL":{"n":132,"pnlPct":1.68,"win":46,"avgR":0.13},"XRP":{"n":171,"pnlPct":0.99,"win":39,"avgR":0.06},"DOGE":{"n":151,"pnlPct":-1.63,"win":42,"avgR":-0.11}}
+  byHold {"1-3d":{"n":191,"pnlPct":-5.28,"win":19,"avgR":-0.27},">3d":{"n":426,"pnlPct":17.9,"win":60,"avgR":0.42},"8-24h":{"n":96,"pnlPct":-7.84,"win":10,"avgR":-0.82},"<=8h":{"n":30,"pnlPct":-1.35,"win":13,"avgR":-0.45}}
+  byYear {"2021":{"n":19,"pnlPct":0.69,"win":42,"avgR":0.37},"2022":{"n":337,"pnlPct":3.52,"win":45,"avgR":0.1},"2023":{"n":195,"pnlPct":-0.58,"win":40,"avgR":-0.03},"2024":{"n":192,"pnlPct":-0.21,"win":36,"avgR":-0.01}}
+  signals 10806 -> skippedEdge 1, taken 743; distinct param sets 26/35
