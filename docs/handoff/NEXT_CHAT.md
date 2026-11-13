@@ -43,7 +43,8 @@ Paste this into a new Claude Code chat on repo `celiestal/empire-`, branch **`cl
    - Result on 8 untouched coins, Dec 2022 → Nov 2026: **+42%, 0.03%/day, Sharpe 0.56, max DD 21.9%** (buy-and-hold: 77% DD).
    - A thin pass, and weak since 2025 (+3.1% in 2025, −6.5% in 2026 YTD). H2 is now used up; the future is the only clean test left.
 6. **The video's core (ETH ↔ PAXG gold on the 200-day average) failed:** test max DD 40%. Gold as the "safe" leg did help.
-7. **The backtester is self-checked:** a planted +1% edge returns 0.76% after 0.24% costs; noise returns −0.24%; look-ahead is caught.
+7. **Regime-gated scalper S1 failed** (owner asked for a scalping algorithm built from all data): 1h entries even inside the E1 regime lose (pooled t −4.3 / −3.8, fees > pre-fee profit). The validated daily rule is available as a TradingView script: `docs/research/tradingview/market-filtered-trend.pine`.
+8. **The backtester is self-checked:** a planted +1% edge returns 0.76% after 0.24% costs; noise returns −0.24%; look-ahead is caught.
 
 ## 4. Tools built (all tested; 91 tests pass)
 - `lib/paper/scalp/engine.ts`: pessimistic simulator, plus an optional event log and trailing stop.

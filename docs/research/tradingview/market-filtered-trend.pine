@@ -1,0 +1,45 @@
+//@version=5
+// Market-filtered trend (the rule that passed the E1 holdout test in celiestal/empire-, docs/research/2026-11-13-e1-results.md)
+// Use on a DAILY chart of a crypto/USD pair. Paper/visual use only: this is not financial advice and not a scalper.
+// Rule, decided at each daily close and held the next day:
+//   IN   when the coin's close is above its close 30 days ago AND Bitcoin's 4-hour close is above a rising 42-bar EMA
+//        (rising = higher than 6 bars earlier), read at the last 4-hour bar of the day.
+//   SIZE = min(100%, 40% / the coin's 20-day realised annualised volatility). OUT = cash.
+// Differences from the research version: TradingView sizes once at entry instead of re-sizing daily, and
+// Bitcoin's price comes from the exchange chosen below. Costs: 0.1% commission + slippage, as in the research.
+strategy("Market-filtered trend (E1)", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=100, commission_type=strategy.commission.percent, commission_value=0.1, slippage=2, process_orders_on_close=false)
+
+btcSymbol  = input.symbol("CRYPTO:BTCUSD", "Bitcoin symbol for the market filter")
+lookback   = input.int(30, "Trend look-back (days)", minval=5)
+volTarget  = input.float(0.40, "Volatility target (annual)", step=0.05)
+volLen     = input.int(20, "Volatility window (days)", minval=5)
+
+// Bitcoin gate on 4-hour bars, using only closed bars (no look-ahead).
+btcGateExpr() =>
+    e = ta.ema(close, 42)
+    close > e and e > e[6]
+btcGate = request.security(btcSymbol, "240", btcGateExpr(), lookahead=barmerge.lookahead_off)
+
+trendUp = close > close[lookback]
+ret     = close / close[1] - 1
+vol     = ta.stdev(ret, volLen) * math.sqrt(365)
+weight  = vol > 0 ? math.min(1.0, volTarget / vol) : 0.0
+inRegime = trendUp and btcGate and timeframe.isdaily
+
+if inRegime and strategy.position_size == 0
+    strategy.entry("Trend", strategy.long, qty=strategy.equity * weight / close, comment=str.format("in {0,number,percent}", weight))
+if not inRegime and strategy.position_size > 0
+    strategy.close("Trend", comment="out")
+
+bgcolor(inRegime ? color.new(color.green, 88) : na, title="Rule is in")
+plotshape(inRegime and not inRegime[1], "Turns in", shape.triangleup, location.belowbar, color.green, size=size.tiny)
+plotshape(not inRegime and inRegime[1], "Turns out", shape.triangledown, location.abovebar, color.red, size=size.tiny)
+plot(close[lookback], "Close 30 days ago", color=color.new(color.gray, 40))
+
+var table info = table.new(position.top_right, 1, 3, border_width=1)
+if barstate.islast
+    table.cell(info, 0, 0, inRegime ? "IN (hold)" : "OUT (cash)", bgcolor=inRegime ? color.new(color.green, 70) : color.new(color.red, 70))
+    table.cell(info, 0, 1, "BTC filter: " + (btcGate ? "open" : "closed"))
+    table.cell(info, 0, 2, "Size if in: " + str.tostring(weight * 100, "#") + "%")
+if not timeframe.isdaily
+    label.new(bar_index, high, "Use a daily chart", style=label.style_label_down)
