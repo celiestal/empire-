@@ -18,5 +18,7 @@ Started 2026-11-13. Fake money only: no exchange keys, no real orders.
 - The cost filters were the biggest improvement: they cut out-of-sample losses from about -10–20% to about 0–2% per coin.
 
 ## Live test
+- Daily summaries: `docs/handoff/daily/`. Second session's regime detector + 2-year/4h research: branch `claude/scalp-bot-daily-summary-fxn5vn` (merge, don't rebuild).
+- Live spreads: BTC/ETH ~0%, SOL/XRP/DOGE ~0.01% median; XRP p90 ~0.08% (above the 0.02% slippage assumption).
 - 25 sleeves × $400 (5 methods × 5 coins), clock started 2026-11-13 05:17 UTC. Report due ~24h later.
 - **Do not** connect real money or exchange keys without a separate explicit decision from the owner.
