@@ -33,5 +33,10 @@ The owner asked: "test every day for two weeks, check why each test won or lost,
    - mistakes found (only with evidence); today's research test and result
    - the current best strategy and its average daily return (labelled "paper", "backtest" or "holdout", never mixed)
    - recommendations
-7. Commit (report, hypothesis file, experiment status files) and push. Finish with a short summary.
-8. If today's date is after 2026-11-27, write a two-week summary instead, then disable this routine's scheduled task.
+7. **Refresh the dashboard** "Paper Trading Desk" (https://claude.ai/artifact/KNpiWEphUDnAqC3GAfZYCk):
+   - run `npx tsx scripts/paper/dashboard-data.ts` (after the 1m replay in step 2)
+   - upload each of `.paper-data/dash/{experiments,trades,trade-prices,e1-curve}.json` with the Artifact tool (`url` above, `asset: true`)
+   - for datasets `experiments`, `trades`, `tradePrices` and `e1curve`, `update` the dataset with the new `source.url`, plus `updated: {at, by: "Claude (daily research run)"}` and `edit: {via: "claude", at}`, pinned to the version you read
+   - delete the replaced old asset once nothing names it. The live Bitcoin chart (dataset `btc4h`) needs nothing.
+8. Commit (report, hypothesis file, experiment status files) and push. Finish with a short summary.
+9. If today's date is after 2026-11-27, write a two-week summary instead, then disable this routine's scheduled task.

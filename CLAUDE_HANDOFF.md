@@ -1,5 +1,7 @@
 # CLAUDE_HANDOFF.md: Empire project handoff
 
+> **Newer (2026-11-13 17:05 UTC): for the trading bot, start with `docs/handoff/NEXT_CHAT.md`** (branch `claude/practical-bell-772nzp`). It supersedes the trading sections below.
+
 Written 2026-11-13 ~06:00 UTC at the end of a Claude Code session, from an audit of the actual code on branch
 `claude/scalp-bot-daily-summary-fxn5vn`. Everything marked **Verified** was checked in that session by running it.
 Anything else is labelled as coming from earlier notes, an assumption, or unfinished work.
