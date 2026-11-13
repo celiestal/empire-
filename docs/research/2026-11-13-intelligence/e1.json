@@ -1,0 +1,92 @@
+{
+ "span": [
+  "2022-12-11",
+  "2026-11-13"
+ ],
+ "base": {
+  "totalPct": 42,
+  "avgDailyPct": 0.03,
+  "cagrPct": 9.3,
+  "sharpe": 0.56,
+  "maxDDPct": 21.9,
+  "worstDayPct": -7.2,
+  "worstWeekPct": -8.3,
+  "byYearPct": {
+   "2022": -2.4,
+   "2023": 22.5,
+   "2024": 23.3,
+   "2025": 3.1,
+   "2026": -6.5
+  },
+  "perCoin": {
+   "ADA_USD": 40.4,
+   "LINK_USD": 36.7,
+   "AVAX_USD": 158.9,
+   "LTC_USD": -28.2,
+   "DOT_USD": 44.1,
+   "XLM_USD": -5.7,
+   "NEAR_USD": 112.9,
+   "BCH_USD": -1.1
+  }
+ },
+ "stress": {
+  "totalPct": 19.9,
+  "avgDailyPct": 0.018,
+  "cagrPct": 4.7,
+  "sharpe": 0.34,
+  "maxDDPct": 24.8,
+  "worstDayPct": -7.3,
+  "worstWeekPct": -8.7,
+  "byYearPct": {
+   "2022": -2.6,
+   "2023": 16.6,
+   "2024": 17.8,
+   "2025": -0.1,
+   "2026": -10.3
+  },
+  "perCoin": {
+   "ADA_USD": 20.4,
+   "LINK_USD": 14,
+   "AVAX_USD": 126,
+   "LTC_USD": -43.7,
+   "DOT_USD": 25.2,
+   "XLM_USD": -20.4,
+   "NEAR_USD": 86.8,
+   "BCH_USD": -18.8
+  }
+ },
+ "buyHold": {
+  "totalPct": 38.4,
+  "avgDailyPct": 0.087,
+  "cagrPct": 8.6,
+  "sharpe": 0.46,
+  "maxDDPct": 77,
+  "worstDayPct": -19.5,
+  "worstWeekPct": -22.9,
+  "byYearPct": {
+   "2022": -17.5,
+   "2023": 149.7,
+   "2024": 57.5,
+   "2025": -44.4,
+   "2026": -23.3
+  },
+  "perCoin": {
+   "ADA_USD": -44.3,
+   "LINK_USD": 47.7,
+   "AVAX_USD": -38.1,
+   "LTC_USD": -34.6,
+   "DOT_USD": -84.2,
+   "XLM_USD": 73.6,
+   "NEAR_USD": 101.2,
+   "BCH_USD": 106.2
+  }
+ },
+ "gates": {
+  "positiveTotal": true,
+  "atLeast5of8CoinsPositive": true,
+  "sharpeAtLeast05": true,
+  "positiveAtStressCost": true,
+  "maxDDAtMost25": true
+ },
+ "passed": true
+}
