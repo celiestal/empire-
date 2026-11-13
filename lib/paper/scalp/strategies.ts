@@ -126,7 +126,31 @@ export const vwapReversion: Strategy = {
   },
 };
 
-export const STRATEGIES: Strategy[] = [meanReversion, breakout, pullback, vwapReversion];
+/**
+ * 5. Time-series momentum (trend following): the method with the most support in crypto research.
+ * Goes with the move of the last `look` bars when price is also on the right side of its average,
+ * with a wide ATR stop and a large target, and re-enters while the trend lasts. Shorts are the
+ * mirror image (see shortSignals), so in a falling market it sells first and buys back lower.
+ */
+export const momentum: Strategy = {
+  id: "tsmom",
+  label: "Trend following (momentum)",
+  describe: "Follows the trend: buys when price is higher than it was a set time ago and above its average, shorts the mirror image, with a wide stop and a big target.",
+  grid: cartesian({ look: [24, 72, 168], stopAtr: [2, 3, 4], rr: [3, 6], hold: [24, 72] }),
+  signals(c, p) {
+    const cl = closes(c);
+    const e = ema(cl, p.look);
+    const a = atr(c, 14);
+    return c.map((x, i) => {
+      if (i < p.look || !(a[i] > 0)) return null;
+      if (!(x.c > cl[i - p.look] && x.c > e[i] && e[i] > e[i - 1])) return null;
+      const stop = p.stopAtr * a[i];
+      return { stopDist: stop, targetDist: p.rr * stop, maxBars: p.hold };
+    });
+  },
+};
+
+export const STRATEGIES: Strategy[] = [meanReversion, breakout, pullback, vwapReversion, momentum];
 export const strategyById = (id: string) => {
   const s = STRATEGIES.find((x) => x.id === id);
   if (!s) throw new Error(`Unknown strategy ${id}`);

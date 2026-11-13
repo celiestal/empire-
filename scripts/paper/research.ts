@@ -32,14 +32,18 @@ const RGRID = RG ? [{ rgHours: RG[0], rgTrend: RG[1], rgRange: RG[2] }] : SWITCH
 const OUT = process.env.OUT ?? (SWITCH ? ".paper-data/research-switch.json" : ".paper-data/research.json");
 /** Fixed reference classifier used only to label trades for the by-regime breakdown. */
 const REF_REGIME = { hours: 24, erTrend: 0.3, erRange: 0.15 };
+const STRATS = process.env.STRATS?.split(",");
+// BASE=60 reads hourly files (<market>_1h.json, from `download.ts 730 "" 1h`) for long-history tests.
+const BASE = Number(process.env.BASE ?? 1);
+const FILE_TF = BASE === 1 ? "1m" : BASE % 60 === 0 ? `${BASE / 60}h` : `${BASE}m`;
 const DAY = 86_400_000;
-const TRAIN_DAYS = 10;
-const TEST_DAYS = 5;
-const MIN_TRAIN_TRADES = 15;
+const TRAIN_DAYS = Number(process.env.TRAIN_DAYS ?? 10);
+const TEST_DAYS = Number(process.env.TEST_DAYS ?? 5);
+const MIN_TRAIN_TRADES = Number(process.env.MIN_TRAIN_TRADES ?? 15);
 
-const raw: Record<string, Candle[]> = Object.fromEntries(MARKETS.map((m) => [m, JSON.parse(readFileSync(`.paper-data/${m}_1m.json`, "utf8"))]));
+const raw: Record<string, Candle[]> = Object.fromEntries(MARKETS.map((m) => [m, JSON.parse(readFileSync(`.paper-data/${m}_${FILE_TF}.json`, "utf8"))]));
 const start = Math.max(...MARKETS.map((m) => raw[m][0].t));
-const end = Math.min(...MARKETS.map((m) => raw[m][raw[m].length - 1].t)) + 60_000;
+const end = Math.min(...MARKETS.map((m) => raw[m][raw[m].length - 1].t)) + BASE * 60_000;
 
 function range(c: Candle[], from: number, to: number): [number, number] {
   let a = 0;
@@ -73,8 +77,8 @@ const rows: Row[] = [];
 const t0 = Date.now();
 
 for (const tf of TFS) {
-  const series = Object.fromEntries(MARKETS.map((m) => [m, resample(raw[m], tf)]));
-  for (const strat of STRATEGIES) {
+  const series = Object.fromEntries(MARKETS.map((m) => [m, resample(raw[m], tf, BASE)]));
+  for (const strat of STRATEGIES.filter((x) => !STRATS || STRATS.includes(x.id))) {
     for (const mode of MODES) {
       // Signals are causal, so compute them once on the full series and slice by time.
       const params: Params[] = strat.grid.flatMap((p) => REGIMES.flatMap((h) => RGRID.map((rg) => ({ ...p, regimeHours: h, ...rg }))));
@@ -215,7 +219,7 @@ console.log("Buy & hold over the out-of-sample span:", Object.entries(hold).map(
 // Time spent in each regime (reference classifier, 60m), per coin, over the out-of-sample span.
 const regimeShare: Record<string, Record<string, number>> = {};
 for (const m of MARKETS) {
-  const c = resample(raw[m], 60);
+  const c = resample(raw[m], Math.max(60, BASE), BASE);
   const reg = classify(c, 60, REF_REGIME);
   const counts: Record<string, number> = {};
   let n = 0;

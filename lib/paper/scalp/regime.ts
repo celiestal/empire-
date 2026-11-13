@@ -19,6 +19,7 @@ export const METHOD_KIND: Record<string, MethodKind> = {
   pullback: "trend",
   meanrev: "reversion",
   vwap: "reversion",
+  tsmom: "trend",
 };
 
 export interface RegimeParams {
