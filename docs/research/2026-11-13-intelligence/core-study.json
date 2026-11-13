@@ -1,0 +1,179 @@
+{
+ "step1_engine": {
+  "gaps": [
+   {
+    "m": "ETH_USD",
+    "gapBpPerDay": 9.2,
+    "upDays": 491,
+    "downDays": 272
+   },
+   {
+    "m": "BTC_USD",
+    "gapBpPerDay": 8.8,
+    "upDays": 537,
+    "downDays": 226
+   }
+  ],
+  "engine": "ETH_USD"
+ },
+ "step2_safe": {
+  "engineDownDaysInTrain": 272,
+  "paxgAnnualisedOnThoseDaysPct": 43.5,
+  "cashPct": 0,
+  "paxgCorrWithEngine": 0.1,
+  "safe": "PAXG_USD"
+ },
+ "step4_neighbours_train": {
+  "sma200": {
+   "totalPct": 189,
+   "cagrPct": 66.1,
+   "sharpe": 1.32,
+   "maxDDPct": 29.2,
+   "cagrPerDD": 2.27,
+   "worstDayPct": -10.3,
+   "worstWeekPct": -15.8,
+   "switches": 11
+  },
+  "sma100": {
+   "totalPct": 97.3,
+   "cagrPct": 38.4,
+   "sharpe": 0.95,
+   "maxDDPct": 39,
+   "cagrPerDD": 0.98,
+   "worstDayPct": -14.9,
+   "worstWeekPct": -15.8,
+   "switches": 43
+  },
+  "sma150": {
+   "totalPct": 163.3,
+   "cagrPct": 58.9,
+   "sharpe": 1.22,
+   "maxDDPct": 30.8,
+   "cagrPerDD": 1.91,
+   "worstDayPct": -14.9,
+   "worstWeekPct": -15.8,
+   "switches": 17
+  },
+  "sma250": {
+   "totalPct": 155.2,
+   "cagrPct": 56.5,
+   "sharpe": 1.19,
+   "maxDDPct": 29.2,
+   "cagrPerDD": 1.93,
+   "worstDayPct": -10.3,
+   "worstWeekPct": -15.8,
+   "switches": 7
+  },
+  "ema200": {
+   "totalPct": 141.7,
+   "cagrPct": 52.5,
+   "sharpe": 1.14,
+   "maxDDPct": 29.5,
+   "cagrPerDD": 1.78,
+   "worstDayPct": -10.3,
+   "worstWeekPct": -15.8,
+   "switches": 15
+  },
+  "cross50_200": {
+   "totalPct": 76.4,
+   "cagrPct": 31.2,
+   "sharpe": 0.82,
+   "maxDDPct": 42.4,
+   "cagrPerDD": 0.74,
+   "worstDayPct": -10.3,
+   "worstWeekPct": -27.5,
+   "switches": 4
+  }
+ },
+ "step5_test": {
+  "engine": "ETH_USD",
+  "safe": "PAXG_USD",
+  "rule": "sma200",
+  "base": {
+   "totalPct": 14.6,
+   "cagrPct": 7,
+   "sharpe": 0.38,
+   "maxDDPct": 40.1,
+   "cagrPerDD": 0.18,
+   "worstDayPct": -12.2,
+   "worstWeekPct": -15.1,
+   "switches": 15
+  },
+  "doubleBase": {
+   "totalPct": 10.4,
+   "cagrPct": 5.1,
+   "sharpe": 0.34,
+   "maxDDPct": 41.1,
+   "cagrPerDD": 0.12,
+   "worstDayPct": -12.2,
+   "worstWeekPct": -15.3,
+   "switches": 15
+  },
+  "stress": {
+   "totalPct": 9.4,
+   "cagrPct": 4.6,
+   "sharpe": 0.33,
+   "maxDDPct": 41.3,
+   "cagrPerDD": 0.11,
+   "worstDayPct": -12.2,
+   "worstWeekPct": -15.4,
+   "switches": 15
+  },
+  "retailTaker": {
+   "totalPct": 0.3,
+   "cagrPct": 0.1,
+   "sharpe": 0.23,
+   "maxDDPct": 43.7,
+   "cagrPerDD": 0,
+   "worstDayPct": -12.2,
+   "worstWeekPct": -15.8,
+   "switches": 15
+  },
+  "buyHoldEngine": {
+   "totalPct": -37.9,
+   "cagrPct": -21.2,
+   "sharpe": -0.01,
+   "maxDDPct": 67.6,
+   "cagrPerDD": -0.31,
+   "worstDayPct": -15,
+   "worstWeekPct": -28.7
+  },
+  "cashVariantForComparison": {
+   "totalPct": -6,
+   "cagrPct": -3.1,
+   "sharpe": 0.13,
+   "maxDDPct": 41.9,
+   "cagrPerDD": -0.07,
+   "worstDayPct": -12.2,
+   "worstWeekPct": -15.9
+  }
+ },
+ "comparison_marketFilteredTrend": {
+  "train": {
+   "totalPct": 170.8,
+   "cagrPct": 61.1,
+   "sharpe": 1.6,
+   "maxDDPct": 18.3,
+   "cagrPerDD": 3.33,
+   "worstDayPct": -7.8,
+   "worstWeekPct": -11
+  },
+  "test": {
+   "totalPct": 40.6,
+   "cagrPct": 18.6,
+   "sharpe": 0.71,
+   "maxDDPct": 25.1,
+   "cagrPerDD": 0.74,
+   "worstDayPct": -11,
+   "worstWeekPct": -13
+  }
+ },
+ "gates": {
+  "testPositive": true,
+  "betterReturnPerDDThanBuyHold": true,
+  "maxDDAtMost35": false,
+  "allNeighboursPositiveOnTrain": true,
+  "positiveAtStressCost": true
+ },
+ "passed": false
+}
