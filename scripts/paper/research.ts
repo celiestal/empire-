@@ -8,17 +8,28 @@
 // Then stress-test: higher/lower fees, 3× slippage, no cost filters, removing the best trades,
 // and shuffling trade order (Monte Carlo) for a bad-luck drawdown.
 //
-// Usage: tsx scripts/paper/research.ts   (env: MARKETS, TFS, MODES, REGIMES)
+// Regime switch (SWITCH=1): also searches the regime detector in lib/paper/scalp/regime.ts, which
+// lets trend methods trade only in trends (with the trend) and reversion methods only in ranges.
+// Every row also splits its out-of-sample P&L by the market regime at entry (fixed reference
+// classifier), to show which method makes or loses money in which kind of market.
+//
+// Usage: tsx scripts/paper/research.ts   (env: MARKETS, TFS, MODES, REGIMES, SWITCH, OUT)
 import { readFileSync, writeFileSync } from "node:fs";
 import type { Candle } from "../../lib/paper/strategy";
 import { resample } from "../../lib/paper/scalp/indicators";
 import { applyRegime, applyRegimeShort, mergeSides, shortSignals, STRATEGIES, type EntrySignal, type Params } from "../../lib/paper/scalp/strategies";
+import { applyRegimeSwitch, classify, METHOD_KIND, REGIME_GRID, type Regime } from "../../lib/paper/scalp/regime";
 import { DEFAULT_RISK, monteCarloDrawdown, simulate, type RiskOptions, type SimTrade } from "../../lib/paper/scalp/engine";
 
 const MARKETS = (process.env.MARKETS ?? "BTC_USD,ETH_USD,SOL_USD,XRP_USD,DOGE_USD").split(",");
 const TFS = (process.env.TFS ?? "1,5,15,60").split(",").map(Number);
 const MODES = (process.env.MODES ?? "long,both").split(",");
-const REGIMES = (process.env.REGIMES ?? "0,12,48").split(",").map(Number);
+const SWITCH = process.env.SWITCH === "1";
+const REGIMES = (process.env.REGIMES ?? (SWITCH ? "0" : "0,12,48")).split(",").map(Number);
+const RGRID = SWITCH ? REGIME_GRID : [REGIME_GRID[0]];
+const OUT = process.env.OUT ?? (SWITCH ? ".paper-data/research-switch.json" : ".paper-data/research.json");
+/** Fixed reference classifier used only to label trades for the by-regime breakdown. */
+const REF_REGIME = { hours: 24, erTrend: 0.3, erRange: 0.15 };
 const DAY = 86_400_000;
 const TRAIN_DAYS = 10;
 const TEST_DAYS = 5;
@@ -52,6 +63,8 @@ interface Row {
   positiveWindows: number;
   latestParams: Params | null;
   stress: Record<string, number>;
+  /** Out-of-sample P&L (% of one coin's capital, averaged over coins) and trade count by regime at entry. */
+  byRegime: Record<string, { pnlPct: number; trades: number; wins: number }>;
 }
 
 const rows: Row[] = [];
@@ -62,7 +75,7 @@ for (const tf of TFS) {
   for (const strat of STRATEGIES) {
     for (const mode of MODES) {
       // Signals are causal, so compute them once on the full series and slice by time.
-      const params: Params[] = strat.grid.flatMap((p) => REGIMES.map((h) => ({ ...p, regimeHours: h })));
+      const params: Params[] = strat.grid.flatMap((p) => REGIMES.flatMap((h) => RGRID.map((rg) => ({ ...p, regimeHours: h, ...rg }))));
       const sigs: Record<string, (EntrySignal | null)[][]> = {};
       for (const m of MARKETS) {
         const c = series[m];
@@ -72,9 +85,17 @@ for (const tf of TFS) {
           const baseShort = mode === "both" ? shortSignals(strat, c, p) : null;
           for (const h of REGIMES) {
             const long = applyRegime(c, base, tf, h);
-            sigs[m].push(baseShort ? mergeSides(long, applyRegimeShort(c, baseShort, tf, h)) : long);
+            const merged = baseShort ? mergeSides(long, applyRegimeShort(c, baseShort, tf, h)) : long;
+            for (const rg of RGRID) {
+              sigs[m].push(rg.rgHours ? applyRegimeSwitch(c, merged, tf, METHOD_KIND[strat.id], { hours: rg.rgHours, erTrend: rg.rgTrend, erRange: rg.rgRange }) : merged);
+            }
           }
         }
+      }
+      const refRegime: Record<string, Map<number, Regime>> = {};
+      for (const m of MARKETS) {
+        const reg = classify(series[m], tf, REF_REGIME);
+        refRegime[m] = new Map(series[m].map((x, i) => [x.t, reg[i]]));
       }
       const run = (m: string, k: number, from: number, to: number, opt: Partial<RiskOptions> = {}) => {
         const [a, b] = range(series[m], from, to);
@@ -107,7 +128,8 @@ for (const tf of TFS) {
         windows.push({ from: trainTo, to: testTo, params: k < 0 ? {} : params[k], perMarket, trainScore: score, k });
       }
 
-      const oos = (opt: Partial<RiskOptions> = {}) => {
+      const byRegime: Row["byRegime"] = {};
+      const oos = (opt: Partial<RiskOptions> = {}, tag = false) => {
         const trades: SimTrade[] = [];
         let total = 0;
         const perMarket: Record<string, number> = Object.fromEntries(MARKETS.map((m) => [m, 0]));
@@ -118,6 +140,17 @@ for (const tf of TFS) {
           for (const m of MARKETS) {
             const r = run(m, w.k, w.from, w.to, opt);
             trades.push(...r.trades);
+            if (tag) {
+              for (const tr of r.trades) {
+                // Label by the regime on the signal candle (the one before the entry fill).
+                const sigT = series[m][series[m].findIndex((x) => x.t >= tr.entryT) - 1]?.t ?? tr.entryT;
+                const g = refRegime[m].get(sigT) ?? "unknown";
+                const b = (byRegime[g] ??= { pnlPct: 0, trades: 0, wins: 0 });
+                b.pnlPct += (tr.pnl / DEFAULT_RISK.startCash) * 100 / MARKETS.length;
+                b.trades++;
+                if (tr.pnl > 0) b.wins++;
+              }
+            }
             perMarket[m] += r.returnPct;
             wsum += r.returnPct;
           }
@@ -127,7 +160,7 @@ for (const tf of TFS) {
         return { avg: total / MARKETS.length, trades, perMarket, positive };
       };
 
-      const base = oos();
+      const base = oos({}, true);
       const t = base.trades;
       const gw = t.filter((x) => x.pnl > 0).reduce((s, x) => s + x.pnl, 0);
       const gl = -t.filter((x) => x.pnl <= 0).reduce((s, x) => s + x.pnl, 0);
@@ -156,10 +189,15 @@ for (const tf of TFS) {
           dropTop10pct: dropTop,
           mcDdP95: mc.p95,
         },
+        byRegime,
       };
       rows.push(row);
       console.log(
         `${String(tf).padStart(2)}m ${(strat.id + "/" + mode).padEnd(14)} OOS avg/coin ${row.oosAvgReturn.toFixed(2).padStart(6)}%  trades ${String(t.length).padStart(4)}  win ${(row.winRate * 100).toFixed(0).padStart(3)}%  PF ${row.profitFactor.toFixed(2)}  avgR ${row.avgR.toFixed(2).padStart(5)}  +win ${row.positiveWindows}/${windows.length} | fee.25 ${row.stress.fee025.toFixed(2)} fee.05 ${row.stress.fee005.toFixed(2)} slip3x ${row.stress.slip3x.toFixed(2)} noFilt ${row.stress.noCostFilters.toFixed(2)} dropTop ${dropTop.toFixed(2)}`,
+      );
+      console.log(
+        "      by regime: " + Object.entries(byRegime).map(([g, b]) => `${g} ${b.pnlPct.toFixed(2)}% (${b.trades}, ${b.trades ? ((b.wins / b.trades) * 100).toFixed(0) : 0}% win)`).join("  ") +
+          (SWITCH ? `  | latest switch: ${row.latestParams?.rgHours ? `${row.latestParams.rgHours}h ER ${row.latestParams.rgTrend}/${row.latestParams.rgRange}` : "off"}` : ""),
       );
     }
   }
@@ -172,5 +210,21 @@ for (const m of MARKETS) {
   hold[m] = (c[c.length - 1].c / first.o - 1) * 100;
 }
 console.log("Buy & hold over the out-of-sample span:", Object.entries(hold).map(([k, v]) => `${k} ${v.toFixed(2)}%`).join("  "));
-writeFileSync(".paper-data/research.json", JSON.stringify({ generatedAt: new Date().toISOString(), from: start, to: end, trainDays: TRAIN_DAYS, testDays: TEST_DAYS, markets: MARKETS, hold, rows }, null, 1));
+// Time spent in each regime (reference classifier, 60m), per coin, over the out-of-sample span.
+const regimeShare: Record<string, Record<string, number>> = {};
+for (const m of MARKETS) {
+  const c = resample(raw[m], 60);
+  const reg = classify(c, 60, REF_REGIME);
+  const counts: Record<string, number> = {};
+  let n = 0;
+  c.forEach((x, i) => {
+    if (x.t < start + TRAIN_DAYS * DAY) return;
+    counts[reg[i]] = (counts[reg[i]] ?? 0) + 1;
+    n++;
+  });
+  regimeShare[m] = Object.fromEntries(Object.entries(counts).map(([k, v]) => [k, v / n]));
+  console.log(`${m} time in regime:`, Object.entries(regimeShare[m]).map(([k, v]) => `${k} ${(v * 100).toFixed(0)}%`).join("  "));
+}
+writeFileSync(OUT, JSON.stringify({ generatedAt: new Date().toISOString(), switch: SWITCH, regimeShare, from: start, to: end, trainDays: TRAIN_DAYS, testDays: TEST_DAYS, markets: MARKETS, hold, rows }, null, 1));
+console.log("wrote", OUT);
 console.log(`done in ${((Date.now() - t0) / 1000).toFixed(0)}s`);
