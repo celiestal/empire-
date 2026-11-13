@@ -37,7 +37,17 @@ export interface RiskOptions {
   killDrawdown: number;
   /** Only open trades on candles at or after this time (earlier candles just warm up the indicators). */
   tradeFrom?: number;
+  /** Optional audit log of every signal, order, fill, exit and rejected trade. Off by default; never changes results. */
+  onEvent?: (e: SimEvent) => void;
 }
+
+export type RejectReason = "invalid" | "cost" | "position-open" | "cooldown" | "daily-stop" | "killed" | "last-bar" | "not-filled";
+export type SimEvent =
+  | { type: "signal"; t: number; side: 1 | -1; price: number; stopDist: number; targetDist: number; trailDist?: number }
+  | { type: "reject"; t: number; side: 1 | -1; reason: RejectReason }
+  | { type: "order"; t: number; side: 1 | -1 }
+  | { type: "fill"; t: number; side: 1 | -1; price: number; qty: number; fee: number; stop: number; target: number }
+  | { type: "exit"; t: number; side: 1 | -1; price: number; reason: SimTrade["reason"]; pnl: number; fee: number; r: number };
 
 export const DEFAULT_RISK: RiskOptions = {
   startCash: 1000,
@@ -96,7 +106,8 @@ export function simulate(c: Candle[], signals: (EntrySignal | null)[], opt: Part
   let cash = o.startCash;
   let peak = o.startCash;
   let maxDd = 0;
-  let pos: { side: 1 | -1; entryT: number; entry: number; qty: number; stop: number; target: number; bars: number; maxBars: number; risk: number; entryFee: number } | null = null;
+  let pos: { side: 1 | -1; entryT: number; entry: number; qty: number; stop: number; target: number; bars: number; maxBars: number; risk: number; entryFee: number; trail?: number; best: number } | null = null;
+  const emit = o.onEvent;
   /** Value of the open position at `price`: the coin for a long, the locked-up collateral plus/minus profit for a short. */
   const posValue = (price: number) => (pos ? (pos.side === 1 ? pos.qty * price : pos.qty * (2 * pos.entry - price)) : 0);
   const trades: SimTrade[] = [];
@@ -120,6 +131,7 @@ export function simulate(c: Candle[], signals: (EntrySignal | null)[], opt: Part
     cash += posValue(price) - fee;
     const pnl = p.side * p.qty * (price - p.entry) - fee - p.entryFee;
     trades.push({ side: p.side, entryT: p.entryT, exitT: c[i].t, entry: p.entry, exit: price, qty: p.qty, reason, pnl, r: p.risk > 0 ? pnl / p.risk : 0, fees: fee + p.entryFee });
+    emit?.({ type: "exit", t: c[i].t, side: p.side, price, reason, pnl, fee, r: p.risk > 0 ? pnl / p.risk : 0 });
     if (pnl > 0) consecLosses = 0;
     else if (++consecLosses >= o.maxConsecutiveLosses) {
       cooldownUntil = i + o.cooldownBars;
@@ -149,9 +161,10 @@ export function simulate(c: Candle[], signals: (EntrySignal | null)[], opt: Part
         const fee = qty * entry * o.feeRate;
         fees += fee;
         cash -= qty * entry + fee;
-        pos = { side, entryT: bar.t, entry, qty, stop: entry - side * pending.stopDist, target: entry + side * pending.targetDist, bars: 0, maxBars: pending.maxBars, risk: qty * pending.stopDist, entryFee: fee };
-      }
-    }
+        pos = { side, entryT: bar.t, entry, qty, stop: entry - side * pending.stopDist, target: entry + side * pending.targetDist, bars: 0, maxBars: pending.maxBars, risk: qty * pending.stopDist, entryFee: fee, trail: pending.trailDist, best: entry };
+        emit?.({ type: "fill", t: bar.t, side, price: entry, qty, fee, stop: pos.stop, target: pos.target });
+      } else emit?.({ type: "reject", t: bar.t, side, reason: "not-filled" });
+    } else if (pending) emit?.({ type: "reject", t: bar.t, side: pending.side ?? 1, reason: "not-filled" });
     pending = null;
 
     // 2. Manage the open position on this bar.
@@ -162,6 +175,12 @@ export function simulate(c: Candle[], signals: (EntrySignal | null)[], opt: Part
       if (sd === 1 ? bar.l <= pos.stop : bar.h >= pos.stop) close(i, (sd === 1 ? Math.min(bar.o, pos.stop) : Math.max(bar.o, pos.stop)) * (1 - sd * o.slippage), "stop");
       else if (sd === 1 ? bar.h >= pos.target : bar.l <= pos.target) close(i, sd === 1 ? Math.max(bar.o, pos.target) : Math.min(bar.o, pos.target), "target");
       else if (pos.bars >= pos.maxBars) close(i, bar.c * (1 - sd * o.slippage), "time");
+      // Trailing stop: ratchet only after this bar is finished, so it applies from the next bar (no look-ahead).
+      if (pos && pos.trail) {
+        pos.best = sd === 1 ? Math.max(pos.best, bar.h) : Math.min(pos.best, bar.l);
+        const trailStop = pos.best - sd * pos.trail;
+        if (sd === 1 ? trailStop > pos.stop : trailStop < pos.stop) pos.stop = trailStop;
+      }
     }
 
     // 3. Book-keeping and risk limits.
@@ -177,6 +196,14 @@ export function simulate(c: Candle[], signals: (EntrySignal | null)[], opt: Part
 
     // 4. Decide whether to enter on the next bar.
     const sig = signals[i];
+    if (emit && sig && (o.tradeFrom === undefined || bar.t >= o.tradeFrom)) {
+      const side = sig.side ?? 1;
+      emit({ type: "signal", t: bar.t, side, price: bar.c, stopDist: sig.stopDist, targetDist: sig.targetDist, trailDist: sig.trailDist });
+      const rt = bar.c * (2 * o.feeRate + 2 * o.slippage);
+      const reason: RejectReason | null = pos ? "position-open" : killed ? "killed" : dayStopped ? "daily-stop" : i <= cooldownUntil ? "cooldown" : i >= c.length - 1 ? "last-bar"
+        : !(sig.stopDist > 0 && sig.targetDist > 0) ? "invalid" : sig.targetDist < o.minEdge * rt || sig.stopDist < o.minStopCost * rt ? "cost" : null;
+      emit(reason ? { type: "reject", t: bar.t, side, reason } : { type: "order", t: bar.t, side });
+    }
     if (!pos && sig && !killed && !dayStopped && i > cooldownUntil && (o.tradeFrom === undefined || bar.t >= o.tradeFrom) && i < c.length - 1) {
       const roundTrip = bar.c * (2 * o.feeRate + 2 * o.slippage);
       if (sig.stopDist > 0 && sig.targetDist > 0 && sig.targetDist >= o.minEdge * roundTrip && sig.stopDist >= o.minStopCost * roundTrip) pending = sig;

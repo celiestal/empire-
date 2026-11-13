@@ -12,6 +12,8 @@ export interface EntrySignal {
   targetDist: number;
   /** Close the trade at market after this many bars if neither stop nor target hit. */
   maxBars: number;
+  /** Optional trailing stop distance (price units): the stop follows the best price by this much. */
+  trailDist?: number;
 }
 
 export type Params = Record<string, number>;
@@ -185,7 +187,7 @@ export function shortSignals(strategy: Strategy, c: Candle[], p: Params): (Entry
   return strategy.signals(inv, p).map((s, i) => {
     if (!s) return null;
     const ratio = c[i].c / inv[i].c;
-    return { side: -1, stopDist: s.stopDist * ratio, targetDist: s.targetDist * ratio, maxBars: s.maxBars };
+    return { side: -1, stopDist: s.stopDist * ratio, targetDist: s.targetDist * ratio, maxBars: s.maxBars, ...(s.trailDist ? { trailDist: s.trailDist * ratio } : {}) };
   });
 }
 
