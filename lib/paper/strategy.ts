@@ -8,6 +8,8 @@ export interface Candle {
   h: number;
   l: number;
   c: number;
+  /** Volume in base units, when known. */
+  v?: number;
 }
 
 export interface PaperTrade {

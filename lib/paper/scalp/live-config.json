@@ -1,0 +1,373 @@
+{
+ "startedAt": 1794547020000,
+ "startedAtIso": "2026-11-13T05:17:00.000Z",
+ "totalCash": 10000,
+ "why": "Best out-of-sample setup per method from scripts/paper/research.ts (walk-forward, 5 coins, 30 days of 1m candles), settings re-tuned on the latest 10 days and frozen for the forward test.",
+ "sleeves": [
+  {
+   "market": "BTC_USD",
+   "tf": 1,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 1,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 1,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 1,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 1,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "BTC_USD",
+   "tf": 5,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 5,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 5,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 5,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 5,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "BTC_USD",
+   "tf": 15,
+   "strategy": "pullback",
+   "mode": "both",
+   "params": {
+    "fast": 20,
+    "slow": 50,
+    "stopAtr": 2,
+    "rr": 2,
+    "regimeHours": 48
+   },
+   "cash": 400
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 15,
+   "strategy": "pullback",
+   "mode": "both",
+   "params": {
+    "fast": 20,
+    "slow": 50,
+    "stopAtr": 2,
+    "rr": 2,
+    "regimeHours": 48
+   },
+   "cash": 400
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 15,
+   "strategy": "pullback",
+   "mode": "both",
+   "params": {
+    "fast": 20,
+    "slow": 50,
+    "stopAtr": 2,
+    "rr": 2,
+    "regimeHours": 48
+   },
+   "cash": 400
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 15,
+   "strategy": "pullback",
+   "mode": "both",
+   "params": {
+    "fast": 20,
+    "slow": 50,
+    "stopAtr": 2,
+    "rr": 2,
+    "regimeHours": 48
+   },
+   "cash": 400
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 15,
+   "strategy": "pullback",
+   "mode": "both",
+   "params": {
+    "fast": 20,
+    "slow": 50,
+    "stopAtr": 2,
+    "rr": 2,
+    "regimeHours": 48
+   },
+   "cash": 400
+  },
+  {
+   "market": "BTC_USD",
+   "tf": 60,
+   "strategy": "meanrev",
+   "mode": "both",
+   "params": {
+    "bb": 20,
+    "k": 2,
+    "rsiLen": 7,
+    "rsiMax": 30,
+    "stopAtr": 1.5,
+    "trend": 200,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 60,
+   "strategy": "meanrev",
+   "mode": "both",
+   "params": {
+    "bb": 20,
+    "k": 2,
+    "rsiLen": 7,
+    "rsiMax": 30,
+    "stopAtr": 1.5,
+    "trend": 200,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 60,
+   "strategy": "meanrev",
+   "mode": "both",
+   "params": {
+    "bb": 20,
+    "k": 2,
+    "rsiLen": 7,
+    "rsiMax": 30,
+    "stopAtr": 1.5,
+    "trend": 200,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 60,
+   "strategy": "meanrev",
+   "mode": "both",
+   "params": {
+    "bb": 20,
+    "k": 2,
+    "rsiLen": 7,
+    "rsiMax": 30,
+    "stopAtr": 1.5,
+    "trend": 200,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 60,
+   "strategy": "meanrev",
+   "mode": "both",
+   "params": {
+    "bb": 20,
+    "k": 2,
+    "rsiLen": 7,
+    "rsiMax": 30,
+    "stopAtr": 1.5,
+    "trend": 200,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "BTC_USD",
+   "tf": 60,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 20,
+    "volMult": 2.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 60,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 20,
+    "volMult": 2.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 60,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 20,
+    "volMult": 2.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 60,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 20,
+    "volMult": 2.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 400
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 60,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 20,
+    "volMult": 2.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 400
+  }
+ ]
+}

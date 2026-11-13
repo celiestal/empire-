@@ -5,3 +5,6 @@ node_modules/
 *.tsbuildinfo
 next-env.d.ts
 .vercel
+
+# Paper trading data and live run state (local only)
+.paper-data/
