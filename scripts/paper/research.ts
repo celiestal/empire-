@@ -26,7 +26,9 @@ const TFS = (process.env.TFS ?? "1,5,15,60").split(",").map(Number);
 const MODES = (process.env.MODES ?? "long,both").split(",");
 const SWITCH = process.env.SWITCH === "1";
 const REGIMES = (process.env.REGIMES ?? (SWITCH ? "0" : "0,12,48")).split(",").map(Number);
-const RGRID = SWITCH ? REGIME_GRID : [REGIME_GRID[0]];
+// RG="hours,erTrend,erRange" forces one fixed detector setting (always on) instead of searching.
+const RG = process.env.RG?.split(",").map(Number);
+const RGRID = RG ? [{ rgHours: RG[0], rgTrend: RG[1], rgRange: RG[2] }] : SWITCH ? REGIME_GRID : [REGIME_GRID[0]];
 const OUT = process.env.OUT ?? (SWITCH ? ".paper-data/research-switch.json" : ".paper-data/research.json");
 /** Fixed reference classifier used only to label trades for the by-regime breakdown. */
 const REF_REGIME = { hours: 24, erTrend: 0.3, erRange: 0.15 };
