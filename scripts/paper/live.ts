@@ -101,7 +101,10 @@ function spreadStats(cfg: LiveConfig) {
 async function pass(cfg: LiveConfig) {
   await refresh(cfg);
   const res = evaluateConfig(cfg, candles, {}, !!cfg.logEvents);
-  const status: Record<string, any> = { ...summarize(cfg, candles, res), spreads: spreadStats(cfg) };
+  // Kill lines (reporting only) live next to the committed report, never inside the frozen config.
+  const klFile = cfg.reportPath ? `${dirname(cfg.reportPath)}/kill-lines.json` : null;
+  const killLines = klFile && existsSync(klFile) ? JSON.parse(readFileSync(klFile, "utf8")).lines : undefined;
+  const status: Record<string, any> = { ...summarize(cfg, candles, res, Date.now(), killLines), spreads: spreadStats(cfg) };
   if (cfg.feeScenarios?.length) status.feeScenarios = feeScenarioReport(cfg, candles);
   writeFileSync(`${statusDir(cfg)}/status.json`, JSON.stringify(status, null, 1));
   if (cfg.logEvents) writeFileSync(`${statusDir(cfg)}/events.json`, JSON.stringify(eventLog(res), null, 1));

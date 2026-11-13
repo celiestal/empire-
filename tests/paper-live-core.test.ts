@@ -107,3 +107,27 @@ describe("live core: 4h experiment", () => {
     expect(rate).toBeLessThan(0.08);
   });
 });
+
+import { configHealth, configDrawdowns } from "@/lib/paper/scalp/live-core";
+describe("live core: kill lines and health (reporting only)", () => {
+  const line = { config: "a", testedMaxDrawdownPct: 2, killLinePct: 4, testedTradesPer30d: 4, testedFrom: "", testedTo: "" };
+  it("labels keep / watch / review / out from written-down rules", () => {
+    expect(configHealth({ a: 1 }, { a: 10 }, [line], 30).a.status).toBe("keep");
+    expect(configHealth({ a: 1 }, { a: 2 }, [line], 30).a.status).toBe("watch"); // fewer than 5 trades
+    expect(configHealth({ a: 2.5 }, { a: 10 }, [line], 30).a.status).toBe("watch"); // past half the line
+    expect(configHealth({ a: 1 }, { a: 100 }, [line], 120).a.status).toBe("review"); // 25/30d vs 4 tested
+    expect(configHealth({ a: 4.1 }, { a: 10 }, [line], 30).a.status).toBe("out");
+  });
+  it("measures a configuration's combined drawdown only after the start, and never changes trades", () => {
+    const cfg = cfg4h(2000 * H);
+    const res = evaluateConfig(cfg, data());
+    const dd = configDrawdowns(cfg, res);
+    expect(Object.keys(dd).sort()).toEqual(["breakout-long", "breakout-long-short"]);
+    for (const v of Object.values(dd)) expect(v).toBeGreaterThanOrEqual(0);
+    const withLines = summarize(cfg, data(), res, 3000 * H, [{ ...line, config: "breakout-long" }]) as any;
+    const without = summarize(cfg, data(), res, 3000 * H) as any;
+    expect(withLines.health["breakout-long"].status).toBeDefined();
+    expect(withLines.tradeLog).toEqual(without.tradeLog);
+    expect(withLines.equity).toBe(without.equity);
+  });
+});

@@ -102,7 +102,48 @@ export function evaluateConfig(cfg: LiveConfig, candles: Record<string, Candle[]
 
 const groupKey = (s: Sleeve) => s.config ?? `${s.tf}m ${s.strategy}`;
 
-export function summarize(cfg: LiveConfig, candles: Record<string, Candle[]>, all: SleeveResult[], now = Date.now()) {
+/** A configuration's kill line (video prompt 12): twice its worst tested drawdown, written down before it trades. */
+export interface KillLine { config: string; testedMaxDrawdownPct: number; killLinePct: number; testedTradesPer30d: number; testedFrom: string; testedTo: string }
+export type HealthStatus = "keep" | "watch" | "review" | "out";
+
+/** Combined equity of a configuration's sleeves from the start, and its worst peak-to-trough drop so far (%). */
+export function configDrawdowns(cfg: LiveConfig, all: SleeveResult[]): Record<string, number> {
+  const by: Record<string, Map<number, number>> = {};
+  for (const x of all) {
+    if (x.sleeve.role === "baseline") continue;
+    const m = (by[groupKey(x.sleeve)] ??= new Map());
+    for (const e of x.r.equity) if (e.t >= cfg.startedAt) m.set(e.t, (m.get(e.t) ?? 0) + e.v);
+  }
+  return Object.fromEntries(Object.entries(by).map(([k, m]) => {
+    let peak = 0, dd = 0;
+    for (const [, v] of [...m.entries()].sort((a, b) => a[0] - b[0])) { peak = Math.max(peak, v); dd = Math.max(dd, peak > 0 ? 1 - v / peak : 0); }
+    return [k, dd * 100];
+  }));
+}
+
+/**
+ * Health status per configuration (reporting only: it never changes trades).
+ *  out    = drawdown since the start crossed the kill line
+ *  review = after 90+ days live, trading less than half or more than twice as often as tested
+ *  watch  = past half the kill line, or fewer than 5 live trades so far
+ *  keep   = otherwise
+ */
+export function configHealth(drawdowns: Record<string, number>, trades: Record<string, number>, lines: KillLine[], daysLive: number) {
+  const out: Record<string, { status: HealthStatus; drawdownPct: number; killLinePct: number; reason: string }> = {};
+  for (const l of lines) {
+    const dd = drawdowns[l.config] ?? 0, n = trades[l.config] ?? 0;
+    const per30 = daysLive > 0 ? (n / daysLive) * 30 : 0;
+    let status: HealthStatus = "keep", reason = "within its tested range";
+    if (dd >= l.killLinePct) { status = "out"; reason = `drawdown ${dd.toFixed(2)}% crossed its kill line ${l.killLinePct.toFixed(2)}%: flag for the owner (frozen experiment, not switched off automatically)`; }
+    else if (daysLive >= 90 && (per30 < 0.5 * l.testedTradesPer30d || per30 > 2 * l.testedTradesPer30d)) { status = "review"; reason = `trading ${per30.toFixed(1)}/30d vs ${l.testedTradesPer30d.toFixed(1)} tested`; }
+    else if (dd >= 0.5 * l.killLinePct) { status = "watch"; reason = `drawdown ${dd.toFixed(2)}% is past half its kill line`; }
+    else if (n < 5) { status = "watch"; reason = `only ${n} live trades so far`; }
+    out[l.config] = { status, drawdownPct: Number(dd.toFixed(3)), killLinePct: l.killLinePct, reason };
+  }
+  return out;
+}
+
+export function summarize(cfg: LiveConfig, candles: Record<string, Candle[]>, all: SleeveResult[], now = Date.now(), killLines?: KillLine[]) {
   const res = all.filter((x) => x.sleeve.role !== "baseline");
   const baseMs = baseMinutes(cfg) * 60_000;
   const total = res.reduce((a, x) => a + x.r.endEquity, 0);
@@ -158,6 +199,10 @@ export function summarize(cfg: LiveConfig, candles: Record<string, Candle[]>, al
     }
     for (const p of Object.values(perConfig)) p.returnPct = (p.equity / p.cash - 1) * 100;
     status.perConfig = perConfig;
+    if (killLines?.length) {
+      const trades = Object.fromEntries(Object.entries(perConfig).map(([k, p]) => [k, p.trades]));
+      status.health = configHealth(configDrawdowns(cfg, all), trades, killLines, Math.max(0, (now - cfg.startedAt) / 86_400_000));
+    }
     const baselines = all.filter((x) => x.sleeve.role === "baseline");
     if (baselines.length) {
       const cash = baselines.reduce((a, x) => a + x.sleeve.cash, 0), eq = baselines.reduce((a, x) => a + x.r.endEquity, 0);
