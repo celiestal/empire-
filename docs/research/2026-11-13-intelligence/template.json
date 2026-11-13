@@ -1,0 +1,280 @@
+{
+ "long": {
+  "periods": {
+   "B": {
+    "BTC 1h": {
+     "returnPct": -7.89,
+     "annPct": -2.54,
+     "trades": 47,
+     "winPct": 25.53,
+     "profitFactor": 0.62,
+     "expectancyR": -0.17,
+     "sharpe": -0.69,
+     "maxDDPct": 9.45,
+     "avgWeeklyPct": -0.05,
+     "feesPctOfPreFeeProfit": null
+    },
+    "BTC 4h": {
+     "returnPct": 5.07,
+     "annPct": 1.56,
+     "trades": 115,
+     "winPct": 33.91,
+     "profitFactor": 1.1,
+     "expectancyR": 0.05,
+     "sharpe": 0.25,
+     "maxDDPct": 10.32,
+     "avgWeeklyPct": 0.03,
+     "feesPctOfPreFeeProfit": 63.54
+    },
+    "13 coins 1h": {
+     "returnPct": -7.39,
+     "annPct": -2.29,
+     "trades": 821,
+     "winPct": 32.16,
+     "profitFactor": 0.74,
+     "expectancyR": -0.12,
+     "sharpe": -1.26,
+     "maxDDPct": 8.27,
+     "avgWeeklyPct": -0.04,
+     "feesPctOfPreFeeProfit": null
+    },
+    "13 coins 4h": {
+     "returnPct": -3.8,
+     "annPct": -1.16,
+     "trades": 882,
+     "winPct": 34.47,
+     "profitFactor": 0.87,
+     "expectancyR": -0.05,
+     "sharpe": -0.54,
+     "maxDDPct": 4.46,
+     "avgWeeklyPct": -0.02,
+     "feesPctOfPreFeeProfit": null
+    },
+    "btcRandomP50": -2.43,
+    "btcRandomPctile": 27,
+    "btcAt025Fee": -10.3,
+    "btcNeighbours": [
+     -7.77,
+     -8.77,
+     -7.13,
+     -9.67,
+     -7.12,
+     -0.82
+    ]
+   },
+   "A": {
+    "BTC 1h": {
+     "returnPct": -9.99,
+     "annPct": -5.13,
+     "trades": 51,
+     "winPct": 27.45,
+     "profitFactor": 0.53,
+     "expectancyR": -0.2,
+     "sharpe": -1.1,
+     "maxDDPct": 9.99,
+     "avgWeeklyPct": -0.1,
+     "feesPctOfPreFeeProfit": null
+    },
+    "BTC 4h": {
+     "returnPct": -10.18,
+     "annPct": -5.23,
+     "trades": 32,
+     "winPct": 15.63,
+     "profitFactor": 0.38,
+     "expectancyR": -0.33,
+     "sharpe": -1.2,
+     "maxDDPct": 10.18,
+     "avgWeeklyPct": -0.1,
+     "feesPctOfPreFeeProfit": null
+    },
+    "13 coins 1h": {
+     "returnPct": -5.98,
+     "annPct": -2.99,
+     "trades": 748,
+     "winPct": 33.82,
+     "profitFactor": 0.76,
+     "expectancyR": -0.11,
+     "sharpe": -1.23,
+     "maxDDPct": 5.89,
+     "avgWeeklyPct": -0.06,
+     "feesPctOfPreFeeProfit": null
+    },
+    "13 coins 4h": {
+     "returnPct": 0.91,
+     "annPct": 0.38,
+     "trades": 697,
+     "winPct": 33.86,
+     "profitFactor": 1.04,
+     "expectancyR": 0.02,
+     "sharpe": 0.14,
+     "maxDDPct": 3.75,
+     "avgWeeklyPct": 0.01,
+     "feesPctOfPreFeeProfit": 73.86
+    },
+    "btcRandomP50": -5.77,
+    "btcRandomPctile": 11,
+    "btcAt025Fee": -6.47,
+    "btcNeighbours": [
+     -10.23,
+     -10.21,
+     -9.02,
+     -10.38,
+     -10,
+     -10.37
+    ]
+   }
+  },
+  "pooledT": -4.39,
+  "gates": {
+   "trades400": true,
+   "pf13": false,
+   "dd20": true,
+   "h1and4hPositive": false,
+   "positiveBtcAnd13": false,
+   "random90": false,
+   "stressPositive": false,
+   "neighbours80": false,
+   "pooledT2": false
+  },
+  "passed": false
+ },
+ "both": {
+  "periods": {
+   "B": {
+    "BTC 1h": {
+     "returnPct": -8.95,
+     "annPct": -2.89,
+     "trades": 81,
+     "winPct": 28.4,
+     "profitFactor": 0.74,
+     "expectancyR": -0.11,
+     "sharpe": -0.59,
+     "maxDDPct": 10.29,
+     "avgWeeklyPct": -0.06,
+     "feesPctOfPreFeeProfit": null
+    },
+    "BTC 4h": {
+     "returnPct": -4.57,
+     "annPct": -1.45,
+     "trades": 181,
+     "winPct": 34.25,
+     "profitFactor": 0.94,
+     "expectancyR": -0.02,
+     "sharpe": -0.14,
+     "maxDDPct": 10.74,
+     "avgWeeklyPct": -0.03,
+     "feesPctOfPreFeeProfit": 158.02
+    },
+    "13 coins 1h": {
+     "returnPct": -6.99,
+     "annPct": -2.19,
+     "trades": 596,
+     "winPct": 30.03,
+     "profitFactor": 0.66,
+     "expectancyR": -0.15,
+     "sharpe": -1.45,
+     "maxDDPct": 8.17,
+     "avgWeeklyPct": -0.04,
+     "feesPctOfPreFeeProfit": null
+    },
+    "13 coins 4h": {
+     "returnPct": -4.32,
+     "annPct": -1.28,
+     "trades": 1234,
+     "winPct": 35.33,
+     "profitFactor": 0.89,
+     "expectancyR": -0.04,
+     "sharpe": -0.48,
+     "maxDDPct": 4.36,
+     "avgWeeklyPct": -0.02,
+     "feesPctOfPreFeeProfit": 2589.05
+    },
+    "btcRandomP50": -5.47,
+    "btcRandomPctile": 23,
+    "btcAt025Fee": -9.82,
+    "btcNeighbours": [
+     -8.91,
+     -8.43,
+     -6.81,
+     -9.82,
+     -7.84,
+     -4.17
+    ]
+   },
+   "A": {
+    "BTC 1h": {
+     "returnPct": -10.05,
+     "annPct": -5.16,
+     "trades": 26,
+     "winPct": 23.08,
+     "profitFactor": 0.27,
+     "expectancyR": -0.4,
+     "sharpe": -1.65,
+     "maxDDPct": 10.05,
+     "avgWeeklyPct": -0.1,
+     "feesPctOfPreFeeProfit": null
+    },
+    "BTC 4h": {
+     "returnPct": -10.12,
+     "annPct": -5.2,
+     "trades": 52,
+     "winPct": 25,
+     "profitFactor": 0.57,
+     "expectancyR": -0.2,
+     "sharpe": -0.95,
+     "maxDDPct": 10.12,
+     "avgWeeklyPct": -0.1,
+     "feesPctOfPreFeeProfit": null
+    },
+    "13 coins 1h": {
+     "returnPct": -7.03,
+     "annPct": -3.47,
+     "trades": 906,
+     "winPct": 34,
+     "profitFactor": 0.76,
+     "expectancyR": -0.1,
+     "sharpe": -1.55,
+     "maxDDPct": 7.09,
+     "avgWeeklyPct": -0.07,
+     "feesPctOfPreFeeProfit": null
+    },
+    "13 coins 4h": {
+     "returnPct": 6.85,
+     "annPct": 3.16,
+     "trades": 1211,
+     "winPct": 38.23,
+     "profitFactor": 1.18,
+     "expectancyR": 0.07,
+     "sharpe": 0.81,
+     "maxDDPct": 4.17,
+     "avgWeeklyPct": 0.06,
+     "feesPctOfPreFeeProfit": 40.16
+    },
+    "btcRandomP50": -2.35,
+    "btcRandomPctile": 2,
+    "btcAt025Fee": -10.08,
+    "btcNeighbours": [
+     -10.11,
+     -9.01,
+     -9.43,
+     -10.06,
+     -10.26,
+     -8.28
+    ]
+   }
+  },
+  "pooledT": -4.93,
+  "gates": {
+   "trades400": true,
+   "pf13": false,
+   "dd20": true,
+   "h1and4hPositive": false,
+   "positiveBtcAnd13": false,
+   "random90": false,
+   "stressPositive": false,
+   "neighbours80": false,
+   "pooledT2": false
+  },
+  "passed": false
+ }
+}

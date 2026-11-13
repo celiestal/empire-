@@ -44,7 +44,8 @@ Paste this into a new Claude Code chat on repo `celiestal/empire-`, branch **`cl
    - A thin pass, and weak since 2025 (+3.1% in 2025, −6.5% in 2026 YTD). H2 is now used up; the future is the only clean test left.
 6. **The video's core (ETH ↔ PAXG gold on the 200-day average) failed:** test max DD 40%. Gold as the "safe" leg did help.
 7. **Regime-gated scalper S1 failed** (owner asked for a scalping algorithm built from all data): 1h entries even inside the E1 regime lose (pooled t −4.3 / −3.8, fees > pre-fee profit). The validated daily rule is available as a TradingView script: `docs/research/tradingview/market-filtered-trend.pine`.
-8. **The backtester is self-checked:** a planted +1% edge returns 0.76% after 0.24% costs; noise returns −0.24%; look-ahead is caught.
+8. **The shared guide's trend template T1 failed** (EMA200 + MACD + ADX + ATR band, BTC 1h: −7.9% / −10.0%, pooled t −4.4). Owner's latest goal: 5% a week (×12.6 a year), unrealistic vs ~0.2%/week best. Owner shared guides on exchange sub-accounts and API keys: **not acted on** (paper-only rule stands).
+9. **The backtester is self-checked:** a planted +1% edge returns 0.76% after 0.24% costs; noise returns −0.24%; look-ahead is caught.
 
 ## 4. Tools built (all tested; 91 tests pass)
 - `lib/paper/scalp/engine.ts`: pessimistic simulator, plus an optional event log and trailing stop.

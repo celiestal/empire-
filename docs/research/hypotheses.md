@@ -15,4 +15,5 @@ Development data: 5 coins (BTC, ETH, SOL, XRP, DOGE) and 8 coins (ADA, LINK, AVA
 | 7 | **Cross-sectional momentum**: hold the top 3 of 13 coins by 30-day return, only when the BTC gate is open | Liu-Tsyvinski-Wu (JF 2022) | open |
 | 8 | **Faster exit**: leave when the coin closes below its 10-day low, even if the 30-day trend is still up | Trade-level losses (to be confirmed by the daily analysis) | open |
 | S1 | **Regime-gated scalper** (1h dip or breakout entries only inside the E1 regime) | Owner request: a scalping algorithm from all data | **fail** (pooled t −4.3 / −3.8; `2026-11-13-scalper-results.md`) |
+| T1 | **Guide's trend template** (EMA200 + MACD + ADX, ATR band stop, 1h) | Owner-shared DaviddTech guide | **fail** (pooled t −4.4 / −4.9; `2026-11-13-template-results.md`) |
 | 9 | **Execution timing**: avoid rebalancing in the 13–16 UTC high-volatility hours (slippage) | Audit §9 (volatility by hour, r = 0.92) | open |

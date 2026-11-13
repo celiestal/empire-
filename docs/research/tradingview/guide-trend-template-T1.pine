@@ -1,0 +1,40 @@
+//@version=6
+// T1: the shared guide's trend template, exactly as tested in celiestal/empire- (docs/research/2026-11-13-template-results.md).
+// RESULT IN OUR BACKTEST: FAILED (BTC 1h -7.9% in 2021-24 and -10.0% in 2024-26, profit factor 0.53-0.62).
+// Provided so you can verify that independently on TradingView (guide step 5). Not for live trading.
+// Rules: trend EMA(200); confirmations MACD(12,26,9) histogram and ADX(14) > 20; volatility ATR(14);
+// enter when all three first agree; stop and trailing stop 2 x ATR (the ATR band); no take-profit; risk 1% per trade.
+strategy("Guide trend template T1 (failed our test)", overlay=true, initial_capital=10000, commission_type=strategy.commission.percent, commission_value=0.1, slippage=2, pyramiding=0)
+
+emaLen  = input.int(200, "Trend EMA")
+adxMin  = input.float(20, "ADX minimum")
+atrMult = input.float(2.0, "ATR band multiple")
+allowShort = input.bool(false, "Allow shorts")
+riskPct = input.float(1.0, "Risk per trade %")
+
+e = ta.ema(close, emaLen)
+[macdLine, sigLine, hist] = ta.macd(close, 12, 26, 9)
+[diPlus, diMinus, adxV] = ta.dmi(14, 14)
+a = ta.atr(14)
+
+longOk  = close > e and hist > 0 and adxV > adxMin
+shortOk = close < e and hist < 0 and adxV > adxMin
+longEntry  = longOk and not longOk[1]
+shortEntry = allowShort and shortOk and not shortOk[1]
+
+var float trail = na
+if strategy.position_size == 0
+    trail := na
+    if longEntry
+        strategy.entry("Long", strategy.long, qty=strategy.equity * riskPct / 100 / (atrMult * a))
+    else if shortEntry
+        strategy.entry("Short", strategy.short, qty=strategy.equity * riskPct / 100 / (atrMult * a))
+if strategy.position_size > 0
+    trail := na(trail) ? close - atrMult * a : math.max(trail, high - atrMult * a)
+    strategy.exit("L stop", "Long", stop=trail)
+if strategy.position_size < 0
+    trail := na(trail) ? close + atrMult * a : math.min(trail, low + atrMult * a)
+    strategy.exit("S stop", "Short", stop=trail)
+
+plot(e, "EMA 200", color=color.orange)
+plot(strategy.position_size != 0 ? trail : na, "ATR band stop", color=color.red, style=plot.style_linebr)
