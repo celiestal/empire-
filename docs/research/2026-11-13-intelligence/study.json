@@ -1,0 +1,938 @@
+{
+ "coinCharacteristics": {
+  "B_2021_24 BTC_USD": {
+   "annVolPct": 56.12,
+   "atr4hPct": 1.64,
+   "buyHoldPct": 85.67,
+   "maxDrawdownPct": 77.05,
+   "corrBTC": 1,
+   "avgCorrOthers": 0.71,
+   "ac1_4h": -0.006,
+   "ac1_daily": -0.007,
+   "VR_4h_k6": 1.048,
+   "VR_daily_k7": 1.029,
+   "breakouts": 225,
+   "breakoutFwd24hPct": 0.41,
+   "unconditionalFwd24hPct": 0.097,
+   "breakoutEdgePct": 0.313,
+   "breakoutEdgeT": 1.44,
+   "falseBreakoutPct": 42.22,
+   "avgHourlyQuoteVolUSD": 8408270
+  },
+  "B_2021_24 ETH_USD": {
+   "annVolPct": 70.18,
+   "atr4hPct": 2.03,
+   "buyHoldPct": -7.74,
+   "maxDrawdownPct": 81.15,
+   "corrBTC": 0.85,
+   "avgCorrOthers": 0.71,
+   "ac1_4h": -0.011,
+   "ac1_daily": -0.029,
+   "VR_4h_k6": 1.041,
+   "VR_daily_k7": 0.972,
+   "breakouts": 257,
+   "breakoutFwd24hPct": 0.249,
+   "unconditionalFwd24hPct": 0.055,
+   "breakoutEdgePct": 0.193,
+   "breakoutEdgeT": 0.92,
+   "falseBreakoutPct": 36.58,
+   "avgHourlyQuoteVolUSD": 8084983
+  },
+  "B_2021_24 SOL_USD": {
+   "annVolPct": 103.36,
+   "atr4hPct": 3.31,
+   "buyHoldPct": 89.65,
+   "maxDrawdownPct": 96.6,
+   "corrBTC": 0.7,
+   "avgCorrOthers": 0.63,
+   "ac1_4h": -0.022,
+   "ac1_daily": 0.003,
+   "VR_4h_k6": 1.014,
+   "VR_daily_k7": 1.044,
+   "breakouts": 254,
+   "breakoutFwd24hPct": 0.257,
+   "unconditionalFwd24hPct": 0.188,
+   "breakoutEdgePct": 0.069,
+   "breakoutEdgeT": 0.19,
+   "falseBreakoutPct": 43.7,
+   "avgHourlyQuoteVolUSD": 184771
+  },
+  "B_2021_24 XRP_USD": {
+   "annVolPct": 83.71,
+   "atr4hPct": 2.31,
+   "buyHoldPct": -44.24,
+   "maxDrawdownPct": 78.77,
+   "corrBTC": 0.59,
+   "avgCorrOthers": 0.57,
+   "ac1_4h": 0.041,
+   "ac1_daily": -0.092,
+   "VR_4h_k6": 1.029,
+   "VR_daily_k7": 0.821,
+   "breakouts": 196,
+   "breakoutFwd24hPct": -0.079,
+   "unconditionalFwd24hPct": 0.038,
+   "breakoutEdgePct": -0.117,
+   "breakoutEdgeT": -0.35,
+   "falseBreakoutPct": 42.86,
+   "avgHourlyQuoteVolUSD": 135511
+  },
+  "B_2021_24 DOGE_USD": {
+   "annVolPct": 94.03,
+   "atr4hPct": 2.83,
+   "buyHoldPct": 35.72,
+   "maxDrawdownPct": 84.7,
+   "corrBTC": 0.68,
+   "avgCorrOthers": 0.61,
+   "ac1_4h": -0.045,
+   "ac1_daily": -0.02,
+   "VR_4h_k6": 0.954,
+   "VR_daily_k7": 1.086,
+   "breakouts": 214,
+   "breakoutFwd24hPct": 0.41,
+   "unconditionalFwd24hPct": 0.153,
+   "breakoutEdgePct": 0.258,
+   "breakoutEdgeT": 0.55,
+   "falseBreakoutPct": 46.26,
+   "avgHourlyQuoteVolUSD": 72889
+  },
+  "A_2024_26 BTC_USD": {
+   "annVolPct": 43.4,
+   "atr4hPct": 1.32,
+   "buyHoldPct": -21.24,
+   "maxDrawdownPct": 53.54,
+   "corrBTC": 1,
+   "avgCorrOthers": 0.79,
+   "ac1_4h": -0.009,
+   "ac1_daily": -0.061,
+   "VR_4h_k6": 0.946,
+   "VR_daily_k7": 0.856,
+   "breakouts": 160,
+   "breakoutFwd24hPct": -0.144,
+   "unconditionalFwd24hPct": -0.007,
+   "breakoutEdgePct": -0.138,
+   "breakoutEdgeT": -0.82,
+   "falseBreakoutPct": 47.5,
+   "avgHourlyQuoteVolUSD": 37981015
+  },
+  "A_2024_26 ETH_USD": {
+   "annVolPct": 68.71,
+   "atr4hPct": 2.02,
+   "buyHoldPct": -38.92,
+   "maxDrawdownPct": 68.07,
+   "corrBTC": 0.84,
+   "avgCorrOthers": 0.79,
+   "ac1_4h": 0.021,
+   "ac1_daily": -0.023,
+   "VR_4h_k6": 1.021,
+   "VR_daily_k7": 0.93,
+   "breakouts": 149,
+   "breakoutFwd24hPct": -0.004,
+   "unconditionalFwd24hPct": -0.003,
+   "breakoutEdgePct": -0.001,
+   "breakoutEdgeT": 0,
+   "falseBreakoutPct": 42.28,
+   "avgHourlyQuoteVolUSD": 28793027
+  },
+  "A_2024_26 SOL_USD": {
+   "annVolPct": 76,
+   "atr4hPct": 2.35,
+   "buyHoldPct": -61.85,
+   "maxDrawdownPct": 78.43,
+   "corrBTC": 0.8,
+   "avgCorrOthers": 0.77,
+   "ac1_4h": 0.03,
+   "ac1_daily": -0.034,
+   "VR_4h_k6": 1.024,
+   "VR_daily_k7": 0.882,
+   "breakouts": 161,
+   "breakoutFwd24hPct": -0.058,
+   "unconditionalFwd24hPct": -0.055,
+   "breakoutEdgePct": -0.002,
+   "breakoutEdgeT": -0.01,
+   "falseBreakoutPct": 54.66,
+   "avgHourlyQuoteVolUSD": 2224003
+  },
+  "A_2024_26 XRP_USD": {
+   "annVolPct": 83.84,
+   "atr4hPct": 2.37,
+   "buyHoldPct": 51.9,
+   "maxDrawdownPct": 72.56,
+   "corrBTC": 0.72,
+   "avgCorrOthers": 0.7,
+   "ac1_4h": -0.001,
+   "ac1_daily": 0.04,
+   "VR_4h_k6": 1.06,
+   "VR_daily_k7": 1.019,
+   "breakouts": 141,
+   "breakoutFwd24hPct": 1.983,
+   "unconditionalFwd24hPct": 0.152,
+   "breakoutEdgePct": 1.831,
+   "breakoutEdgeT": 3.36,
+   "falseBreakoutPct": 34.04,
+   "avgHourlyQuoteVolUSD": 2590141
+  },
+  "A_2024_26 DOGE_USD": {
+   "annVolPct": 81.85,
+   "atr4hPct": 2.61,
+   "buyHoldPct": -83.17,
+   "maxDrawdownPct": 86.47,
+   "corrBTC": 0.78,
+   "avgCorrOthers": 0.77,
+   "ac1_4h": 0,
+   "ac1_daily": -0.006,
+   "VR_4h_k6": 0.971,
+   "VR_daily_k7": 0.853,
+   "breakouts": 121,
+   "breakoutFwd24hPct": 0.019,
+   "unconditionalFwd24hPct": -0.154,
+   "breakoutEdgePct": 0.173,
+   "breakoutEdgeT": 0.38,
+   "falseBreakoutPct": 47.93,
+   "avgHourlyQuoteVolUSD": 305181
+  }
+ },
+ "strategyCoinMatrix": {
+  "note": "[% in B 2021-24, % in A 2024-26], 0.5% risk/trade, fee 0.1%",
+  "matrix": {
+   "breakout-L": {
+    "BTC": [
+     7.33,
+     -5.28
+    ],
+    "ETH": [
+     10.49,
+     6.04
+    ],
+    "SOL": [
+     6.73,
+     -0.43
+    ],
+    "XRP": [
+     -9.25,
+     0
+    ],
+    "DOGE": [
+     -9.21,
+     0
+    ]
+   },
+   "breakout-S": {
+    "BTC": [
+     4.29,
+     -4.73
+    ],
+    "ETH": [
+     2.34,
+     6.86
+    ],
+    "SOL": [
+     -5.64,
+     -3.27
+    ],
+    "XRP": [
+     2.04,
+     -2.99
+    ],
+    "DOGE": [
+     12.09,
+     7.21
+    ]
+   },
+   "breakoutTG-L": {
+    "BTC": [
+     10.81,
+     -0.25
+    ],
+    "ETH": [
+     3.74,
+     5.72
+    ],
+    "SOL": [
+     5.69,
+     -0.31
+    ],
+    "XRP": [
+     -4.62,
+     9.35
+    ],
+    "DOGE": [
+     0.43,
+     6.59
+    ]
+   },
+   "tsmom-L": {
+    "BTC": [
+     8.45,
+     -3.03
+    ],
+    "ETH": [
+     7.18,
+     -0.62
+    ],
+    "SOL": [
+     10.37,
+     -0.06
+    ],
+    "XRP": [
+     0.54,
+     0.62
+    ],
+    "DOGE": [
+     16.5,
+     0.78
+    ]
+   },
+   "tsmom-S": {
+    "BTC": [
+     -6.71,
+     0
+    ],
+    "ETH": [
+     6.86,
+     5.56
+    ],
+    "SOL": [
+     -0.89,
+     4.29
+    ],
+    "XRP": [
+     1.58,
+     8.97
+    ],
+    "DOGE": [
+     4.82,
+     11.88
+    ]
+   },
+   "meanrev-L": {
+    "BTC": [
+     -0.88,
+     0.29
+    ],
+    "ETH": [
+     -5.96,
+     -0.71
+    ],
+    "SOL": [
+     -1.88,
+     -2.9
+    ],
+    "XRP": [
+     -4.36,
+     -1.23
+    ],
+    "DOGE": [
+     -4.61,
+     -2.89
+    ]
+   },
+   "meanrev-S": {
+    "BTC": [
+     -3.5,
+     2.61
+    ],
+    "ETH": [
+     -3.36,
+     1.47
+    ],
+    "SOL": [
+     -7.41,
+     0.77
+    ],
+    "XRP": [
+     3.01,
+     -1.7
+    ],
+    "DOGE": [
+     -0.71,
+     -4.53
+    ]
+   },
+   "pullback-L": {
+    "BTC": [
+     -8,
+     0
+    ],
+    "ETH": [
+     -5.98,
+     -4.47
+    ],
+    "SOL": [
+     -6.68,
+     0.54
+    ],
+    "XRP": [
+     -7.38,
+     0
+    ],
+    "DOGE": [
+     -3.5,
+     -5.45
+    ]
+   },
+   "vwap-L": {
+    "BTC": [
+     1.43,
+     -0.27
+    ],
+    "ETH": [
+     0.8,
+     -0.53
+    ],
+    "SOL": [
+     -2.76,
+     -3.9
+    ],
+    "XRP": [
+     -2.32,
+     -2.05
+    ],
+    "DOGE": [
+     -4.98,
+     -3.98
+    ]
+   }
+  },
+  "spearmanAllCells_BvsA": 0.12,
+  "spearmanCoinSpecificPart_BvsA": 0.04,
+  "perCoinSelection": {
+   "BTC_USD": {
+    "chosenInB": "breakoutTG-L",
+    "itsReturnInB": 10.81,
+    "itsReturnInA": -0.25,
+    "rankInA": 5
+   },
+   "ETH_USD": {
+    "chosenInB": "breakout-L",
+    "itsReturnInB": 10.49,
+    "itsReturnInA": 6.04,
+    "rankInA": 2
+   },
+   "SOL_USD": {
+    "chosenInB": "tsmom-L",
+    "itsReturnInB": 10.37,
+    "itsReturnInA": -0.06,
+    "rankInA": 4
+   },
+   "XRP_USD": {
+    "chosenInB": "meanrev-S",
+    "itsReturnInB": 3.01,
+    "itsReturnInA": -1.7,
+    "rankInA": 7
+   },
+   "DOGE_USD": {
+    "chosenInB": "tsmom-L",
+    "itsReturnInB": 16.5,
+    "itsReturnInA": 0.78,
+    "rankInA": 4
+   }
+  },
+  "avgReturnInA": {
+   "perCoinPickFromB": 0.96,
+   "sameStrategyForAllCoins_bestInB": -0.46,
+   "averageOfAllStrategies": 0.53,
+   "globalBestInB": "tsmom-L"
+  }
+ },
+ "adaptiveSelectors": {
+  "span": "2022-09 .. 2026-11 (first 12 months used only as history)",
+  "note": "monthly re-selection on trailing 365d of fixed-param daily returns; switching costs at month ends ignored (small)",
+  "results": {
+   "static_breakoutTG": {
+    "totalPct": 7.95,
+    "sharpe": 0.69,
+    "maxDDPct": 2.88
+   },
+   "static_breakoutL": {
+    "totalPct": 1.39,
+    "sharpe": 0.19,
+    "maxDDPct": 2.39
+   },
+   "perCoin_bestTrailing": {
+    "totalPct": -4.32,
+    "sharpe": -0.52,
+    "maxDDPct": 5.23
+   },
+   "pooled_bestTrailing": {
+    "totalPct": 2.27,
+    "sharpe": 0.18,
+    "maxDDPct": 6.31
+   },
+   "perCoin_bestOrNone": {
+    "totalPct": -4.32,
+    "sharpe": -0.52,
+    "maxDDPct": 5.23
+   }
+  },
+  "perCoinChoices": {
+   "BTC_USD": {
+    "breakout-S": 8,
+    "breakout-L": 9,
+    "tsmom-L": 11,
+    "breakoutTG-L": 10,
+    "meanrev-S": 6,
+    "meanrev-L": 5,
+    "vwap-L": 2
+   },
+   "ETH_USD": {
+    "tsmom-S": 11,
+    "tsmom-L": 4,
+    "vwap-L": 1,
+    "breakout-L": 17,
+    "meanrev-S": 3,
+    "breakout-S": 6,
+    "breakoutTG-L": 9
+   },
+   "SOL_USD": {
+    "tsmom-S": 10,
+    "tsmom-L": 9,
+    "breakout-S": 8,
+    "breakout-L": 5,
+    "breakoutTG-L": 9,
+    "meanrev-L": 3,
+    "pullback-L": 7
+   },
+   "XRP_USD": {
+    "breakout-S": 7,
+    "meanrev-S": 7,
+    "tsmom-L": 19,
+    "tsmom-S": 7,
+    "vwap-L": 1,
+    "breakoutTG-L": 10
+   },
+   "DOGE_USD": {
+    "breakout-S": 21,
+    "meanrev-S": 1,
+    "tsmom-L": 18,
+    "tsmom-S": 11
+   }
+  }
+ },
+ "regimeConditional": {
+  "note": "mean daily return in basis points of the sleeve (0.5% risk/trade) on days starting in each regime; label from the prior day close",
+  "table": {
+   "btc:btcNotUp": {
+    "breakout-L": "B 0.01bp/d (t 0.04) | A -0.07bp/d (t -0.54)",
+    "breakout-S": "B 0.56bp/d (t 1.19) | A -0.04bp/d (t -0.07)",
+    "breakoutTG-L": "B 0.29bp/d (t 1.5) | A -0.13bp/d (t -1.36)",
+    "tsmom-L": "B 0.09bp/d (t 0.25) | A -0.81bp/d (t -2.71)",
+    "tsmom-S": "B 0.36bp/d (t 0.81) | A 0.72bp/d (t 1.45)",
+    "meanrev-L": "B -0.54bp/d (t -2.19) | A -0.24bp/d (t -0.71)",
+    "meanrev-S": "B 0.17bp/d (t 1.73) | A 0.08bp/d (t 0.77)",
+    "pullback-L": "B 0.09bp/d (t 0.5) | A -0.19bp/d (t -1.08)",
+    "vwap-L": "B -0.3bp/d (t -1.22) | A -0.34bp/d (t -1)"
+   },
+   "btc:btcUp": {
+    "breakout-L": "B 0.16bp/d (t 0.31) | A 0.11bp/d (t 0.22)",
+    "breakout-S": "B -0.04bp/d (t -0.31) | A 0.24bp/d (t 0.99)",
+    "breakoutTG-L": "B 0.19bp/d (t 0.32) | A 1.43bp/d (t 1.86)",
+    "tsmom-L": "B 1.55bp/d (t 2.64) | A 0.88bp/d (t 1.2)",
+    "tsmom-S": "B -0.15bp/d (t -0.61) | A 0.95bp/d (t 2.22)",
+    "meanrev-L": "B -0.03bp/d (t -0.42) | A -0.15bp/d (t -1.9)",
+    "meanrev-S": "B -0.68bp/d (t -2.5) | A -0.18bp/d (t -0.53)",
+    "pullback-L": "B -1.34bp/d (t -2.78) | A -0.34bp/d (t -0.82)",
+    "vwap-L": "B 0.06bp/d (t 0.62) | A -0.23bp/d (t -1.92)"
+   },
+   "er:chop": {
+    "breakout-L": "B -0.17bp/d (t -0.45) | A -0.04bp/d (t -0.11)",
+    "breakout-S": "B 0.36bp/d (t 0.75) | A 0.18bp/d (t 0.33)",
+    "breakoutTG-L": "B -0.49bp/d (t -1.31) | A 0.59bp/d (t 1.12)",
+    "tsmom-L": "B 0.11bp/d (t 0.19) | A -0.74bp/d (t -1.14)",
+    "tsmom-S": "B -0.08bp/d (t -0.17) | A 1.42bp/d (t 2.43)",
+    "meanrev-L": "B -0.24bp/d (t -0.94) | A -0.33bp/d (t -0.96)",
+    "meanrev-S": "B -0.02bp/d (t -0.07) | A 0.14bp/d (t 0.48)",
+    "pullback-L": "B -0.9bp/d (t -1.84) | A 0.05bp/d (t 0.12)",
+    "vwap-L": "B 0.02bp/d (t 0.09) | A 0.08bp/d (t 0.22)"
+   },
+   "er:range": {
+    "breakout-L": "B -0.09bp/d (t -0.35) | A -0.01bp/d (t -0.03)",
+    "breakout-S": "B -0.3bp/d (t -1.28) | A -0.27bp/d (t -0.79)",
+    "breakoutTG-L": "B -0.03bp/d (t -0.09) | A -0.06bp/d (t -0.15)",
+    "tsmom-L": "B 0.4bp/d (t 0.73) | A -0.38bp/d (t -0.68)",
+    "tsmom-S": "B -0.75bp/d (t -1.81) | A -0.01bp/d (t -0.02)",
+    "meanrev-L": "B -0.19bp/d (t -1.3) | A -0.08bp/d (t -0.51)",
+    "meanrev-S": "B -0.07bp/d (t -0.46) | A 0.26bp/d (t 1.44)",
+    "pullback-L": "B -0.28bp/d (t -0.62) | A -0.6bp/d (t -1.4)",
+    "vwap-L": "B 0.09bp/d (t 0.46) | A -0.23bp/d (t -0.94)"
+   },
+   "er:up": {
+    "breakout-L": "B 1bp/d (t 0.87) | A 0.06bp/d (t 0.06)",
+    "breakout-S": "B -0.13bp/d (t -1.25) | A -0.04bp/d (t -0.36)",
+    "breakoutTG-L": "B 2.34bp/d (t 1.7) | A 2.6bp/d (t 1.51)",
+    "tsmom-L": "B 3.68bp/d (t 3.31) | A 2.58bp/d (t 1.8)",
+    "tsmom-S": "B 0.42bp/d (t 1.39) | A 0.85bp/d (t 1.75)",
+    "meanrev-L": "B -0.05bp/d (t -1.06) | A -0.04bp/d (t -0.32)",
+    "meanrev-S": "B -1.23bp/d (t -2.12) | A -0.89bp/d (t -1.19)",
+    "pullback-L": "B -0.98bp/d (t -1.64) | A -0.07bp/d (t -0.15)",
+    "vwap-L": "B -0.02bp/d (t -0.17) | A -0.48bp/d (t -1.73)"
+   },
+   "er:down": {
+    "breakout-L": "B -0.09bp/d (t -1.02) | A 0.09bp/d (t 0.55)",
+    "breakout-S": "B 1.84bp/d (t 1.52) | A 0.71bp/d (t 0.52)",
+    "breakoutTG-L": "B -0.03bp/d (t -1) | A -0.02bp/d (t -0.81)",
+    "tsmom-L": "B -0.4bp/d (t -1.08) | A -0.62bp/d (t -1.35)",
+    "tsmom-S": "B 2.05bp/d (t 2.19) | A 1.47bp/d (t 1.3)",
+    "meanrev-L": "B -0.96bp/d (t -1.56) | A -0.36bp/d (t -0.46)",
+    "meanrev-S": "B 0.19bp/d (t 1.72) | A -0.13bp/d (t -1.55)",
+    "pullback-L": "B -0.09bp/d (t -0.62) | A -0.24bp/d (t -1.74)",
+    "vwap-L": "B -1.03bp/d (t -1.86) | A -0.82bp/d (t -1.14)"
+   },
+   "vol:lowVol": {
+    "breakout-L": "B 0.31bp/d (t 0.67) | A 0.56bp/d (t 1.28)",
+    "breakout-S": "B 0.92bp/d (t 2.27) | A 0.02bp/d (t 0.04)",
+    "breakoutTG-L": "B 0.22bp/d (t 0.41) | A 1.29bp/d (t 1.98)",
+    "tsmom-L": "B 0.16bp/d (t 0.27) | A 0.22bp/d (t 0.35)",
+    "tsmom-S": "B 0.46bp/d (t 1.07) | A 0.2bp/d (t 0.39)",
+    "meanrev-L": "B -0.77bp/d (t -3.61) | A -0.11bp/d (t -0.42)",
+    "meanrev-S": "B 0.01bp/d (t 0.03) | A -0.2bp/d (t -0.74)",
+    "pullback-L": "B -1.23bp/d (t -2.93) | A -0.06bp/d (t -0.18)",
+    "vwap-L": "B -0.4bp/d (t -1.96) | A -0.52bp/d (t -1.93)"
+   },
+   "vol:highVol": {
+    "breakout-L": "B -0.01bp/d (t -0.02) | A -0.4bp/d (t -1.24)",
+    "breakout-S": "B 0.03bp/d (t 0.07) | A 1.28bp/d (t 1.89)",
+    "breakoutTG-L": "B -0.02bp/d (t -0.05) | A -0.38bp/d (t -0.83)",
+    "tsmom-L": "B 1.72bp/d (t 3.1) | A 0.36bp/d (t 0.56)",
+    "tsmom-S": "B -0.21bp/d (t -0.41) | A 1.26bp/d (t 2.19)",
+    "meanrev-L": "B 0.13bp/d (t 0.51) | A -0.95bp/d (t -2.33)",
+    "meanrev-S": "B -0.31bp/d (t -1.25) | A -0.18bp/d (t -0.67)",
+    "pullback-L": "B -0.02bp/d (t -0.05) | A -0.83bp/d (t -2.72)",
+    "vwap-L": "B 0.37bp/d (t 1.36) | A -0.41bp/d (t -0.96)"
+   },
+   "vol:midVol": {
+    "breakout-L": "B -0.14bp/d (t -0.33) | A -0.29bp/d (t -0.68)",
+    "breakout-S": "B -0.26bp/d (t -0.51) | A -1.07bp/d (t -1.9)",
+    "breakoutTG-L": "B 0.6bp/d (t 1.28) | A 0.63bp/d (t 0.96)",
+    "tsmom-L": "B 0.39bp/d (t 0.72) | A -0.79bp/d (t -1.19)",
+    "tsmom-S": "B 0.08bp/d (t 0.18) | A 1.2bp/d (t 1.8)",
+    "meanrev-L": "B -0.21bp/d (t -0.79) | A 0.45bp/d (t 1.42)",
+    "meanrev-S": "B -0.38bp/d (t -1.49) | A 0.33bp/d (t 1.02)",
+    "pullback-L": "B -0.24bp/d (t -0.54) | A 0.09bp/d (t 0.22)",
+    "vwap-L": "B -0.4bp/d (t -1.43) | A 0.14bp/d (t 0.45)"
+   }
+  },
+  "spearman_regimeStrategyCells_BvsA": 0.37,
+  "cells": 81
+ },
+ "btcInfluence": {
+  "conditional": {
+   "B_2021_24 ETH_USD": {
+    "btcUp": {
+     "bars": 3111,
+     "fwd24hBp": 17.63,
+     "t": 3.06,
+     "pDrop8pctIn24h": 3.09,
+     "breakouts": 215,
+     "breakoutFwd24hBp": 37.59
+    },
+    "btcNotUp": {
+     "bars": 3897,
+     "fwd24hBp": -4.15,
+     "t": -0.67,
+     "pDrop8pctIn24h": 7.03,
+     "breakouts": 42,
+     "breakoutFwd24hBp": -40.3
+    }
+   },
+   "B_2021_24 SOL_USD": {
+    "btcUp": {
+     "bars": 3104,
+     "fwd24hBp": 54.61,
+     "t": 5.77,
+     "pDrop8pctIn24h": 8.92,
+     "breakouts": 207,
+     "breakoutFwd24hBp": 70.34
+    },
+    "btcNotUp": {
+     "bars": 3891,
+     "fwd24hBp": -9.77,
+     "t": -1.07,
+     "pDrop8pctIn24h": 14.78,
+     "breakouts": 47,
+     "breakoutFwd24hBp": -171.05
+    }
+   },
+   "B_2021_24 XRP_USD": {
+    "btcUp": {
+     "bars": 3111,
+     "fwd24hBp": 1.44,
+     "t": 0.23,
+     "pDrop8pctIn24h": 4.95,
+     "breakouts": 144,
+     "breakoutFwd24hBp": 5.94
+    },
+    "btcNotUp": {
+     "bars": 3897,
+     "fwd24hBp": 5.68,
+     "t": 0.75,
+     "pDrop8pctIn24h": 7.26,
+     "breakouts": 52,
+     "breakoutFwd24hBp": -46.19
+    }
+   },
+   "B_2021_24 DOGE_USD": {
+    "btcUp": {
+     "bars": 3111,
+     "fwd24hBp": 43.3,
+     "t": 4.51,
+     "pDrop8pctIn24h": 7.46,
+     "breakouts": 163,
+     "breakoutFwd24hBp": 104.59
+    },
+    "btcNotUp": {
+     "bars": 3897,
+     "fwd24hBp": -7.11,
+     "t": -0.92,
+     "pDrop8pctIn24h": 10.96,
+     "breakouts": 51,
+     "breakoutFwd24hBp": -162.04
+    }
+   },
+   "A_2024_26 ETH_USD": {
+    "btcUp": {
+     "bars": 1978,
+     "fwd24hBp": 16.17,
+     "t": 2.12,
+     "pDrop8pctIn24h": 2.12,
+     "breakouts": 118,
+     "breakoutFwd24hBp": 33.18
+    },
+    "btcNotUp": {
+     "bars": 2395,
+     "fwd24hBp": -13.96,
+     "t": -1.91,
+     "pDrop8pctIn24h": 7.27,
+     "breakouts": 31,
+     "breakoutFwd24hBp": -128.18
+    }
+   },
+   "A_2024_26 SOL_USD": {
+    "btcUp": {
+     "bars": 1978,
+     "fwd24hBp": -2.5,
+     "t": -0.29,
+     "pDrop8pctIn24h": 3.89,
+     "breakouts": 132,
+     "breakoutFwd24hBp": 3.4
+    },
+    "btcNotUp": {
+     "bars": 2395,
+     "fwd24hBp": -8.05,
+     "t": -0.98,
+     "pDrop8pctIn24h": 7.93,
+     "breakouts": 29,
+     "breakoutFwd24hBp": -47.57
+    }
+   },
+   "A_2024_26 XRP_USD": {
+    "btcUp": {
+     "bars": 1978,
+     "fwd24hBp": 29.89,
+     "t": 2.71,
+     "pDrop8pctIn24h": 4.5,
+     "breakouts": 110,
+     "breakoutFwd24hBp": 230.88
+    },
+    "btcNotUp": {
+     "bars": 2395,
+     "fwd24hBp": 3.04,
+     "t": 0.36,
+     "pDrop8pctIn24h": 6.6,
+     "breakouts": 31,
+     "breakoutFwd24hBp": 82.57
+    }
+   },
+   "A_2024_26 DOGE_USD": {
+    "btcUp": {
+     "bars": 1978,
+     "fwd24hBp": -12.16,
+     "t": -1.23,
+     "pDrop8pctIn24h": 7.33,
+     "breakouts": 102,
+     "breakoutFwd24hBp": 24.41
+    },
+    "btcNotUp": {
+     "bars": 2395,
+     "fwd24hBp": -18.13,
+     "t": -2.13,
+     "pDrop8pctIn24h": 8.94,
+     "breakouts": 19,
+     "breakoutFwd24hBp": -119.08
+    }
+   }
+  },
+  "leadLagCorr_BTC4h_to_altNext4h": {
+   "B_2021_24 ETH_USD": -0.01,
+   "B_2021_24 SOL_USD": -0.028,
+   "B_2021_24 XRP_USD": -0.004,
+   "B_2021_24 DOGE_USD": -0.005,
+   "A_2024_26 ETH_USD": 0.022,
+   "A_2024_26 SOL_USD": 0.019,
+   "A_2024_26 XRP_USD": -0.01,
+   "A_2024_26 DOGE_USD": 0.002
+  }
+ },
+ "timeEffects": {
+  "note": "basis points per hour (pooled 5 coins); UTC hours",
+  "hourMeanCorr_BvsA": -0.06,
+  "hourVolCorr_BvsA": 0.92,
+  "hoursWith_abs_t_gt_2_in_B": 7,
+  "hoursWith_abs_t_gt_2_in_A": 6,
+  "best6HoursInB": [
+   10,
+   4,
+   18,
+   22,
+   20,
+   3
+  ],
+  "theirMeanInA_bpPerHour": 0.15,
+  "costPerRoundTrip_bp": 24,
+  "volByHour_A": [
+   49.69,
+   53.54,
+   47.57,
+   43.65,
+   40.87,
+   42.88,
+   41.2,
+   40.36,
+   45.73,
+   40.68,
+   38.17,
+   40.43,
+   46.29,
+   61.77,
+   73.17,
+   70.56,
+   57.11,
+   58.95,
+   51.33,
+   49.51,
+   47.88,
+   47.26,
+   48.12,
+   40.07
+  ],
+  "meanByHour_B": [
+   2.23,
+   -4.59,
+   -1.77,
+   2.44,
+   4.01,
+   1.25,
+   -0.51,
+   0.23,
+   -0.48,
+   -1.09,
+   4.45,
+   0.45,
+   -0.72,
+   -1.36,
+   -3.32,
+   0.69,
+   -0.1,
+   1.07,
+   3.09,
+   0.47,
+   2.47,
+   1.48,
+   2.94,
+   -1.95
+  ],
+  "meanByHour_A": [
+   -1.87,
+   0.57,
+   1.62,
+   2.29,
+   1.89,
+   -1,
+   -4.82,
+   0.33,
+   3.29,
+   1.5,
+   -2.84,
+   1.24,
+   -0.6,
+   -3.68,
+   3.18,
+   -0.76,
+   -0.14,
+   0.78,
+   -2.24,
+   -0.18,
+   -0.31,
+   2.11,
+   2.11,
+   -3.53
+  ],
+  "dowMean_bp_SunToSat": {
+   "B": [
+    2.39,
+    26.58,
+    -9.34,
+    17.09,
+    5.18,
+    2.92,
+    33.19
+   ],
+   "A": [
+    -1.58,
+    -5.02,
+    -20.71,
+    41.87,
+    -81.52,
+    42.1,
+    16.52
+   ]
+  },
+  "dowCorr_BvsA": 0.29
+ },
+ "ml": {
+  "note": "logistic regression, 8 features at daily close, trained on trailing 365d, refit every 30d, target = next-day direction, pooled 5 coins; equal-weight long/flat, 0.12% per side on changes",
+  "res": {
+   "B_2021_24": {
+    "predictions": 5535,
+    "accuracy": 0.519,
+    "baseRateUp": 0.5,
+    "auc": 0.528,
+    "mlLongFlat_p055": {
+     "totalPct": -48.87,
+     "sharpe": -0.46,
+     "timeInMarketPct": 21.19
+    },
+    "ruleLongFlat_30dUp_and_btcUp": {
+     "totalPct": 107.23,
+     "sharpe": 0.94,
+     "timeInMarketPct": 27.95
+    },
+    "buyHold": {
+     "totalPct": 33.72,
+     "sharpe": 0.48,
+     "timeInMarketPct": 100
+    }
+   },
+   "A_2024_26": {
+    "predictions": 3640,
+    "accuracy": 0.5,
+    "baseRateUp": 0.48,
+    "auc": 0.493,
+    "mlLongFlat_p055": {
+     "totalPct": -3.22,
+     "sharpe": 0,
+     "timeInMarketPct": 9.78
+    },
+    "ruleLongFlat_30dUp_and_btcUp": {
+     "totalPct": 41.17,
+     "sharpe": 0.72,
+     "timeInMarketPct": 28.65
+    },
+    "buyHold": {
+     "totalPct": -38.33,
+     "sharpe": -0.06,
+     "timeInMarketPct": 100
+    }
+   }
+  }
+ }
+}
