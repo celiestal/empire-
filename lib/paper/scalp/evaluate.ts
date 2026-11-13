@@ -269,3 +269,23 @@ export function topCoinShare(runs: { market: string; trades: SimTrade[] }[]): nu
 }
 
 export interface GateResult { name: string; pass: boolean; detail: string }
+
+/**
+ * Look-ahead guard (the "cheating signal" check). Cuts the data off at `samples` random points and recomputes the
+ * signals on the truncated history. If any signal at or before the cut changes, the rule was using bars that hadn't
+ * happened yet, and this throws. Run it on every rule before trusting a backtest.
+ */
+export function assertNoLookahead(name: string, signalFn: (c: Candle[]) => Sig[], c: Candle[], samples = 30, seed = 17): void {
+  let s = seed;
+  const rand = () => ((s = (s * 1664525 + 1013904223) % 4294967296) / 4294967296);
+  const full = signalFn(c);
+  for (let k = 0; k < samples; k++) {
+    const cut = Math.floor(c.length / 4 + rand() * (c.length * 0.75 - 1));
+    const part = signalFn(c.slice(0, cut + 1));
+    for (let i = 0; i <= cut; i++) {
+      if (JSON.stringify(part[i]) !== JSON.stringify(full[i])) {
+        throw new Error(`look-ahead in ${name}: signal at bar ${i} changes when data after bar ${cut} is removed`);
+      }
+    }
+  }
+}

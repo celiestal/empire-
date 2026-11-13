@@ -1,0 +1,44 @@
+{
+ "_about": "Trading research settings (the video's 'my settings' block). Read by research scripts; change here, not in code. Fake money only.",
+ "venue": "Crypto.com Exchange public API (api.crypto.com), USD spot books, no keys",
+ "barSize": { "research": "1h base, resampled to 4h and 1D", "coreBarSize": "1D", "dailyCloseUTC": "00:00" },
+ "universe": {
+  "development": ["BTC_USD", "ETH_USD", "SOL_USD", "XRP_USD", "DOGE_USD"],
+  "engineCandidates": ["BTC_USD", "ETH_USD"],
+  "safeCandidates": ["CASH", "PAXG_USD"],
+  "holdoutH2_neverTouch": ["ADA_USD", "LINK_USD", "AVAX_USD", "LTC_USD", "DOT_USD", "XLM_USD", "NEAR_USD", "BCH_USD"]
+ },
+ "periods": {
+  "_note": "Period A was already examined, so it is NOT an untouched test any more. The only untouched data left is H2 and the future (paper).",
+  "B_dev": ["2021-09-01", "2024-11-13"],
+  "A_dev_seen": ["2024-11-13", "2026-11-13"],
+  "coreTrain": ["2022-10-11", "2024-11-13"],
+  "coreTest": ["2024-11-13", "2026-11-13"]
+ },
+ "costs": {
+  "_note": "Owner's real Crypto.com fee tier unknown. Every result is reported at all three scenarios.",
+  "base": { "feePerSide": 0.001, "slippage": 0.0002 },
+  "stress": { "feePerSide": 0.0025, "slippage": 0.0002 },
+  "retailTaker": { "feePerSide": 0.005, "slippage": 0.0005 }
+ },
+ "gates": {
+  "minTradesPerConfig": 30,
+  "positiveInBothDevPeriods": true,
+  "pooledTStatMin": 2.0,
+  "randomEntryPercentileMin": 90,
+  "positiveAtFeePerSide": 0.002,
+  "maxSingleCoinProfitShare": 0.5,
+  "sharpeMin": 0.5,
+  "neighboursPositiveShareMin": 0.8,
+  "lockedTestRunsAllowed": 1
+ },
+ "risk": {
+  "_note": "Never loosened to improve returns. Engine defaults in lib/paper/scalp/engine.ts.",
+  "riskPerTradeSleeve": 0.005,
+  "leverage": "none",
+  "dailyLossLimit": 0.02,
+  "killDrawdown": 0.1,
+  "killLineMultipleOfTestedDrawdown": 2,
+  "coreAlertMultipleOfTestedDrawdown": 1.5
+ }
+}

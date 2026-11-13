@@ -16,7 +16,7 @@ import { applyRegime, applyRegimeShort, applyTrail, mergeSides, shortSignals, st
 import { applyBtcGate, btcUpByTime } from "../../lib/paper/scalp/regime";
 import { DEFAULT_RISK, type RiskOptions, type SimTrade } from "../../lib/paper/scalp/engine";
 import {
-  DAY, percentileOf, pooledT, portfolioStats, randomEntryBenchmark, runContinuous, runLegacy, stitch, topCoinShare, tradeStats, walkForward, type CoinRun, type Sig,
+  DAY, assertNoLookahead, percentileOf, pooledT, portfolioStats, randomEntryBenchmark, runContinuous, runLegacy, stitch, topCoinShare, tradeStats, walkForward, type CoinRun, type Sig,
 } from "../../lib/paper/scalp/evaluate";
 
 const E = process.env;
@@ -53,6 +53,12 @@ function describeRuns(runs: CoinRun[], extra: Record<string, unknown> = {}) {
   const ts = tradeStats(trades, SC, runs.length);
   const ps = portfolioStats(runs);
   return { returnPct: r2(ps.avgReturnPct), annPct: r2(ps.annReturnPct), sharpe: r2(ps.sharpe), sortino: r2(ps.sortino), maxDD: r2(ps.maxDrawdownPct), trades: ts.trades, win: r2(ts.winRate * 100), avgWinR: r2(ts.avgWinR), avgLossR: r2(ts.avgLossR), pf: r2(ts.profitFactor), expR: r2(ts.expectancyR), t: r2(ts.tStat), pNeg: ts.bootstrapPNegative, feesPctOfPreFeeProfit: r2(ts.feesPctOfPreFeeProfit), dropTop10: r2(ts.dropTop10Pct), ...extra };
+}
+
+// Look-ahead guard on every strategy before any result is computed (house rules).
+for (const st of ["breakout", "tsmom", "meanrev", "pullback", "vwap"]) {
+  const g = strategyById(st).grid, p = g[Math.floor(g.length / 2)], c = resample(raw.BTC_USD.slice(-6000), TF, 60);
+  for (const mode of ["long", "short"]) assertNoLookahead(`${st} ${mode}`, (cc) => signalsFor(cc, st, mode, p), c, 10);
 }
 
 const report: Record<string, unknown> = { generatedAt: new Date().toISOString(), tf: TF, markets: MARKETS, periods: PERIODS.map((p) => ({ ...p, warmFrom: new Date(p.warmFrom).toISOString(), from: new Date(p.from).toISOString(), to: new Date(p.to).toISOString() })) };
