@@ -1,0 +1,370 @@
+{
+ "experimentId": "exp-4h-2026-11",
+ "startedAt": 1794585600000,
+ "startedAtIso": "2026-11-13T16:00:00.000Z",
+ "totalCash": 10000,
+ "why": "Separate forward paper test of the 4h research leads (breakout long, breakout long+short, trend following long+short), each tuned once on 4h bars 2026-08-15 to 2026-11-13 with research.ts's rule and frozen. Unvalidated: none passed the robustness gates in docs/research/2026-11-13-strategy-audit.md. Fake money only.",
+ "baseTf": "1h",
+ "warmupDays": 60,
+ "statusDir": ".paper-data/live-4h",
+ "reportPath": "docs/research/exp-4h-2026-11/status.json",
+ "logEvents": true,
+ "feeScenarios": [
+  {
+   "label": "fee 0.25% + slip 0.02%",
+   "feeRate": 0.0025,
+   "slippage": 0.0002
+  },
+  {
+   "label": "fee 0.5% + slip 0.05%",
+   "feeRate": 0.005,
+   "slippage": 0.0005
+  }
+ ],
+ "tuning": {
+  "breakout-long": {
+   "params": {
+    "n": 60,
+    "volMult": 2.5,
+    "stopAtr": 1.5,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "trainScore": 12.842
+  },
+  "breakout-long-short": {
+   "params": {
+    "n": 20,
+    "volMult": 1.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "trainScore": 10.965
+  },
+  "tsmom-long-short": {
+   "params": {
+    "look": 72,
+    "stopAtr": 2,
+    "rr": 3,
+    "hold": 72,
+    "regimeHours": 0
+   },
+   "trainScore": 30.802
+  }
+ },
+ "sleeves": [
+  {
+   "market": "BTC_USD",
+   "tf": 240,
+   "strategy": "breakout",
+   "mode": "long",
+   "params": {
+    "n": 60,
+    "volMult": 2.5,
+    "stopAtr": 1.5,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 666.6666666666666,
+   "config": "breakout-long"
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 240,
+   "strategy": "breakout",
+   "mode": "long",
+   "params": {
+    "n": 60,
+    "volMult": 2.5,
+    "stopAtr": 1.5,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 666.6666666666666,
+   "config": "breakout-long"
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 240,
+   "strategy": "breakout",
+   "mode": "long",
+   "params": {
+    "n": 60,
+    "volMult": 2.5,
+    "stopAtr": 1.5,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 666.6666666666666,
+   "config": "breakout-long"
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 240,
+   "strategy": "breakout",
+   "mode": "long",
+   "params": {
+    "n": 60,
+    "volMult": 2.5,
+    "stopAtr": 1.5,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 666.6666666666666,
+   "config": "breakout-long"
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 240,
+   "strategy": "breakout",
+   "mode": "long",
+   "params": {
+    "n": 60,
+    "volMult": 2.5,
+    "stopAtr": 1.5,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 666.6666666666666,
+   "config": "breakout-long"
+  },
+  {
+   "market": "BTC_USD",
+   "tf": 240,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 20,
+    "volMult": 1.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 666.6666666666666,
+   "config": "breakout-long-short"
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 240,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 20,
+    "volMult": 1.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 666.6666666666666,
+   "config": "breakout-long-short"
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 240,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 20,
+    "volMult": 1.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 666.6666666666666,
+   "config": "breakout-long-short"
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 240,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 20,
+    "volMult": 1.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 666.6666666666666,
+   "config": "breakout-long-short"
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 240,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 20,
+    "volMult": 1.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0
+   },
+   "cash": 666.6666666666666,
+   "config": "breakout-long-short"
+  },
+  {
+   "market": "BTC_USD",
+   "tf": 240,
+   "strategy": "tsmom",
+   "mode": "both",
+   "params": {
+    "look": 72,
+    "stopAtr": 2,
+    "rr": 3,
+    "hold": 72,
+    "regimeHours": 0
+   },
+   "cash": 666.6666666666666,
+   "config": "tsmom-long-short"
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 240,
+   "strategy": "tsmom",
+   "mode": "both",
+   "params": {
+    "look": 72,
+    "stopAtr": 2,
+    "rr": 3,
+    "hold": 72,
+    "regimeHours": 0
+   },
+   "cash": 666.6666666666666,
+   "config": "tsmom-long-short"
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 240,
+   "strategy": "tsmom",
+   "mode": "both",
+   "params": {
+    "look": 72,
+    "stopAtr": 2,
+    "rr": 3,
+    "hold": 72,
+    "regimeHours": 0
+   },
+   "cash": 666.6666666666666,
+   "config": "tsmom-long-short"
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 240,
+   "strategy": "tsmom",
+   "mode": "both",
+   "params": {
+    "look": 72,
+    "stopAtr": 2,
+    "rr": 3,
+    "hold": 72,
+    "regimeHours": 0
+   },
+   "cash": 666.6666666666666,
+   "config": "tsmom-long-short"
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 240,
+   "strategy": "tsmom",
+   "mode": "both",
+   "params": {
+    "look": 72,
+    "stopAtr": 2,
+    "rr": 3,
+    "hold": 72,
+    "regimeHours": 0
+   },
+   "cash": 666.6666666666666,
+   "config": "tsmom-long-short"
+  },
+  {
+   "market": "BTC_USD",
+   "tf": 240,
+   "strategy": "random",
+   "mode": "long",
+   "params": {
+    "prob": 0.012,
+    "stopAtr": 1.5,
+    "rr": 2,
+    "maxBars": 60
+   },
+   "cash": 666.6666666666666,
+   "config": "baseline-random",
+   "role": "baseline"
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 240,
+   "strategy": "random",
+   "mode": "long",
+   "params": {
+    "prob": 0.012,
+    "stopAtr": 1.5,
+    "rr": 2,
+    "maxBars": 60
+   },
+   "cash": 666.6666666666666,
+   "config": "baseline-random",
+   "role": "baseline"
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 240,
+   "strategy": "random",
+   "mode": "long",
+   "params": {
+    "prob": 0.012,
+    "stopAtr": 1.5,
+    "rr": 2,
+    "maxBars": 60
+   },
+   "cash": 666.6666666666666,
+   "config": "baseline-random",
+   "role": "baseline"
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 240,
+   "strategy": "random",
+   "mode": "long",
+   "params": {
+    "prob": 0.012,
+    "stopAtr": 1.5,
+    "rr": 2,
+    "maxBars": 60
+   },
+   "cash": 666.6666666666666,
+   "config": "baseline-random",
+   "role": "baseline"
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 240,
+   "strategy": "random",
+   "mode": "long",
+   "params": {
+    "prob": 0.012,
+    "stopAtr": 1.5,
+    "rr": 2,
+    "maxBars": 60
+   },
+   "cash": 666.6666666666666,
+   "config": "baseline-random",
+   "role": "baseline"
+  }
+ ]
+}

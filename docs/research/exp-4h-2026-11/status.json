@@ -1,0 +1,116 @@
+{
+ "updatedAt": "2026-11-13T15:38:31.131Z",
+ "startedAt": "2026-11-13T16:00:00.000Z",
+ "dataThrough": "2026-11-13T15:00:00.000Z",
+ "hoursLive": 0,
+ "startCash": 10000,
+ "equity": 10000,
+ "pnl": 0,
+ "returnPct": 0,
+ "trades": 0,
+ "wins": 0,
+ "fees": 0,
+ "maxSleeveDrawdownPct": 0,
+ "sleevesStoppedForDay": 0,
+ "sleevesKilled": 0,
+ "byMethod": {
+  "breakout-long": {
+   "pnl": 0,
+   "trades": 0,
+   "wins": 0
+  },
+  "breakout-long-short": {
+   "pnl": 0,
+   "trades": 0,
+   "wins": 0
+  },
+  "tsmom-long-short": {
+   "pnl": 0,
+   "trades": 0,
+   "wins": 0
+  }
+ },
+ "buyHoldPct": {},
+ "openPositions": [],
+ "tradeLog": [],
+ "experimentId": "exp-4h-2026-11",
+ "perConfig": {
+  "breakout-long": {
+   "cash": 3333.333333333333,
+   "equity": 3333.333333333333,
+   "returnPct": 0,
+   "trades": 0,
+   "wins": 0,
+   "fees": 0,
+   "open": 0,
+   "maxDrawdownPct": 0
+  },
+  "breakout-long-short": {
+   "cash": 3333.333333333333,
+   "equity": 3333.333333333333,
+   "returnPct": 0,
+   "trades": 0,
+   "wins": 0,
+   "fees": 0,
+   "open": 0,
+   "maxDrawdownPct": 0
+  },
+  "tsmom-long-short": {
+   "cash": 3333.333333333333,
+   "equity": 3333.333333333333,
+   "returnPct": 0,
+   "trades": 0,
+   "wins": 0,
+   "fees": 0,
+   "open": 0,
+   "maxDrawdownPct": 0
+  }
+ },
+ "baselines": {
+  "randomEntry": {
+   "returnPct": 0,
+   "trades": 0
+  },
+  "buyHoldAvgPct": 0
+ },
+ "spreads": {
+  "BTC_USD": {
+   "samples": 1,
+   "medianPct": 0.000014662080457963208,
+   "p90Pct": 0.000014662080457963208
+  },
+  "ETH_USD": {
+   "samples": 1,
+   "medianPct": 0.0005219465474536005,
+   "p90Pct": 0.0005219465474536005
+  },
+  "SOL_USD": {
+   "samples": 1,
+   "medianPct": 0.012644622874129246,
+   "p90Pct": 0.012644622874129246
+  },
+  "XRP_USD": {
+   "samples": 1,
+   "medianPct": 0.00988875154511634,
+   "p90Pct": 0.00988875154511634
+  },
+  "DOGE_USD": {
+   "samples": 1,
+   "medianPct": 0.004657119571549657,
+   "p90Pct": 0.004657119571549657
+  }
+ },
+ "feeScenarios": {
+  "fee 0.25% + slip 0.02%": {
+   "breakout-long": 0,
+   "breakout-long-short": 0,
+   "tsmom-long-short": 0
+  },
+  "fee 0.5% + slip 0.05%": {
+   "breakout-long": 0,
+   "breakout-long-short": 0,
+   "tsmom-long-short": 0
+  }
+ },
+ "events": []
+}

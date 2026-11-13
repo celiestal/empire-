@@ -28,12 +28,12 @@ export async function fetchCandlesPage(market: string, timeframe: string, count 
     .sort((a, b) => a.t - b.t);
 }
 
-/** All 1m candles from sinceTs (exclusive) up to now, oldest first. */
-export async function fetchCandlesSince(market: string, sinceTs: number): Promise<Candle[]> {
+/** All candles of `timeframe` (default 1m) from sinceTs (exclusive) up to now, oldest first. */
+export async function fetchCandlesSince(market: string, sinceTs: number, timeframe = "1m"): Promise<Candle[]> {
   const all = new Map<number, Candle>();
   let end: number | undefined = undefined;
   for (let guard = 0; guard < 100; guard++) {
-    const page = await fetchCandlesPage(market, "1m", 300, end);
+    const page = await fetchCandlesPage(market, timeframe, 300, end);
     if (!page.length) break;
     for (const c of page) all.set(c.t, c);
     if (page[0].t <= sinceTs) break;

@@ -198,6 +198,14 @@ Run in the cloud sandbox with `NODE_USE_ENV_PROXY=1` (the environment `empire-` 
    - Walk-forward with costs is the right safeguard.
    - Full source list in the session summary and `docs/handoff/scalp-bot.md`.
 
+### 5c-bis. Update 2026-11-13 afternoon
+See `docs/handoff/scalp-bot.md` (last section) and `docs/research/`.
+- Audit result: no proven edge.
+- Hardened research harness: `scripts/paper/robust.ts`.
+- P1 test failed its gates.
+- A separate 4h paper experiment `exp-4h-2026-11` runs from `lib/paper/scalp/live-4h-config.json`.
+- Holdout coins H2 are reserved.
+
 ### 5d. Live forward test status
 - Started 2026-11-13 05:17 UTC. At 05:28 UTC: equity $10,000, 0 trades (expected so early). **Verified.**
 - The live `loop` process runs in **another Claude session's container**, not this one. Whether it is still running is unknown here; the scheduled check-ins restart it.

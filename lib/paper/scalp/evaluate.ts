@@ -37,26 +37,31 @@ export function walkForward(
   sigs: Record<string, Sig[][]>,
   o: { start: number; end: number; trainDays: number; testDays: number; minTrades: number; opt?: Partial<RiskOptions> },
 ): Window[] {
-  const markets = Object.keys(series);
-  const nParams = sigs[markets[0]].length;
   const out: Window[] = [];
   for (let ws = o.start; ws + (o.trainDays + o.testDays) * DAY <= o.end + DAY / 2; ws += o.testDays * DAY) {
     const trainTo = ws + o.trainDays * DAY;
-    let best = -1, bestScore = -Infinity;
-    for (let k = 0; k < nParams; k++) {
-      let sc = 0, n = 0;
-      for (const m of markets) {
-        const c = series[m];
-        const a = indexAt(c, ws), b = indexAt(c, trainTo);
-        const r = simulate(c.slice(a, b), sigs[m][k].slice(a, b), o.opt);
-        sc += r.returnPct - 0.5 * r.maxDrawdownPct;
-        n += r.trades.length;
-      }
-      if (n >= o.minTrades && sc > bestScore) [best, bestScore] = [k, sc];
-    }
-    out.push({ trainFrom: ws, from: trainTo, to: Math.min(o.end, trainTo + o.testDays * DAY), k: best, score: bestScore });
+    const { k, score } = pickBest(series, sigs, ws, trainTo, o.minTrades, o.opt);
+    out.push({ trainFrom: ws, from: trainTo, to: Math.min(o.end, trainTo + o.testDays * DAY), k, score });
   }
   return out;
+}
+
+/** The tuning rule on one span: best sum over coins of (return% - 0.5 x max drawdown%), with >= minTrades trades. k = -1 if none qualifies. */
+export function pickBest(series: Record<string, Candle[]>, sigs: Record<string, Sig[][]>, from: number, to: number, minTrades: number, opt?: Partial<RiskOptions>): { k: number; score: number } {
+  const markets = Object.keys(series);
+  let best = -1, bestScore = -Infinity;
+  for (let k = 0; k < sigs[markets[0]].length; k++) {
+    let sc = 0, n = 0;
+    for (const m of markets) {
+      const c = series[m];
+      const a = indexAt(c, from), b = indexAt(c, to);
+      const r = simulate(c.slice(a, b), sigs[m][k].slice(a, b), opt);
+      sc += r.returnPct - 0.5 * r.maxDrawdownPct;
+      n += r.trades.length;
+    }
+    if (n >= minTrades && sc > bestScore) [best, bestScore] = [k, sc];
+  }
+  return { k: best, score: bestScore };
 }
 
 /** The signal array each window's chosen setting would have produced, stitched over the whole test span. */

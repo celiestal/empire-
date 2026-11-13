@@ -50,3 +50,20 @@ Started 2026-11-13. Fake money only: no exchange keys, no real orders.
 ## Live test
 - 25 sleeves × $400 (5 methods × 5 coins), clock started 2026-11-13 05:17 UTC. Report due ~24h later.
 - **Do not** connect real money or exchange keys without a separate explicit decision from the owner.
+
+## 2026-11-13 (afternoon): audit, hardened research, P1 test, separate 4h paper experiment
+Approved by the owner ("yes i agree to everything") after the audit in `docs/research/2026-11-13-strategy-audit.md`.
+- **Audit:** no proven edge. The 4h results swing with the walk-forward start date; monthly re-tuning fits noise; fixed targets cut winners short. The only cross-period pattern is "longs work when BTC trends up". Fees decide everything (owner's real fee tier still unknown).
+- **New data:** Crypto.com hourly history back to Jul 2021, used once as holdout H1 (Sep 2021 to Nov 2024). **H2 = ADA, LINK, AVAX, LTC, DOT, XLM, NEAR, BCH is reserved: never use it for tuning or exploration.**
+- **Engine:** optional `onEvent` audit log and optional `trailDist` trailing stop. Both are off by default; `research.ts` output was verified unchanged.
+- **Hardened research:** `lib/paper/scalp/evaluate.ts` + `scripts/paper/robust.ts` (`wf` / `fixed`). Provides continuous out-of-sample runs, 5 start offsets, a random-entry benchmark, pooled t, portfolio Sharpe/Sortino and written gates. Legacy mode reproduces `research.ts` exactly. Data: `.paper-data/hist/<MKT>_1h.json`.
+- **P1 (pre-registered, `docs/research/2026-11-13-p1-*.md`):** trailing exit and BTC gate on breakout long. **All 4 variants failed the gates**. trail+gate was best on every measure but just short (t 1.96, cost stress negative on H1). Not promoted; H2 unused. Don't re-tune these on the same data.
+- **Retired from development (owner agreed):** 1m/5m VWAP, all 1h methods, 4h reversion methods, `tsmom` as implemented, breakout short alone, the per-coin volatility and ER-regime filters. The 1m live test keeps running unchanged.
+- **4h paper experiment `exp-4h-2026-11`:** config `lib/paper/scalp/live-4h-config.json` (frozen with `scripts/paper/freeze-4h.ts`, refuses to overwrite). Clock starts 2026-11-13 16:00 UTC.
+  - 3 configurations × 5 coins × $666.67: breakout long, breakout long+short, tsmom long+short. Plus a random-entry shadow baseline (not counted).
+  - Hourly feed, 60-day warm-up. Fee scenarios 0.25% and 0.5% reported alongside the 0.1% default.
+  - Full event log (signals, orders, fills, exits, rejections with reasons).
+  - Data in `.paper-data/live-4h/`; committed report `docs/research/exp-4h-2026-11/status.json`.
+  - Run it with `NODE_USE_ENV_PROXY=1 npx tsx scripts/paper/live.ts --config lib/paper/scalp/live-4h-config.json`. Deterministic replay, so it needs no long-running loop: a scheduled task runs one pass after each 4h close.
+  - Verified: the live replay matches the research harness trade for trade (15 sleeves, 315 trades since 2026-06-01). The 1m test's output is byte-identical after the refactor (`lib/paper/scalp/live-core.ts`).
+- **Expectations:** about 10 trades a month per configuration. Paper trading checks execution and catches failure; proving a thin edge statistically would take years.
