@@ -25,6 +25,7 @@ import { writeVariants } from "@/lib/agents/free-writers";
 import { freeAiEnabled } from "@/lib/free-ai";
 import { planWeekFor } from "@/lib/planner";
 import { publishPost } from "@/lib/poster";
+import { SERVICE_PACKAGES } from "@/lib/services";
 import { requireOwner, requireUser } from "@/lib/session";
 import { getStore, newId, now } from "@/lib/store";
 import type { PostStatus, SocialPlatform } from "@/lib/types";
@@ -425,4 +426,29 @@ export async function runCycleNow(fd: FormData) {
   if (!aiEnabled()) redirect("/dashboard?error=Set+ANTHROPIC_API_KEY+to+run+the+agents");
   const result = await runCeoCycle(getStore(), str(fd, "note") || undefined);
   redirect(`/dashboard?${result.refused ? `error=${encodeURIComponent(result.refused)}` : "ran=1"}`);
+}
+
+// --- Done-for-you video service -------------------------------------------------
+
+export async function requestService(fd: FormData) {
+  const name = str(fd, "name").slice(0, 120);
+  const email = normalizeEmail(str(fd, "email"));
+  const business = str(fd, "business").slice(0, 160);
+  const packageId = SERVICE_PACKAGES.some((p) => p.id === str(fd, "package")) ? str(fd, "package") : "growth";
+  const message = str(fd, "message").slice(0, 2000);
+  // Honeypot: real people never fill this hidden field.
+  if (str(fd, "website")) redirect("/services?sent=1");
+  if (!name || !validEmail(email) || !business) redirect("/services?error=Fill+in+your+name,+email+and+business#start");
+  const store = getStore();
+  await store.insert("leads", { id: newId("lead"), name, email, business, packageId, message, status: "new", createdAt: now() });
+  await store.audit(email, "service request", `${business} asked about the ${packageId} package`);
+  redirect("/services?sent=1#start");
+}
+
+export async function updateLead(fd: FormData) {
+  await requireOwner();
+  const status = str(fd, "status");
+  if (!["new", "contacted", "won", "lost"].includes(status)) return;
+  await getStore().update("leads", str(fd, "id"), { status: status as "new" | "contacted" | "won" | "lost" });
+  revalidatePath("/services/leads");
 }

@@ -25,7 +25,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <Link href="/studio">Content Studio</Link>
               <Link href="/editor">Auto Editor</Link>
               <Link href="/pricing">Pricing</Link>
+              <Link href="/services">Done For You</Link>
               {isOwner(user) && <Link href="/dashboard">Agents</Link>}
+              {isOwner(user) && <Link href="/paper">Paper Trading</Link>}
             </nav>
             <span className="spacer" />
             <nav>

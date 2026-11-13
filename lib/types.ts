@@ -225,6 +225,18 @@ export interface NewsItem {
 }
 
 /** One autopilot run, for the activity log. */
+/** Someone asking to hire the owner's done-for-you video editing service. */
+export interface Lead {
+  id: string;
+  name: string;
+  email: string;
+  business: string;
+  packageId: string;
+  message: string;
+  status: "new" | "contacted" | "won" | "lost";
+  createdAt: string;
+}
+
 export interface AutopilotRun {
   id: string;
   lines: string[];

@@ -10,6 +10,8 @@ A website for planning, writing and editing short-form videos, plus an AI agent 
 | **AI scripts** | Premium + owner | Three hook options, a hook-setup-value-close script sized to the target length, a caption that asks a question, and video-specific hashtags. |
 | **Auto Editor** (`/editor`) | Premium + owner | Upload a raw take, get a 1080x1920 edit: pauses cut, punch-in zooms, opening zoom, word-by-word captions with highlighted words, on-screen hook, whoosh/hit sound effects, optional ducked music, progress bar, -14 LUFS loudness. See `lib/video/techniques.ts` for the research behind each step. |
 | **Agents** (`/dashboard`) | Owner only | CEO Agent plus 10 specialist agents (research, business development, product, marketing, sales, finance, operations, legal, customer relations, innovation). The CEO can hire new custom agents and delegate. |
+| **Done For You** (`/services`) | Public | Sells monthly video editing to local businesses ($150 / $250 / $450). Requests land on `/services/leads` for the owner, with progress toward $1,000 a month. |
+| **Paper Trading** (`/paper`) | Owner only | Fake-money trading bot: replays the last 300 Crypto.com price candles through a moving-average crossover rule, with fees, and compares it to buy and hold. Never places real orders. |
 | **Plans** (`/pricing`) | | Basic is free. Premium is paid through Stripe. The `OWNER_EMAIL` account gets everything free. |
 
 ## Safety rails for the agents

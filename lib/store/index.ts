@@ -9,6 +9,7 @@ import type {
   LedgerEntry,
   NewsItem,
   AutopilotRun,
+  Lead,
   Opportunity,
   Project,
   Settings,
@@ -39,6 +40,7 @@ export interface Collections {
   users: User;
   news: NewsItem;
   autopilotRuns: AutopilotRun;
+  leads: Lead;
 }
 
 export type CollectionName = keyof Collections;
