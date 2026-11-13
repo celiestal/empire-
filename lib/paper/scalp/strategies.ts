@@ -200,3 +200,12 @@ export function applyRegimeShort(c: Candle[], sigs: (EntrySignal | null)[], tfMi
 export function mergeSides(a: (EntrySignal | null)[], b: (EntrySignal | null)[]): (EntrySignal | null)[] {
   return a.map((x, i) => (x && b[i] ? null : x ?? b[i]));
 }
+
+/**
+ * Exit variant for trend/breakout entries: keep the entry and its initial stop, drop the fixed target, and
+ * trail the stop `k` ATRs (ATR at the signal bar) behind the best price since entry. `maxBars` caps the hold.
+ */
+export function applyTrail(c: Candle[], sigs: (EntrySignal | null)[], k: number, maxBars: number, atrLen = 14): (EntrySignal | null)[] {
+  const a = atr(c, atrLen);
+  return sigs.map((s, i) => (s && a[i] > 0 ? { ...s, targetDist: Infinity, trailDist: k * a[i], maxBars } : s));
+}

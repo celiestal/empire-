@@ -10,6 +10,7 @@
 // line (trend), near 0 = back and forth (range). It only reads closed candles.
 import type { Candle } from "../strategy";
 import type { EntrySignal, Params } from "./strategies";
+import { ema as emaOf } from "./indicators";
 
 export type Regime = "up" | "down" | "range" | "chop" | "unknown";
 export type MethodKind = "trend" | "reversion";
@@ -84,3 +85,17 @@ export const REGIME_GRID: Params[] = [
     [0.3, 0.45].flatMap((rgTrend) => [0.15, 0.25].map((rgRange) => ({ rgHours, rgTrend, rgRange }))),
   ),
 ];
+
+/**
+ * BTC-led market gate: for each BTC bar time, true when BTC closed above its EMA(len) and that EMA is higher
+ * than `slopeBars` bars ago. Uses closed bars only. Built from BTC candles of the same timeframe.
+ */
+export function btcUpByTime(btc: Candle[], len = 42, slopeBars = 6): Map<number, boolean> {
+  const e = emaOf(btc.map((x) => x.c), len);
+  return new Map(btc.map((x, i) => [x.t, i >= slopeBars && !Number.isNaN(e[i - slopeBars]) && x.c > e[i] && e[i] > e[i - slopeBars]]));
+}
+
+/** Drop long signals on bars where the BTC gate is closed (or unknown). Shorts pass through unchanged. */
+export function applyBtcGate(c: Candle[], sigs: (EntrySignal | null)[], btcUp: Map<number, boolean>): (EntrySignal | null)[] {
+  return sigs.map((s, i) => (s && (s.side ?? 1) === 1 && !btcUp.get(c[i].t) ? null : s));
+}
