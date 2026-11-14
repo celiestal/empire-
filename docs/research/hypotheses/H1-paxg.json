@@ -1,0 +1,115 @@
+{
+ "cells": {
+  "original5 w1": {
+   "gold": {
+    "totalPct": 136.9,
+    "cagrPct": 56.5,
+    "avgDailyPct": 0.131,
+    "sharpe": 1.93,
+    "maxDDPct": 16.9,
+    "cagrPerDD": 3.34
+   },
+   "cashBaseline": {
+    "totalPct": 79.7,
+    "cagrPct": 35.6,
+    "avgDailyPct": 0.089,
+    "sharpe": 1.58,
+    "maxDDPct": 14.8,
+    "cagrPerDD": 2.4
+   },
+   "goldAtStress": 92.4,
+   "neighbours": [
+    159.4,
+    99,
+    116,
+    151.3
+   ]
+  },
+  "original5 w2": {
+   "gold": {
+    "totalPct": 98.1,
+    "cagrPct": 40.7,
+    "avgDailyPct": 0.106,
+    "sharpe": 1.27,
+    "maxDDPct": 26.6,
+    "cagrPerDD": 1.53
+   },
+   "cashBaseline": {
+    "totalPct": 25.2,
+    "cagrPct": 11.9,
+    "avgDailyPct": 0.036,
+    "sharpe": 0.67,
+    "maxDDPct": 18,
+    "cagrPerDD": 0.66
+   },
+   "goldAtStress": 64.9,
+   "neighbours": [
+    138.1,
+    74.9,
+    86.9,
+    111.1
+   ]
+  },
+  "h2_8 w1": {
+   "gold": {
+    "totalPct": 74.9,
+    "cagrPct": 33.7,
+    "avgDailyPct": 0.088,
+    "sharpe": 1.3,
+    "maxDDPct": 22.8,
+    "cagrPerDD": 1.47
+   },
+   "cashBaseline": {
+    "totalPct": 34.6,
+    "cagrPct": 16.7,
+    "avgDailyPct": 0.048,
+    "sharpe": 0.87,
+    "maxDDPct": 16.8,
+    "cagrPerDD": 0.99
+   },
+   "goldAtStress": 45.8,
+   "neighbours": [
+    89.6,
+    54.4,
+    67.3,
+    81.2
+   ]
+  },
+  "h2_8 w2": {
+   "gold": {
+    "totalPct": 68.2,
+    "cagrPct": 29.7,
+    "avgDailyPct": 0.084,
+    "sharpe": 1.01,
+    "maxDDPct": 29.3,
+    "cagrPerDD": 1.01
+   },
+   "cashBaseline": {
+    "totalPct": 5.4,
+    "cagrPct": 2.7,
+    "avgDailyPct": 0.012,
+    "sharpe": 0.23,
+    "maxDDPct": 21.9,
+    "cagrPerDD": 0.12
+   },
+   "goldAtStress": 43.8,
+   "neighbours": [
+    87.6,
+    42.9,
+    65.4,
+    70.6
+   ]
+  }
+ },
+ "gates": {
+  "positive": true,
+  "sharpe05": true,
+  "stressPositive": true,
+  "dd25": false,
+  "neighbours80": true,
+  "betterThanCash3of4": true
+ },
+ "passed": false,
+ "neighboursPositive": "16/16",
+ "betterThanCash": "4/4"
+}

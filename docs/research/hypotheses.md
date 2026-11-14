@@ -6,7 +6,8 @@ Development data: 5 coins (BTC, ETH, SOL, XRP, DOGE) and 8 coins (ADA, LINK, AVA
 
 | # | Hypothesis | Source | Status |
 |---|---|---|---|
-| 1 | **PAXG instead of cash** when the trend rule is out (gold as the safe leg) | Video prompt 3; core study (gold beat cash) | open |
+| 1 | **PAXG instead of cash** when the trend rule is out (gold as the safe leg) | Video prompt 3; core study (gold beat cash) | **fail** 2026-11-14: max DD 26.6% / 29.3% > 25%; gain mostly gold's bull market (`hypotheses/H1-paxg-results.md`) |
+| 1b | **Gold only while gold is itself in an up-trend** (PAXG above its 30-day level, else cash), idle share 50% | H1 near-miss | open |
 | 2 | **Look-back ensemble**: average of 14/30/60-day trend signals instead of 30 only (less dependence on one setting) | Neighbour results | open |
 | 3 | **Regime-matched direction**: add shorts only when the coin's own 72h trend label is "down" and the BTC gate is closed | Audit §5 (t 2.2 / 1.3) | open |
 | 4 | **Funding-rate crowding filter**: skip or halve longs when the BTC perp funding rate is in its top decile (Crypto.com public API) | BIS crypto carry; audit §12 | open (check history depth first) |
