@@ -87,3 +87,9 @@ Started 2026-11-13. Fake money only: no exchange keys, no real orders.
 
 **Next ideas** (not yet built): a portfolio cap on same-direction trades across coins (correlation); judge v2 against v1 after 1–2 weeks.
 **Real money:** not ready. The bar is several weeks of clearly positive forward results across different market conditions.
+
+**Restart commands** (cloud sandbox; each loop replays from its frozen start, so gaps don't change results):
+- v1: `NODE_USE_ENV_PROXY=1 NODE_NO_WARNINGS=1 setsid nohup npx tsx scripts/paper/live.ts loop >> .paper-data/live/loop.log 2>&1 < /dev/null & disown`
+- v2: same, prefixed with `LIVE=v2`
+- 4h: same, prefixed with `LIVE=4h WARMUP_DAYS=20`
+- Scheduled in the original session: a keep-alive every 6h (:48), and the daily report + handoff summary at 06:13 UTC.
