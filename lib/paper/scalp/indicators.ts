@@ -128,9 +128,10 @@ export function rollingVwap(c: Candle[], period: number): number[] {
   return out;
 }
 
-/** Merge 1-minute candles into `minutes`-minute candles. Only complete buckets are kept. */
-export function resample(c1m: Candle[], minutes: number): Candle[] {
-  if (minutes === 1) return c1m;
+/** Merge `baseMinutes`-minute candles (default 1) into `minutes`-minute candles. Only complete buckets are kept. */
+export function resample(c1m: Candle[], minutes: number, baseMinutes = 1): Candle[] {
+  if (minutes === baseMinutes) return c1m;
+  const need = minutes / baseMinutes;
   const ms = minutes * 60_000;
   const out: Candle[] = [];
   let cur: Candle | null = null;
@@ -138,7 +139,7 @@ export function resample(c1m: Candle[], minutes: number): Candle[] {
   for (const c of c1m) {
     const start = Math.floor(c.t / ms) * ms;
     if (!cur || cur.t !== start) {
-      if (cur && count === minutes) out.push(cur);
+      if (cur && count === need) out.push(cur);
       cur = { t: start, o: c.o, h: c.h, l: c.l, c: c.c, v: c.v ?? 0 };
       count = 1;
     } else {
@@ -149,6 +150,6 @@ export function resample(c1m: Candle[], minutes: number): Candle[] {
       count++;
     }
   }
-  if (cur && count === minutes) out.push(cur);
+  if (cur && count === need) out.push(cur);
   return out;
 }
