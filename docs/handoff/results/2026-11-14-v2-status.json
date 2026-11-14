@@ -1,0 +1,74 @@
+{
+ "updatedAt": "2026-11-14T06:16:06.538Z",
+ "startedAt": "2026-11-14T05:46:00.000Z",
+ "dataThrough": "2026-11-14T06:16:00.000Z",
+ "hoursLive": 0.5,
+ "startCash": 10000,
+ "equity": 10000,
+ "pnl": 0,
+ "returnPct": 0,
+ "trades": 0,
+ "wins": 0,
+ "fees": 0,
+ "maxSleeveDrawdownPct": 0,
+ "sleevesStoppedForDay": 0,
+ "sleevesKilled": 0,
+ "byMethod": {
+  "15m vwap": {
+   "pnl": 0,
+   "trades": 0,
+   "wins": 0
+  },
+  "60m meanrev": {
+   "pnl": 0,
+   "trades": 0,
+   "wins": 0
+  },
+  "60m pullback": {
+   "pnl": 0,
+   "trades": 0,
+   "wins": 0
+  },
+  "60m vwap": {
+   "pnl": 0,
+   "trades": 0,
+   "wins": 0
+  }
+ },
+ "buyHoldPct": {
+  "BTC_USD": 0.5191675853047473,
+  "ETH_USD": 0.4241736790735695,
+  "SOL_USD": 0.17173051519154825,
+  "XRP_USD": 0.3928679359323173,
+  "DOGE_USD": 0.37996216276370287
+ },
+ "openPositions": [],
+ "tradeLog": [],
+ "spreads": {
+  "BTC_USD": {
+   "samples": 2,
+   "medianPct": 0.000014934426286563577,
+   "p90Pct": 0.000014934426286563577
+  },
+  "ETH_USD": {
+   "samples": 2,
+   "medianPct": 0.0005267274685736434,
+   "p90Pct": 0.0005267274685736434
+  },
+  "SOL_USD": {
+   "samples": 2,
+   "medianPct": 0.0132056784417367,
+   "p90Pct": 0.0132056784417367
+  },
+  "XRP_USD": {
+   "samples": 2,
+   "medianPct": 0.010062893081759899,
+   "p90Pct": 0.010062893081759899
+  },
+  "DOGE_USD": {
+   "samples": 2,
+   "medianPct": 0.015872260051102524,
+   "p90Pct": 0.015872260051102524
+  }
+ }
+}
