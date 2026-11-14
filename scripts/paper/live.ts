@@ -13,20 +13,25 @@ import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } fr
 import type { Candle } from "../../lib/paper/strategy";
 import { resample } from "../../lib/paper/scalp/indicators";
 import { applyRegime, applyRegimeShort, mergeSides, shortSignals, strategyById, type Params } from "../../lib/paper/scalp/strategies";
+import { applyRegimeSwitch, METHOD_KIND, regimeParamsFrom, skipRegimes, type Regime } from "../../lib/paper/scalp/regime";
 import { simulate, type SimResult } from "../../lib/paper/scalp/engine";
 import { fetchCandlesSince, fetchSpread } from "../../lib/paper/scalp/feed";
 
-const CONFIG = "lib/paper/scalp/live-config.json";
-const DIR = ".paper-data/live";
-const WARMUP_DAYS = 10;
+// LIVE=<name> runs a separate forward test with its own config and data (e.g. LIVE=4h).
+const NAME = process.env.LIVE ?? "";
+const CONFIG = `lib/paper/scalp/live-config${NAME ? "-" + NAME : ""}.json`;
+const DIR = `.paper-data/live${NAME ? "-" + NAME : ""}`;
+const WARMUP_DAYS = Number(process.env.WARMUP_DAYS ?? 10);
 const DAY = 86_400_000;
 
-interface Sleeve { market: string; tf: number; strategy: string; mode: "long" | "both"; params: Params; cash: number }
+interface Sleeve { market: string; tf: number; strategy: string; mode: "long" | "both"; params: Params; cash: number; skip?: Regime[] }
+/** Same reference classifier as research.ts uses for SKIP. */
+const REF_REGIME = { hours: 24, erTrend: 0.3, erRange: 0.15 };
 interface LiveConfig { startedAt: number; startedAtIso: string; totalCash: number; why: string; sleeves: Sleeve[] }
 
 // Chosen from the walk-forward research: the best out-of-sample setup of each method,
 // re-tuned on the latest 10 days. Includes a true 1-minute scalper so scalping gets a live test.
-const PICKS: { tf: number; strategy: string; mode: "long" | "both" }[] = [
+const PICKS_DEFAULT: { tf: number; strategy: string; mode: "long" | "both" }[] = [
   { tf: 1, strategy: "vwap", mode: "both" },
   { tf: 5, strategy: "vwap", mode: "both" },
   { tf: 15, strategy: "pullback", mode: "both" },
@@ -34,8 +39,13 @@ const PICKS: { tf: number; strategy: string; mode: "long" | "both" }[] = [
   { tf: 60, strategy: "breakout", mode: "both" },
 ];
 
+// PICKS="240:breakout:long,240:tsmom:both" and RESEARCH=<file> override the defaults for a named test.
+const PICKS = process.env.PICKS
+  ? process.env.PICKS.split(",").map((x) => { const [tf, strategy, mode] = x.split(":"); return { tf: Number(tf), strategy, mode: mode as "long" | "both" }; })
+  : PICKS_DEFAULT;
+
 function freeze() {
-  const research = JSON.parse(readFileSync(".paper-data/research.json", "utf8"));
+  const research = JSON.parse(readFileSync(process.env.RESEARCH ?? ".paper-data/research.json", "utf8"));
   const markets: string[] = research.markets;
   const startedAt = Math.ceil(Date.now() / 60_000) * 60_000;
   const totalCash = 10_000;
@@ -43,14 +53,18 @@ function freeze() {
   const sleeves: Sleeve[] = [];
   for (const pk of PICKS) {
     const row = research.rows.find((r: any) => r.tf === pk.tf && r.strategy === pk.strategy && r.mode === pk.mode);
-    if (!row?.latestParams) throw new Error(`No tuned params for ${pk.tf}m ${pk.strategy}/${pk.mode}`);
-    for (const market of markets) sleeves.push({ market, ...pk, params: row.latestParams, cash: totalCash / n });
+    // Too few trades in the latest 10 days to tune? Use the settings from the most recent walk-forward window.
+    const params = row?.latestParams ?? [...(row?.windows ?? [])].reverse().find((w: any) => Object.keys(w.params).length)?.params;
+    if (!params) throw new Error(`No tuned params for ${pk.tf}m ${pk.strategy}/${pk.mode}`);
+    row.latestParams = params;
+    const skip = (process.env.SKIP ?? "").split(",").filter(Boolean) as Regime[];
+    for (const market of markets) sleeves.push({ market, ...pk, params: row.latestParams, cash: totalCash / n, ...(skip.length ? { skip } : {}) });
   }
   const cfg: LiveConfig = {
     startedAt,
     startedAtIso: new Date(startedAt).toISOString(),
     totalCash,
-    why: "Best out-of-sample setup per method from scripts/paper/research.ts (walk-forward, 5 coins, 30 days of 1m candles), settings re-tuned on the latest 10 days and frozen for the forward test.",
+    why: process.env.WHY ?? "Best out-of-sample setup per method from scripts/paper/research.ts (walk-forward, 5 coins, 30 days of 1m candles), settings re-tuned on the latest 10 days and frozen for the forward test.",
     sleeves,
   };
   writeFileSync(CONFIG, JSON.stringify(cfg, null, 1) + "\n");
@@ -84,7 +98,10 @@ function evaluate(cfg: LiveConfig) {
     if (c.length < 50) continue;
     const strat = strategyById(s.strategy);
     const long = applyRegime(c, strat.signals(c, s.params), s.tf, s.params.regimeHours ?? 0);
-    const sigs = s.mode === "both" ? mergeSides(long, applyRegimeShort(c, shortSignals(strat, c, s.params), s.tf, s.params.regimeHours ?? 0)) : long;
+    let sigs = s.mode === "both" ? mergeSides(long, applyRegimeShort(c, shortSignals(strat, c, s.params), s.tf, s.params.regimeHours ?? 0)) : long;
+    const rg = regimeParamsFrom(s.params);
+    if (rg) sigs = applyRegimeSwitch(c, sigs, s.tf, METHOD_KIND[s.strategy], rg);
+    if (s.skip?.length) sigs = skipRegimes(c, sigs, s.tf, REF_REGIME, s.skip);
     out.push({ sleeve: s, r: simulate(c, sigs, { startCash: s.cash, tradeFrom: cfg.startedAt }) });
   }
   return out;

@@ -84,3 +84,9 @@ export const REGIME_GRID: Params[] = [
     [0.3, 0.45].flatMap((rgTrend) => [0.15, 0.25].map((rgRange) => ({ rgHours, rgTrend, rgRange }))),
   ),
 ];
+
+/** Drop every entry (either side) made while the market is in one of the `skip` regimes. */
+export function skipRegimes(c: Candle[], sigs: (EntrySignal | null)[], tfMinutes: number, p: RegimeParams, skip: Regime[]): (EntrySignal | null)[] {
+  const reg = classify(c, tfMinutes, p);
+  return sigs.map((s, i) => (s && !skip.includes(reg[i]) ? s : null));
+}

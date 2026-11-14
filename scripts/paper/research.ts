@@ -18,7 +18,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import type { Candle } from "../../lib/paper/strategy";
 import { resample } from "../../lib/paper/scalp/indicators";
 import { applyRegime, applyRegimeShort, mergeSides, shortSignals, STRATEGIES, type EntrySignal, type Params } from "../../lib/paper/scalp/strategies";
-import { applyRegimeSwitch, classify, METHOD_KIND, REGIME_GRID, type Regime } from "../../lib/paper/scalp/regime";
+import { applyRegimeSwitch, classify, skipRegimes, METHOD_KIND, REGIME_GRID, type Regime } from "../../lib/paper/scalp/regime";
 import { DEFAULT_RISK, monteCarloDrawdown, simulate, type RiskOptions, type SimTrade } from "../../lib/paper/scalp/engine";
 
 const MARKETS = (process.env.MARKETS ?? "BTC_USD,ETH_USD,SOL_USD,XRP_USD,DOGE_USD").split(",");
@@ -32,6 +32,8 @@ const RGRID = RG ? [{ rgHours: RG[0], rgTrend: RG[1], rgRange: RG[2] }] : SWITCH
 const OUT = process.env.OUT ?? (SWITCH ? ".paper-data/research-switch.json" : ".paper-data/research.json");
 /** Fixed reference classifier used only to label trades for the by-regime breakdown. */
 const REF_REGIME = { hours: 24, erTrend: 0.3, erRange: 0.15 };
+// SKIP=down (or down,chop) blocks every entry, long or short, while the reference classifier says that regime.
+const SKIP = (process.env.SKIP ?? "").split(",").filter(Boolean) as Regime[];
 const STRATS = process.env.STRATS?.split(",");
 // BASE=60 reads hourly files (<market>_1h.json, from `download.ts 730 "" 1h`) for long-history tests.
 const BASE = Number(process.env.BASE ?? 1);
@@ -93,7 +95,8 @@ for (const tf of TFS) {
             const long = applyRegime(c, base, tf, h);
             const merged = baseShort ? mergeSides(long, applyRegimeShort(c, baseShort, tf, h)) : long;
             for (const rg of RGRID) {
-              sigs[m].push(rg.rgHours ? applyRegimeSwitch(c, merged, tf, METHOD_KIND[strat.id], { hours: rg.rgHours, erTrend: rg.rgTrend, erRange: rg.rgRange }) : merged);
+              const sw = rg.rgHours ? applyRegimeSwitch(c, merged, tf, METHOD_KIND[strat.id], { hours: rg.rgHours, erTrend: rg.rgTrend, erRange: rg.rgRange }) : merged;
+              sigs[m].push(SKIP.length ? skipRegimes(c, sw, tf, REF_REGIME, SKIP) : sw);
             }
           }
         }

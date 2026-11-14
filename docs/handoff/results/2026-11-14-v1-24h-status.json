@@ -1,0 +1,427 @@
+{
+ "updatedAt": "2026-11-14T05:48:06.531Z",
+ "startedAt": "2026-11-13T05:17:00.000Z",
+ "dataThrough": "2026-11-14T05:48:00.000Z",
+ "hoursLive": 24.516666666666666,
+ "startCash": 10000,
+ "equity": 10002.434826189367,
+ "pnl": 2.434826189366504,
+ "returnPct": 0.024348261893658574,
+ "trades": 23,
+ "wins": 12,
+ "fees": 9.261376043072003,
+ "maxSleeveDrawdownPct": 1.8543620306829938,
+ "sleevesStoppedForDay": 0,
+ "sleevesKilled": 0,
+ "byMethod": {
+  "1m vwap": {
+   "pnl": 1.655640501734183,
+   "trades": 1,
+   "wins": 1
+  },
+  "5m vwap": {
+   "pnl": -1.7319624346907858,
+   "trades": 15,
+   "wins": 8
+  },
+  "15m pullback": {
+   "pnl": 1.5456242387208476,
+   "trades": 7,
+   "wins": 3
+  },
+  "60m meanrev": {
+   "pnl": 0,
+   "trades": 0,
+   "wins": 0
+  },
+  "60m breakout": {
+   "pnl": 0.9655238836037938,
+   "trades": 0,
+   "wins": 0
+  }
+ },
+ "buyHoldPct": {
+  "BTC_USD": -2.7043292042219558,
+  "ETH_USD": -1.6603061351474713,
+  "SOL_USD": -3.748888041682552,
+  "XRP_USD": -1.924975320829203,
+  "DOGE_USD": -1.4343877231443813
+ },
+ "openPositions": [
+  {
+   "market": "BTC_USD",
+   "method": "5m vwap",
+   "side": 1,
+   "entryT": 1794627600000,
+   "entry": 66929.73327000001,
+   "qty": 0.003077013310841959,
+   "stop": 66276.98687903071,
+   "target": 67814.67288545126
+  },
+  {
+   "market": "ETH_USD",
+   "method": "5m vwap",
+   "side": 1,
+   "entryT": 1794629100000,
+   "entry": 1886.337192,
+   "qty": 0.08785257987569602,
+   "stop": 1863.733425812228,
+   "target": 1909.1093394859363
+  },
+  {
+   "market": "SOL_USD",
+   "method": "5m vwap",
+   "side": 1,
+   "entryT": 1794623700000,
+   "entry": 75.625122,
+   "qty": 2.167549019644586,
+   "stop": 74.71575658791532,
+   "target": 77.20786312513145
+  },
+  {
+   "market": "XRP_USD",
+   "method": "5m vwap",
+   "side": 1,
+   "entryT": 1794627600000,
+   "entry": 0.99239844,
+   "qty": 175.26108378029798,
+   "stop": 0.9808433278259062,
+   "target": 1.0000881533563895
+  },
+  {
+   "market": "DOGE_USD",
+   "method": "5m vwap",
+   "side": 1,
+   "entryT": 1794627600000,
+   "entry": 0.0625094994,
+   "qty": 2455.0084906204875,
+   "stop": 0.06169574683487897,
+   "target": 0.06331675815616279
+  },
+  {
+   "market": "SOL_USD",
+   "method": "60m breakout",
+   "side": -1,
+   "entryT": 1794625200000,
+   "entry": 76.144768,
+   "qty": 1.0458089602983858,
+   "stop": 78.05716316577613,
+   "target": 70.40758250267159
+  },
+  {
+   "market": "DOGE_USD",
+   "method": "60m breakout",
+   "side": -1,
+   "entryT": 1794625200000,
+   "entry": 0.0633193336,
+   "qty": 1277.9301116287186,
+   "stop": 0.0648843644117797,
+   "target": 0.05862424116466094
+  }
+ ],
+ "tradeLog": [
+  {
+   "market": "ETH_USD",
+   "method": "5m vwap",
+   "side": "long",
+   "entryAt": "2026-11-13T05:25:00.000Z",
+   "exitAt": "2026-11-13T05:55:00.000Z",
+   "entry": 1924.004724,
+   "exit": 1902.002259253166,
+   "reason": "stop",
+   "pnl": -2.39,
+   "r": -1.19
+  },
+  {
+   "market": "XRP_USD",
+   "method": "15m pullback",
+   "side": "short",
+   "entryAt": "2026-11-13T06:00:00.000Z",
+   "exitAt": "2026-11-13T06:15:00.000Z",
+   "entry": 1.0112977,
+   "exit": 1.025135064536334,
+   "reason": "stop",
+   "pnl": -2.33,
+   "r": -1.16
+  },
+  {
+   "market": "BTC_USD",
+   "method": "5m vwap",
+   "side": "long",
+   "entryAt": "2026-11-13T06:05:00.000Z",
+   "exitAt": "2026-11-13T09:45:00.000Z",
+   "entry": 68207.50877399999,
+   "exit": 68919.7133,
+   "reason": "time",
+   "pnl": 1.7,
+   "r": 0.85
+  },
+  {
+   "market": "ETH_USD",
+   "method": "5m vwap",
+   "side": "long",
+   "entryAt": "2026-11-13T06:05:00.000Z",
+   "exitAt": "2026-11-13T09:45:00.000Z",
+   "entry": 1911.43221,
+   "exit": 1935.372848,
+   "reason": "time",
+   "pnl": 1.83,
+   "r": 0.92
+  },
+  {
+   "market": "DOGE_USD",
+   "method": "15m pullback",
+   "side": "short",
+   "entryAt": "2026-11-13T06:45:00.000Z",
+   "exitAt": "2026-11-13T10:15:00.000Z",
+   "entry": 0.0642331508,
+   "exit": 0.06520252764048477,
+   "reason": "stop",
+   "pnl": -2.3,
+   "r": -1.15
+  },
+  {
+   "market": "BTC_USD",
+   "method": "15m pullback",
+   "side": "short",
+   "entryAt": "2026-11-13T07:30:00.000Z",
+   "exitAt": "2026-11-13T13:30:00.000Z",
+   "entry": 68925.39216399999,
+   "exit": 69737.0086193016,
+   "reason": "stop",
+   "pnl": -2.38,
+   "r": -1.19
+  },
+  {
+   "market": "ETH_USD",
+   "method": "15m pullback",
+   "side": "short",
+   "entryAt": "2026-11-13T07:30:00.000Z",
+   "exitAt": "2026-11-13T13:30:00.000Z",
+   "entry": 1940.31186,
+   "exit": 1967.59444596752,
+   "reason": "stop",
+   "pnl": -2.32,
+   "r": -1.16
+  },
+  {
+   "market": "XRP_USD",
+   "method": "5m vwap",
+   "side": "short",
+   "entryAt": "2026-11-13T13:45:00.000Z",
+   "exitAt": "2026-11-13T15:20:00.000Z",
+   "entry": 1.03839228,
+   "exit": 1.0256757909478322,
+   "reason": "target",
+   "pnl": 2.04,
+   "r": 1.02
+  },
+  {
+   "market": "ETH_USD",
+   "method": "5m vwap",
+   "side": "long",
+   "entryAt": "2026-11-13T15:20:00.000Z",
+   "exitAt": "2026-11-13T15:35:00.000Z",
+   "entry": 1936.8872999999999,
+   "exit": 1916.9998348088743,
+   "reason": "stop",
+   "pnl": -2.43,
+   "r": -1.22
+  },
+  {
+   "market": "SOL_USD",
+   "method": "5m vwap",
+   "side": "long",
+   "entryAt": "2026-11-13T15:20:00.000Z",
+   "exitAt": "2026-11-13T15:35:00.000Z",
+   "entry": 79.92598199999999,
+   "exit": 79.06695979597733,
+   "reason": "stop",
+   "pnl": -2.41,
+   "r": -1.21
+  },
+  {
+   "market": "XRP_USD",
+   "method": "5m vwap",
+   "side": "long",
+   "entryAt": "2026-11-13T15:45:00.000Z",
+   "exitAt": "2026-11-13T17:40:00.000Z",
+   "entry": 1.0132025999999998,
+   "exit": 1.0266299033686141,
+   "reason": "target",
+   "pnl": 1.87,
+   "r": 0.93
+  },
+  {
+   "market": "DOGE_USD",
+   "method": "5m vwap",
+   "side": "long",
+   "entryAt": "2026-11-13T15:30:00.000Z",
+   "exitAt": "2026-11-13T19:10:00.000Z",
+   "entry": 0.0647849544,
+   "exit": 0.0655838806,
+   "reason": "time",
+   "pnl": 1.92,
+   "r": 0.96
+  },
+  {
+   "market": "ETH_USD",
+   "method": "5m vwap",
+   "side": "long",
+   "entryAt": "2026-11-13T15:45:00.000Z",
+   "exitAt": "2026-11-13T19:25:00.000Z",
+   "entry": 1916.6532539999998,
+   "exit": 1948.200282,
+   "reason": "time",
+   "pnl": 2.55,
+   "r": 1.29
+  },
+  {
+   "market": "SOL_USD",
+   "method": "5m vwap",
+   "side": "long",
+   "entryAt": "2026-11-13T15:45:00.000Z",
+   "exitAt": "2026-11-13T19:25:00.000Z",
+   "entry": 79.145826,
+   "exit": 79.964004,
+   "reason": "time",
+   "pnl": 1.45,
+   "r": 0.73
+  },
+  {
+   "market": "SOL_USD",
+   "method": "15m pullback",
+   "side": "short",
+   "entryAt": "2026-11-13T18:30:00.000Z",
+   "exitAt": "2026-11-13T22:00:00.000Z",
+   "entry": 79.954006,
+   "exit": 77.92396687713979,
+   "reason": "target",
+   "pnl": 3.69,
+   "r": 1.84
+  },
+  {
+   "market": "SOL_USD",
+   "method": "5m vwap",
+   "side": "long",
+   "entryAt": "2026-11-13T22:20:00.000Z",
+   "exitAt": "2026-11-13T23:00:00.000Z",
+   "entry": 78.31566,
+   "exit": 77.52376234222704,
+   "reason": "stop",
+   "pnl": -2.44,
+   "r": -1.22
+  },
+  {
+   "market": "SOL_USD",
+   "method": "5m vwap",
+   "side": "long",
+   "entryAt": "2026-11-13T23:10:00.000Z",
+   "exitAt": "2026-11-14T02:05:00.000Z",
+   "entry": 77.495496,
+   "exit": 76.6281135662556,
+   "reason": "stop",
+   "pnl": -2.38,
+   "r": -1.2
+  },
+  {
+   "market": "XRP_USD",
+   "method": "15m pullback",
+   "side": "short",
+   "entryAt": "2026-11-13T21:15:00.000Z",
+   "exitAt": "2026-11-14T02:15:00.000Z",
+   "entry": 1.0109977600000002,
+   "exit": 0.9891966053781167,
+   "reason": "target",
+   "pnl": 3.61,
+   "r": 1.82
+  },
+  {
+   "market": "DOGE_USD",
+   "method": "15m pullback",
+   "side": "short",
+   "entryAt": "2026-11-14T00:30:00.000Z",
+   "exitAt": "2026-11-14T02:15:00.000Z",
+   "entry": 0.0644890996,
+   "exit": 0.06322814007655661,
+   "reason": "target",
+   "pnl": 3.57,
+   "r": 1.8
+  },
+  {
+   "market": "XRP_USD",
+   "method": "5m vwap",
+   "side": "long",
+   "entryAt": "2026-11-14T02:35:00.000Z",
+   "exitAt": "2026-11-14T02:45:00.000Z",
+   "entry": 0.99589914,
+   "exit": 1.0036778366783587,
+   "reason": "target",
+   "pnl": 1.13,
+   "r": 0.56
+  },
+  {
+   "market": "DOGE_USD",
+   "method": "1m vwap",
+   "side": "long",
+   "entryAt": "2026-11-14T02:32:00.000Z",
+   "exitAt": "2026-11-14T02:49:00.000Z",
+   "entry": 0.06265052759999999,
+   "exit": 0.0632810700059545,
+   "reason": "target",
+   "pnl": 1.66,
+   "r": 0.83
+  },
+  {
+   "market": "DOGE_USD",
+   "method": "5m vwap",
+   "side": "long",
+   "entryAt": "2026-11-14T02:35:00.000Z",
+   "exitAt": "2026-11-14T03:30:00.000Z",
+   "entry": 0.0630436062,
+   "exit": 0.062260533431729846,
+   "reason": "stop",
+   "pnl": -2.37,
+   "r": -1.18
+  },
+  {
+   "market": "ETH_USD",
+   "method": "5m vwap",
+   "side": "long",
+   "entryAt": "2026-11-14T02:35:00.000Z",
+   "exitAt": "2026-11-14T03:55:00.000Z",
+   "entry": 1899.069738,
+   "exit": 1878.3013222047525,
+   "reason": "stop",
+   "pnl": -2.4,
+   "r": -1.2
+  }
+ ],
+ "spreads": {
+  "BTC_USD": {
+   "samples": 16,
+   "medianPct": 1.4648107430557498e-05,
+   "p90Pct": 2.9334429664727328e-05
+  },
+  "ETH_USD": {
+   "samples": 16,
+   "medianPct": 0.0005210409355806301,
+   "p90Pct": 0.0005278312206883925
+  },
+  "SOL_USD": {
+   "samples": 16,
+   "medianPct": 0.012734797835090881,
+   "p90Pct": 0.01323889587609071
+  },
+  "XRP_USD": {
+   "samples": 16,
+   "medianPct": 0.009957679860591387,
+   "p90Pct": 0.019725811223984414
+  },
+  "DOGE_USD": {
+   "samples": 16,
+   "medianPct": 0.012512708219276022,
+   "p90Pct": 0.017198921158599074
+  }
+ }
+}

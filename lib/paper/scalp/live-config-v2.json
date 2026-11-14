@@ -1,0 +1,438 @@
+{
+ "startedAt": 1794635160000,
+ "startedAtIso": "2026-11-14T05:46:00.000Z",
+ "totalCash": 10000,
+ "why": "v2 (2026-11-14): after the first 24h live test and fresh 30-day walk-forward research, trade only in range/up markets (skip down + chop, 24h efficiency ratio) on 15m VWAP and 60m dip-buy/pullback/VWAP, long+short.",
+ "sleeves": [
+  {
+   "market": "BTC_USD",
+   "tf": 15,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 15,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 15,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 15,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 15,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "BTC_USD",
+   "tf": 60,
+   "strategy": "meanrev",
+   "mode": "both",
+   "params": {
+    "bb": 20,
+    "k": 2,
+    "rsiLen": 7,
+    "rsiMax": 30,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 60,
+   "strategy": "meanrev",
+   "mode": "both",
+   "params": {
+    "bb": 20,
+    "k": 2,
+    "rsiLen": 7,
+    "rsiMax": 30,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 60,
+   "strategy": "meanrev",
+   "mode": "both",
+   "params": {
+    "bb": 20,
+    "k": 2,
+    "rsiLen": 7,
+    "rsiMax": 30,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 60,
+   "strategy": "meanrev",
+   "mode": "both",
+   "params": {
+    "bb": 20,
+    "k": 2,
+    "rsiLen": 7,
+    "rsiMax": 30,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 60,
+   "strategy": "meanrev",
+   "mode": "both",
+   "params": {
+    "bb": 20,
+    "k": 2,
+    "rsiLen": 7,
+    "rsiMax": 30,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "BTC_USD",
+   "tf": 60,
+   "strategy": "pullback",
+   "mode": "both",
+   "params": {
+    "fast": 20,
+    "slow": 50,
+    "stopAtr": 2,
+    "rr": 2,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 60,
+   "strategy": "pullback",
+   "mode": "both",
+   "params": {
+    "fast": 20,
+    "slow": 50,
+    "stopAtr": 2,
+    "rr": 2,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 60,
+   "strategy": "pullback",
+   "mode": "both",
+   "params": {
+    "fast": 20,
+    "slow": 50,
+    "stopAtr": 2,
+    "rr": 2,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 60,
+   "strategy": "pullback",
+   "mode": "both",
+   "params": {
+    "fast": 20,
+    "slow": 50,
+    "stopAtr": 2,
+    "rr": 2,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 60,
+   "strategy": "pullback",
+   "mode": "both",
+   "params": {
+    "fast": 20,
+    "slow": 50,
+    "stopAtr": 2,
+    "rr": 2,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "BTC_USD",
+   "tf": 60,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 60,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 60,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 60,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 60,
+   "strategy": "vwap",
+   "mode": "both",
+   "params": {
+    "len": 60,
+    "z": 2,
+    "stopAtr": 2.5,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 500,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  }
+ ]
+}

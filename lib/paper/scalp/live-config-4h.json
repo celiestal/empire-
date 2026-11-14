@@ -1,0 +1,113 @@
+{
+ "startedAt": 1794635160000,
+ "startedAtIso": "2026-11-14T05:46:00.000Z",
+ "totalCash": 10000,
+ "why": "4h test (2026-11-14): 4h breakout long+short, no entries in down-trends. Best result of the 2-year hourly walk-forward (+3.6%/coin, PF 1.24, 10/21 windows) while coins fell 27-75%. Fragile: fails at 0.25% fees and without the top 10% of trades.",
+ "sleeves": [
+  {
+   "market": "BTC_USD",
+   "tf": 240,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 60,
+    "volMult": 2.5,
+    "stopAtr": 1.5,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 2000,
+   "skip": [
+    "down"
+   ]
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 240,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 60,
+    "volMult": 2.5,
+    "stopAtr": 1.5,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 2000,
+   "skip": [
+    "down"
+   ]
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 240,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 60,
+    "volMult": 2.5,
+    "stopAtr": 1.5,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 2000,
+   "skip": [
+    "down"
+   ]
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 240,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 60,
+    "volMult": 2.5,
+    "stopAtr": 1.5,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 2000,
+   "skip": [
+    "down"
+   ]
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 240,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 60,
+    "volMult": 2.5,
+    "stopAtr": 1.5,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 2000,
+   "skip": [
+    "down"
+   ]
+  }
+ ]
+}

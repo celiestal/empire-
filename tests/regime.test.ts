@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { Candle } from "@/lib/paper/strategy";
-import { applyRegimeSwitch, classify, efficiencyRatio } from "@/lib/paper/scalp/regime";
+import { applyRegimeSwitch, classify, efficiencyRatio, skipRegimes } from "@/lib/paper/scalp/regime";
 
 const hourly = (closes: number[]): Candle[] => closes.map((c, i) => ({ t: i * 3_600_000, o: c, h: c, l: c, c, v: 1 }));
 const p = { hours: 4, erTrend: 0.5, erRange: 0.2 };
@@ -30,5 +30,14 @@ describe("regime detector", () => {
     const both = [null, null, null, null, { ...sig, side: 1 as const }, { ...sig, side: -1 as const }];
     expect(applyRegimeSwitch(up, both, 60, "trend", p).map((s) => s?.side ?? null)).toEqual([null, null, null, null, 1, null]);
     expect(applyRegimeSwitch(up, both, 60, "reversion", p).every((s) => s === null)).toBe(true);
+  });
+
+  it("skipRegimes drops entries on both sides while the market is falling", () => {
+    const c = hourly([6, 5, 4, 3, 2, 1]);
+    const sig = { stopDist: 1, targetDist: 1, maxBars: 5 };
+    const out = skipRegimes(c, [null, null, null, null, sig, { ...sig, side: -1 as const }], 60, p, ["down"]);
+    expect(out).toEqual([null, null, null, null, null, null]);
+    const up = skipRegimes(hourly([1, 2, 3, 4, 5, 6]), [null, null, null, null, sig, null], 60, p, ["down"]);
+    expect(up[4]).toEqual(sig);
   });
 });
