@@ -1,0 +1,115 @@
+{
+ "cells": {
+  "original5 w1": {
+   "ensemble": {
+    "totalPct": 79.2,
+    "cagrPct": 35.4,
+    "avgDailyPct": 0.088,
+    "sharpe": 1.64,
+    "maxDDPct": 12.8,
+    "cagrPerDD": 2.75
+   },
+   "e1Baseline": {
+    "totalPct": 79.7,
+    "cagrPct": 35.6,
+    "avgDailyPct": 0.089,
+    "sharpe": 1.58,
+    "maxDDPct": 14.8,
+    "cagrPerDD": 2.4
+   },
+   "ensembleAtStress": 62,
+   "neighbours": [
+    84.2,
+    64,
+    59.9,
+    91.9
+   ]
+  },
+  "original5 w2": {
+   "ensemble": {
+    "totalPct": 20.5,
+    "cagrPct": 9.8,
+    "avgDailyPct": 0.03,
+    "sharpe": 0.6,
+    "maxDDPct": 16.8,
+    "cagrPerDD": 0.58
+   },
+   "e1Baseline": {
+    "totalPct": 25.2,
+    "cagrPct": 11.9,
+    "avgDailyPct": 0.036,
+    "sharpe": 0.67,
+    "maxDDPct": 18,
+    "cagrPerDD": 0.66
+   },
+   "ensembleAtStress": 10.1,
+   "neighbours": [
+    6.7,
+    18.5,
+    17.5,
+    23.8
+   ]
+  },
+  "h2_8 w1": {
+   "ensemble": {
+    "totalPct": 40.1,
+    "cagrPct": 19.1,
+    "avgDailyPct": 0.053,
+    "sharpe": 1,
+    "maxDDPct": 15.9,
+    "cagrPerDD": 1.2
+   },
+   "e1Baseline": {
+    "totalPct": 34.6,
+    "cagrPct": 16.7,
+    "avgDailyPct": 0.048,
+    "sharpe": 0.87,
+    "maxDDPct": 16.8,
+    "cagrPerDD": 0.99
+   },
+   "ensembleAtStress": 28.7,
+   "neighbours": [
+    50.7,
+    29.4,
+    29.3,
+    48.3
+   ]
+  },
+  "h2_8 w2": {
+   "ensemble": {
+    "totalPct": 8.3,
+    "cagrPct": 4.1,
+    "avgDailyPct": 0.015,
+    "sharpe": 0.31,
+    "maxDDPct": 20.7,
+    "cagrPerDD": 0.2
+   },
+   "e1Baseline": {
+    "totalPct": 5.4,
+    "cagrPct": 2.7,
+    "avgDailyPct": 0.012,
+    "sharpe": 0.23,
+    "maxDDPct": 21.9,
+    "cagrPerDD": 0.12
+   },
+   "ensembleAtStress": 0.5,
+   "neighbours": [
+    3.8,
+    9.4,
+    8,
+    8
+   ]
+  }
+ },
+ "gates": {
+  "positive": true,
+  "sharpe05": false,
+  "stressPositive": true,
+  "dd25": true,
+  "neighbours80": true,
+  "betterThanE1_3of4": true
+ },
+ "passed": false,
+ "neighboursPositive": "16/16",
+ "betterThanE1": "3/4"
+}
