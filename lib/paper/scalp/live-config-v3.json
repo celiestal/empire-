@@ -1,0 +1,183 @@
+{
+ "startedAt": 1794723660000,
+ "startedAtIso": "2026-11-15T06:21:00.000Z",
+ "totalCash": 10000,
+ "why": "v3 (2026-11-15): hourly trend following, long+short, no regime filter. On fresh 30-day walk-forward (coins -20% to -30%): 60m breakout +1.08%/coin PF 1.34 (3/4 windows), 60m tsmom +0.98% PF 1.13; both survive 3x slippage. Live day 2: trend shorts made money while VWAP dip-buys lost. Fragile at 0.25% fees (breakout).",
+ "sleeves": [
+  {
+   "market": "BTC_USD",
+   "tf": 60,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 20,
+    "volMult": 2.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 60,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 20,
+    "volMult": 2.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 60,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 20,
+    "volMult": 2.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 60,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 20,
+    "volMult": 2.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 60,
+   "strategy": "breakout",
+   "mode": "both",
+   "params": {
+    "n": 20,
+    "volMult": 2.5,
+    "stopAtr": 2,
+    "rr": 3,
+    "trend": 0,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000
+  },
+  {
+   "market": "BTC_USD",
+   "tf": 60,
+   "strategy": "tsmom",
+   "mode": "both",
+   "params": {
+    "look": 168,
+    "stopAtr": 2,
+    "rr": 6,
+    "hold": 72,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 60,
+   "strategy": "tsmom",
+   "mode": "both",
+   "params": {
+    "look": 168,
+    "stopAtr": 2,
+    "rr": 6,
+    "hold": 72,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 60,
+   "strategy": "tsmom",
+   "mode": "both",
+   "params": {
+    "look": 168,
+    "stopAtr": 2,
+    "rr": 6,
+    "hold": 72,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 60,
+   "strategy": "tsmom",
+   "mode": "both",
+   "params": {
+    "look": 168,
+    "stopAtr": 2,
+    "rr": 6,
+    "hold": 72,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 60,
+   "strategy": "tsmom",
+   "mode": "both",
+   "params": {
+    "look": 168,
+    "stopAtr": 2,
+    "rr": 6,
+    "hold": 72,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000
+  }
+ ]
+}

@@ -93,3 +93,24 @@ Started 2026-11-13. Fake money only: no exchange keys, no real orders.
 - v2: same, prefixed with `LIVE=v2`
 - 4h: same, prefixed with `LIVE=4h WARMUP_DAYS=20`
 - Scheduled in the original session: a keep-alive every 6h (:48), and the daily report + handoff summary at 06:13 UTC.
+
+## Day 2 (2026-11-15) and v3
+- The coins fell another 4–8% in 24h (11-14 → 11-15).
+- **v1:** $9,972.14 (-0.28% since start). 93 trades, 38 wins. Fees $30. Worst pot drawdown 3.2%. 2 daily-loss stops hit.
+  - 1m VWAP -$34 (32 trades, 9 wins) and 5m VWAP -$30 (42 trades, 17 wins).
+  - 15m pullback +$15 and 60m breakout +$21 (shorts).
+- **Why (last 24h):**
+  - Entries in down-trends: 61 trades, 18 wins, -$58.56. Nearly all of it was VWAP dip-buy/snap-back scalps.
+  - Chop and range entries: 9 trades, 8 wins, +$28.
+  - Trend shorts (60m breakout, 15m pullback) made money in the fall.
+  - All 40 stop-outs lost; all 22 targets won.
+- **v2:** sat out the fall as designed. 1 trade (-$2.70), $9,997.30 (-0.03%).
+- **4h:** no trades (it skips down-trends).
+- **Fresh 30-day walk-forward** (coins -20% to -30%), 15m/60m, long+short:
+  - **Regime switch** (trend methods only with the trend, reversion only in ranges): worse or neutral again. **Rejected** for the third time.
+  - **v2 set** (skip down + chop): only 60m pullback is still positive (+1.38%/coin, PF 1.75). 15m VWAP -0.38%, 60m VWAP -1.05%, 60m dip-buy -0.01%. Reversion is weakening as the fall deepens.
+  - **Trend following, no filter:** 60m breakout +1.08% (PF 1.34, 3/4 windows), 60m tsmom +0.98% (PF 1.13).
+    Both survive 3× slippage, with Monte Carlo p95 drawdown 5.5–7.1%. 15m tsmom was +2.36% but had an 11.5% drawdown and failed 3× slippage, so it was left out.
+- **New test v3** (`LIVE=v3 WARMUP_DAYS=20`): 60m breakout + 60m tsmom, long+short, no filter. 10 × $1,000, from 2026-11-15 06:21 UTC.
+  - v1, v2 and 4h keep running unchanged.
+  - Restart: `env NODE_USE_ENV_PROXY=1 NODE_NO_WARNINGS=1 LIVE=v3 WARMUP_DAYS=20 setsid nohup npx tsx scripts/paper/live.ts loop >> .paper-data/live-v3/loop.log 2>&1 < /dev/null & disown`

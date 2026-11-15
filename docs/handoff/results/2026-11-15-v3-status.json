@@ -1,0 +1,36 @@
+{
+ "updatedAt": "2026-11-15T06:23:09.814Z",
+ "startedAt": "2026-11-15T06:21:00.000Z",
+ "dataThrough": "2026-11-15T06:21:00.000Z",
+ "hoursLive": 0,
+ "startCash": 10000,
+ "equity": 10000,
+ "pnl": 0,
+ "returnPct": 0,
+ "trades": 0,
+ "wins": 0,
+ "fees": 0,
+ "maxSleeveDrawdownPct": 0,
+ "sleevesStoppedForDay": 0,
+ "sleevesKilled": 0,
+ "byMethod": {
+  "60m breakout": {
+   "pnl": 0,
+   "trades": 0,
+   "wins": 0
+  },
+  "60m tsmom": {
+   "pnl": 0,
+   "trades": 0,
+   "wins": 0
+  }
+ },
+ "buyHoldPct": {
+  "SOL_USD": -0.17014036580179637,
+  "XRP_USD": -0.2507312996239075,
+  "DOGE_USD": -0.06561679790025865
+ },
+ "openPositions": [],
+ "tradeLog": [],
+ "spreads": {}
+}
