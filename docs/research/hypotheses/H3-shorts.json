@@ -1,0 +1,149 @@
+{
+ "cells": {
+  "original5 w1": {
+   "longPlusShort": {
+    "totalPct": 54.2,
+    "cagrPct": 25.2,
+    "avgDailyPct": 0.069,
+    "sharpe": 1.06,
+    "maxDDPct": 22.3,
+    "cagrPerDD": 1.13
+   },
+   "e1LongOnly": {
+    "totalPct": 79.7,
+    "cagrPct": 35.6,
+    "avgDailyPct": 0.089,
+    "sharpe": 1.58,
+    "maxDDPct": 14.8,
+    "cagrPerDD": 2.4
+   },
+   "shortSideAlone": {
+    "totalPct": -14.2,
+    "cagrPct": -7.7,
+    "avgDailyPct": -0.02,
+    "sharpe": -0.62,
+    "maxDDPct": 22.3,
+    "cagrPerDD": -0.34
+   },
+   "atStress": 23.7,
+   "neighbours": [
+    19.9,
+    68.7,
+    47.7,
+    58.2
+   ]
+  },
+  "original5 w2": {
+   "longPlusShort": {
+    "totalPct": -0.5,
+    "cagrPct": -0.3,
+    "avgDailyPct": 0.008,
+    "sharpe": 0.12,
+    "maxDDPct": 25,
+    "cagrPerDD": -0.01
+   },
+   "e1LongOnly": {
+    "totalPct": 25.2,
+    "cagrPct": 11.9,
+    "avgDailyPct": 0.036,
+    "sharpe": 0.67,
+    "maxDDPct": 18,
+    "cagrPerDD": 0.66
+   },
+   "shortSideAlone": {
+    "totalPct": -20.5,
+    "cagrPct": -10.9,
+    "avgDailyPct": -0.028,
+    "sharpe": -0.64,
+    "maxDDPct": 26,
+    "cagrPerDD": -0.42
+   },
+   "atStress": -20.4,
+   "neighbours": [
+    10.7,
+    -4,
+    10.8,
+    -10.5
+   ]
+  },
+  "h2_8 w1": {
+   "longPlusShort": {
+    "totalPct": 38.4,
+    "cagrPct": 18.4,
+    "avgDailyPct": 0.054,
+    "sharpe": 0.82,
+    "maxDDPct": 16.8,
+    "cagrPerDD": 1.1
+   },
+   "e1LongOnly": {
+    "totalPct": 34.6,
+    "cagrPct": 16.7,
+    "avgDailyPct": 0.048,
+    "sharpe": 0.87,
+    "maxDDPct": 16.8,
+    "cagrPerDD": 0.99
+   },
+   "shortSideAlone": {
+    "totalPct": 2.8,
+    "cagrPct": 1.4,
+    "avgDailyPct": 0.006,
+    "sharpe": 0.17,
+    "maxDDPct": 11.2,
+    "cagrPerDD": 0.13
+   },
+   "atStress": 13.3,
+   "neighbours": [
+    13.6,
+    34.6,
+    31.4,
+    51.4
+   ]
+  },
+  "h2_8 w2": {
+   "longPlusShort": {
+    "totalPct": -21.7,
+    "cagrPct": -11.5,
+    "avgDailyPct": -0.026,
+    "sharpe": -0.41,
+    "maxDDPct": 40.9,
+    "cagrPerDD": -0.28
+   },
+   "e1LongOnly": {
+    "totalPct": 5.4,
+    "cagrPct": 2.7,
+    "avgDailyPct": 0.012,
+    "sharpe": 0.23,
+    "maxDDPct": 21.9,
+    "cagrPerDD": 0.12
+   },
+   "shortSideAlone": {
+    "totalPct": -25.7,
+    "cagrPct": -13.8,
+    "avgDailyPct": -0.038,
+    "sharpe": -0.98,
+    "maxDDPct": 28.7,
+    "cagrPerDD": -0.48
+   },
+   "atStress": -34.7,
+   "neighbours": [
+    -14.4,
+    -30.4,
+    -24.2,
+    -19.9
+   ]
+  }
+ },
+ "gates": {
+  "positive": false,
+  "sharpe05": false,
+  "stressPositive": false,
+  "dd25": false,
+  "neighbours80": false,
+  "betterThanE1_3of4": false,
+  "shortsAlonePositive3of4": false
+ },
+ "passed": false,
+ "neighboursPositive": "10/16",
+ "betterThanE1": "1/4",
+ "shortsAlonePositive": "1/4"
+}
