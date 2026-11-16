@@ -114,3 +114,22 @@ Started 2026-11-13. Fake money only: no exchange keys, no real orders.
 - **New test v3** (`LIVE=v3 WARMUP_DAYS=20`): 60m breakout + 60m tsmom, long+short, no filter. 10 × $1,000, from 2026-11-15 06:21 UTC.
   - v1, v2 and 4h keep running unchanged.
   - Restart: `env NODE_USE_ENV_PROXY=1 NODE_NO_WARNINGS=1 LIVE=v3 WARMUP_DAYS=20 setsid nohup npx tsx scripts/paper/live.ts loop >> .paper-data/live-v3/loop.log 2>&1 < /dev/null & disown`
+
+## Day 3 (2026-11-16)
+The market went sideways after the fall: in the last 24h, mostly range/chop, coins about -0.8% to +0.9%.
+
+| Test | Since start | Last 24h |
+|---|---|---|
+| v1 | $9,957.79 (-0.42%), 105 trades, 42 wins | -$10.91 |
+| v2 | $9,995.63 (-0.04%), 1 closed trade | 6 open (4 × 60m pullback shorts, 2 × 60m VWAP longs) |
+| 4h | $10,000 | no signal yet |
+| v3 | $9,978.55 (-0.21%), 4 closed trades | all 4 lost |
+
+v1 details:
+- Last 24h: 15m pullback shorts 0/5 (-$11.66); 5m VWAP in range +$1.50; 60m dip-buy +$1.80.
+- Fees since start: $33.54.
+
+v3 detail: the 60m tsmom shorts were opened as the fall ended and were stopped out as price went sideways.
+
+**Why:** trend methods won during the fall (day 2) and lost when it stalled (day 3). Reversion did the opposite. Over 3 days no single method wins in every market state, which is the textbook pattern.
+**No change:** one day isn't evidence. The question for the coming weeks is whether v2's state filter or v3's trend following comes out ahead over a full mix of market states.
