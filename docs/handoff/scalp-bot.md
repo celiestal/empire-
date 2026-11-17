@@ -133,3 +133,24 @@ v3 detail: the 60m tsmom shorts were opened as the fall ended and were stopped o
 
 **Why:** trend methods won during the fall (day 2) and lost when it stalled (day 3). Reversion did the opposite. Over 3 days no single method wins in every market state, which is the textbook pattern.
 **No change:** one day isn't evidence. The question for the coming weeks is whether v2's state filter or v3's trend following comes out ahead over a full mix of market states.
+
+## Day 4 (2026-11-17)
+Sideways market all day (range 18–22 of 23 hours on every coin), drifting slightly up.
+
+| Test | Since start | Last 24h |
+|---|---|---|
+| v1 | $9,954.36 (-0.46%), 121 trades | -$4.48 |
+| v2 | $9,999.93 (≈0.00%), 10 trades, 8 wins | +$7.73 |
+| 4h | $10,000 | no signal yet |
+| v3 | $9,964.16 (-0.36%), 6 trades, 0 wins | -$10.89 |
+
+Last-24h detail:
+- v1: 15m pullback shorts 0/6 in range (-$14.32); 5m VWAP 5/6 shorts won (+$11.30).
+- v2: 15m VWAP 8 for 8 in range (+$8.36).
+- v3: 60m breakout longs stopped out in chop (-$10.89).
+
+**Pattern after 4 days:**
+- Reversion (VWAP) wins in sideways markets and loses in steady falls.
+- Trend methods win in steady falls and lose in sideways markets.
+- v2's filter (no entries in down or chop) has avoided the worst of both and is the best test so far: about flat while the coins fell 3–6% over its life.
+- Still only 4 days. No changes.
