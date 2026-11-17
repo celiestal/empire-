@@ -1,0 +1,149 @@
+{
+ "cells": {
+  "original5 w1": {
+   "withFilter": {
+    "totalPct": 55.1,
+    "cagrPct": 25.6,
+    "avgDailyPct": 0.067,
+    "sharpe": 1.37,
+    "maxDDPct": 11.2,
+    "cagrPerDD": 2.28
+   },
+   "e1Baseline": {
+    "totalPct": 79.7,
+    "cagrPct": 35.6,
+    "avgDailyPct": 0.089,
+    "sharpe": 1.58,
+    "maxDDPct": 14.8,
+    "cagrPerDD": 2.4
+   },
+   "filterAtStress": 38.9,
+   "neighbours": [
+    52.7,
+    60.4,
+    55.6,
+    32.8
+   ]
+  },
+  "original5 w2": {
+   "withFilter": {
+    "totalPct": 16.4,
+    "cagrPct": 7.9,
+    "avgDailyPct": 0.025,
+    "sharpe": 0.5,
+    "maxDDPct": 18,
+    "cagrPerDD": 0.44
+   },
+   "e1Baseline": {
+    "totalPct": 25.2,
+    "cagrPct": 11.9,
+    "avgDailyPct": 0.036,
+    "sharpe": 0.67,
+    "maxDDPct": 18,
+    "cagrPerDD": 0.66
+   },
+   "filterAtStress": 5.7,
+   "neighbours": [
+    9.2,
+    20.4,
+    11.7,
+    7.9
+   ]
+  },
+  "h2_8 w1": {
+   "withFilter": {
+    "totalPct": 16.8,
+    "cagrPct": 8.4,
+    "avgDailyPct": 0.026,
+    "sharpe": 0.57,
+    "maxDDPct": 17.3,
+    "cagrPerDD": 0.49
+   },
+   "e1Baseline": {
+    "totalPct": 34.6,
+    "cagrPct": 16.7,
+    "avgDailyPct": 0.048,
+    "sharpe": 0.87,
+    "maxDDPct": 16.8,
+    "cagrPerDD": 0.99
+   },
+   "filterAtStress": 6.3,
+   "neighbours": [
+    18.6,
+    25.5,
+    17.1,
+    0.5
+   ]
+  },
+  "h2_8 w2": {
+   "withFilter": {
+    "totalPct": 0.2,
+    "cagrPct": 0.1,
+    "avgDailyPct": 0.004,
+    "sharpe": 0.09,
+    "maxDDPct": 21.9,
+    "cagrPerDD": 0
+   },
+   "e1Baseline": {
+    "totalPct": 5.4,
+    "cagrPct": 2.7,
+    "avgDailyPct": 0.012,
+    "sharpe": 0.23,
+    "maxDDPct": 21.9,
+    "cagrPerDD": 0.12
+   },
+   "filterAtStress": -7.6,
+   "neighbours": [
+    -4,
+    0.4,
+    -3.4,
+    -5
+   ]
+  }
+ },
+ "gates": {
+  "positive": true,
+  "sharpe05": false,
+  "stressPositive": false,
+  "dd25": true,
+  "neighbours80": true,
+  "betterThanE1_3of4": false
+ },
+ "passed": false,
+ "neighboursPositive": "13/16",
+ "betterThanE1": "0/4",
+ "diagnostic": {
+  "original5 w1": {
+   "crowdedShareOfDays": 0.166,
+   "investedCrowdedDays": 78,
+   "investedNormalDays": 243,
+   "nextDayPctCrowded": 0.74,
+   "nextDayPctNormal": 0.326,
+   "tCrowdedMinusNormal": 1.01
+  },
+  "original5 w2": {
+   "crowdedShareOfDays": 0.056,
+   "investedCrowdedDays": 18,
+   "investedNormalDays": 258,
+   "nextDayPctCrowded": 1.661,
+   "nextDayPctNormal": 0.155,
+   "tCrowdedMinusNormal": 1.55
+  },
+  "h2_8 w1": {
+   "crowdedShareOfDays": 0.166,
+   "investedCrowdedDays": 78,
+   "investedNormalDays": 236,
+   "nextDayPctCrowded": 0.891,
+   "nextDayPctNormal": 0.199,
+   "tCrowdedMinusNormal": 1.32
+  },
+  "h2_8 w2": {
+   "crowdedShareOfDays": 0.056,
+   "investedCrowdedDays": 18,
+   "investedNormalDays": 284,
+   "nextDayPctCrowded": 2.501,
+   "nextDayPctNormal": -0.08,
+   "tCrowdedMinusNormal": 1.88
+  }
+ }
+}
