@@ -1,0 +1,127 @@
+{
+ "cells": {
+  "original5 w1": {
+   "withGoldTrend": {
+    "totalPct": 89.6,
+    "cagrPct": 39.4,
+    "avgDailyPct": 0.097,
+    "sharpe": 1.65,
+    "maxDDPct": 14.9,
+    "cagrPerDD": 2.64,
+    "goldContribPct": 11.6
+   },
+   "e1Cash": {
+    "totalPct": 79.7,
+    "cagrPct": 35.6,
+    "avgDailyPct": 0.089,
+    "sharpe": 1.58,
+    "maxDDPct": 14.8,
+    "cagrPerDD": 2.4,
+    "goldContribPct": 0
+   },
+   "atStress": 58.6,
+   "neighbours": [
+    86.8,
+    86.8,
+    86.7,
+    92.4
+   ]
+  },
+  "original5 w2": {
+   "withGoldTrend": {
+    "totalPct": 52.6,
+    "cagrPct": 23.5,
+    "avgDailyPct": 0.064,
+    "sharpe": 1.07,
+    "maxDDPct": 14.1,
+    "cagrPerDD": 1.67,
+    "goldContribPct": 25.4
+   },
+   "e1Cash": {
+    "totalPct": 25.2,
+    "cagrPct": 11.9,
+    "avgDailyPct": 0.036,
+    "sharpe": 0.67,
+    "maxDDPct": 18,
+    "cagrPerDD": 0.66,
+    "goldContribPct": 0
+   },
+   "atStress": 31.4,
+   "neighbours": [
+    53.1,
+    53.9,
+    44.1,
+    61.3
+   ]
+  },
+  "h2_8 w1": {
+   "withGoldTrend": {
+    "totalPct": 41.1,
+    "cagrPct": 19.6,
+    "avgDailyPct": 0.055,
+    "sharpe": 0.95,
+    "maxDDPct": 20.1,
+    "cagrPerDD": 0.98,
+    "goldContribPct": 10.9
+   },
+   "e1Cash": {
+    "totalPct": 34.6,
+    "cagrPct": 16.7,
+    "avgDailyPct": 0.048,
+    "sharpe": 0.87,
+    "maxDDPct": 16.8,
+    "cagrPerDD": 0.99,
+    "goldContribPct": 0
+   },
+   "atStress": 19.8,
+   "neighbours": [
+    38.3,
+    39.9,
+    39.2,
+    42.9
+   ]
+  },
+  "h2_8 w2": {
+   "withGoldTrend": {
+    "totalPct": 28.5,
+    "cagrPct": 13.3,
+    "avgDailyPct": 0.04,
+    "sharpe": 0.7,
+    "maxDDPct": 16.6,
+    "cagrPerDD": 0.8,
+    "goldContribPct": 25.5
+   },
+   "e1Cash": {
+    "totalPct": 5.4,
+    "cagrPct": 2.7,
+    "avgDailyPct": 0.012,
+    "sharpe": 0.23,
+    "maxDDPct": 21.9,
+    "cagrPerDD": 0.12,
+    "goldContribPct": 0
+   },
+   "atStress": 12,
+   "neighbours": [
+    31.8,
+    32,
+    21.3,
+    35.8
+   ]
+  }
+ },
+ "gates": {
+  "positive": true,
+  "sharpe05": true,
+  "stressPositive": true,
+  "dd25": true,
+  "neighbours80": true,
+  "betterThanE1_3of4": true
+ },
+ "passed": true,
+ "neighboursPositive": "16/16",
+ "betterThanE1": "3/4",
+ "paxgBuyHoldPct": {
+  "w1": 42.4,
+  "w2": 51.5
+ }
+}
