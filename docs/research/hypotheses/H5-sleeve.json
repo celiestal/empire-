@@ -1,0 +1,155 @@
+{
+ "cells": {
+  "original5 w1": {
+   "combined": {
+    "totalPct": 61.9,
+    "cagrPct": 28.4,
+    "avgDailyPct": 0.072,
+    "sharpe": 1.57,
+    "maxDDPct": 12.1,
+    "cagrPerDD": 2.35
+   },
+   "e1Alone": {
+    "totalPct": 79.7,
+    "cagrPct": 35.6,
+    "avgDailyPct": 0.089,
+    "sharpe": 1.58,
+    "maxDDPct": 14.8,
+    "cagrPerDD": 2.4
+   },
+   "sleeveAlone": {
+    "totalPct": 3.6,
+    "cagrPct": 1.9,
+    "avgDailyPct": 0.005,
+    "sharpe": 0.69,
+    "maxDDPct": 2.3,
+    "cagrPerDD": 0.83,
+    "trades": 216,
+    "corrWithCore": 0.51
+   },
+   "combinedAtStress": 47.3,
+   "neighbours": [
+    70.7,
+    53.5,
+    62.5,
+    61.7
+   ]
+  },
+  "original5 w2": {
+   "combined": {
+    "totalPct": 21.3,
+    "cagrPct": 10.1,
+    "avgDailyPct": 0.03,
+    "sharpe": 0.68,
+    "maxDDPct": 14.8,
+    "cagrPerDD": 0.68
+   },
+   "e1Alone": {
+    "totalPct": 25.2,
+    "cagrPct": 11.9,
+    "avgDailyPct": 0.036,
+    "sharpe": 0.67,
+    "maxDDPct": 18,
+    "cagrPerDD": 0.66
+   },
+   "sleeveAlone": {
+    "totalPct": 4.1,
+    "cagrPct": 2,
+    "avgDailyPct": 0.006,
+    "sharpe": 0.76,
+    "maxDDPct": 2.9,
+    "cagrPerDD": 0.71,
+    "trades": 179,
+    "corrWithCore": 0.61
+   },
+   "combinedAtStress": 12.2,
+   "neighbours": [
+    23.3,
+    19.3,
+    20.5,
+    20.9
+   ]
+  },
+  "h2_8 w1": {
+   "combined": {
+    "totalPct": 28,
+    "cagrPct": 13.7,
+    "avgDailyPct": 0.039,
+    "sharpe": 0.87,
+    "maxDDPct": 13.3,
+    "cagrPerDD": 1.03
+   },
+   "e1Alone": {
+    "totalPct": 34.6,
+    "cagrPct": 16.7,
+    "avgDailyPct": 0.048,
+    "sharpe": 0.87,
+    "maxDDPct": 16.8,
+    "cagrPerDD": 0.99
+   },
+   "sleeveAlone": {
+    "totalPct": 1.6,
+    "cagrPct": 0.9,
+    "avgDailyPct": 0.002,
+    "sharpe": 0.39,
+    "maxDDPct": 2,
+    "cagrPerDD": 0.42,
+    "trades": 296,
+    "corrWithCore": 0.37
+   },
+   "combinedAtStress": 19.1,
+   "neighbours": [
+    31.3,
+    24.7,
+    28.1,
+    27.7
+   ]
+  },
+  "h2_8 w2": {
+   "combined": {
+    "totalPct": 4.9,
+    "cagrPct": 2.4,
+    "avgDailyPct": 0.01,
+    "sharpe": 0.23,
+    "maxDDPct": 18.4,
+    "cagrPerDD": 0.13
+   },
+   "e1Alone": {
+    "totalPct": 5.4,
+    "cagrPct": 2.7,
+    "avgDailyPct": 0.012,
+    "sharpe": 0.23,
+    "maxDDPct": 21.9,
+    "cagrPerDD": 0.12
+   },
+   "sleeveAlone": {
+    "totalPct": 0.5,
+    "cagrPct": 0.3,
+    "avgDailyPct": 0.001,
+    "sharpe": 0.12,
+    "maxDDPct": 4.1,
+    "cagrPerDD": 0.06,
+    "trades": 260,
+    "corrWithCore": 0.49
+   },
+   "combinedAtStress": -1.6,
+   "neighbours": [
+    5.2,
+    4.6,
+    4.2,
+    5.1
+   ]
+  }
+ },
+ "gates": {
+  "positive": true,
+  "sharpe05": false,
+  "stressPositive": false,
+  "dd25": true,
+  "neighbours80": true,
+  "betterThanE1_3of4": true
+ },
+ "passed": false,
+ "neighboursPositive": "16/16",
+ "betterThanE1": "3/4"
+}
