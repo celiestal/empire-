@@ -178,3 +178,20 @@ Mostly sideways and choppy; coins drifted down again (since 11-13: BTC -8.3%, ET
 - v1 stays as the control. v3 stays until the market has a real trending stretch, so it gets a fair test.
 - 4h needs weeks because it trades rarely.
 - No changes.
+
+## Day 6 (2026-11-19 06:14 UTC)
+
+| Test | Since start | Trades / wins |
+|---|---|---|
+| v1 | $9,934.74 (-0.65%) | 155 / 64 |
+| v2 | **$10,019.91 (+0.20%)** | 40 / 28 |
+| 4h | $10,000 | no trades |
+| v3 | $9,952.87 (-0.47%) | 13 / 2 |
+
+- **Since 00:49:** v2 won 5/5 in a sideways market (+$8.17). v1 lost 3/3 on 15m pullback shorts (-$7.11).
+- **v2 by method:**
+  - 60m dip-buy: 7/7 (+$11.89)
+  - 15m VWAP: 17/22 (+$12.10)
+  - 60m VWAP: 3/5 (+$2.11)
+  - 60m pullback: 1/6 (-$6.19)
+- **Pullback** (v1's 15m and v2's 60m) is the consistent loser in the sideways market. It's the first candidate for a walk-forward "drop it" test at the weekly review (~11-20).
