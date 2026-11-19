@@ -154,3 +154,27 @@ Last-24h detail:
 - Trend methods win in steady falls and lose in sideways markets.
 - v2's filter (no entries in down or chop) has avoided the worst of both and is the best test so far: about flat while the coins fell 3–6% over its life.
 - Still only 4 days. No changes.
+
+## Days 5–6 (2026-11-17 → 11-19 00:49 UTC; the 11-18 report was missed because the session was offline ~18h)
+Mostly sideways and choppy; coins drifted down again (since 11-13: BTC -8.3%, ETH -7.7%, SOL -6.5%, XRP -4.5%, DOGE -7.7%).
+
+| Test | Since start | Last ~42h | Win rate since start |
+|---|---|---|---|
+| v1 | $9,940.78 (-0.59%) | -$9.57 | 64/152 |
+| v2 | **$10,014.73 (+0.15%)** | +$6.63 | 23/35 |
+| 4h | $10,000 | no trades in 5 days | – |
+| v3 | $9,968.59 (-0.31%) | -$19.78 | 2/13 |
+
+- **v2 by method:**
+  - 15m VWAP: +$10.26 (16/21)
+  - 60m dip-buy: +$8.52 (4/4)
+  - 60m VWAP: +$1.40 (2/4)
+  - 60m pullback: -$5.44 (1/6, weakest)
+- Trades entered in rising stretches won 5/5 (+$14.15). Range entries were mixed (-$6.41), dragged down by the pullback shorts.
+- **v3:** tsmom keeps whipsawing in chop (2/5 wins in chop). Breakout 0/3.
+
+**Interim review (the weekly review is due ~11-20):**
+- v2 is the only positive test, and the only one beating holding by a clear margin.
+- v1 stays as the control. v3 stays until the market has a real trending stretch, so it gets a fair test.
+- 4h needs weeks because it trades rarely.
+- No changes.
