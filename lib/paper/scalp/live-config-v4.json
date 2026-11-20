@@ -1,0 +1,218 @@
+{
+ "startedAt": 1795155600000,
+ "startedAtIso": "2026-11-20T06:20:00.000Z",
+ "totalCash": 10000,
+ "why": "v4 (2026-11-20 weekly review): hourly trend following, long+short, only in range/up markets (skip down + chop). Fresh 30-day walk-forward (coins -20% to -24%): 60m tsmom +4.89%/coin PF 2.65, 3/4 windows, positive on all 5 coins, survives 0.25% fees, 3x slippage and dropping the top 10% of trades, MC p95 drawdown 4.2%; 60m pullback +2.03% PF 2.63, MC DD 2.8%.",
+ "sleeves": [
+  {
+   "market": "BTC_USD",
+   "tf": 60,
+   "strategy": "tsmom",
+   "mode": "both",
+   "params": {
+    "look": 168,
+    "stopAtr": 2,
+    "rr": 6,
+    "hold": 72,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 60,
+   "strategy": "tsmom",
+   "mode": "both",
+   "params": {
+    "look": 168,
+    "stopAtr": 2,
+    "rr": 6,
+    "hold": 72,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 60,
+   "strategy": "tsmom",
+   "mode": "both",
+   "params": {
+    "look": 168,
+    "stopAtr": 2,
+    "rr": 6,
+    "hold": 72,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 60,
+   "strategy": "tsmom",
+   "mode": "both",
+   "params": {
+    "look": 168,
+    "stopAtr": 2,
+    "rr": 6,
+    "hold": 72,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 60,
+   "strategy": "tsmom",
+   "mode": "both",
+   "params": {
+    "look": 168,
+    "stopAtr": 2,
+    "rr": 6,
+    "hold": 72,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "BTC_USD",
+   "tf": 60,
+   "strategy": "pullback",
+   "mode": "both",
+   "params": {
+    "fast": 9,
+    "slow": 200,
+    "stopAtr": 2,
+    "rr": 3,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "ETH_USD",
+   "tf": 60,
+   "strategy": "pullback",
+   "mode": "both",
+   "params": {
+    "fast": 9,
+    "slow": 200,
+    "stopAtr": 2,
+    "rr": 3,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "SOL_USD",
+   "tf": 60,
+   "strategy": "pullback",
+   "mode": "both",
+   "params": {
+    "fast": 9,
+    "slow": 200,
+    "stopAtr": 2,
+    "rr": 3,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "XRP_USD",
+   "tf": 60,
+   "strategy": "pullback",
+   "mode": "both",
+   "params": {
+    "fast": 9,
+    "slow": 200,
+    "stopAtr": 2,
+    "rr": 3,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  },
+  {
+   "market": "DOGE_USD",
+   "tf": 60,
+   "strategy": "pullback",
+   "mode": "both",
+   "params": {
+    "fast": 9,
+    "slow": 200,
+    "stopAtr": 2,
+    "rr": 3,
+    "regimeHours": 0,
+    "rgHours": 0,
+    "rgTrend": 0,
+    "rgRange": 0
+   },
+   "cash": 1000,
+   "skip": [
+    "down",
+    "chop"
+   ]
+  }
+ ]
+}

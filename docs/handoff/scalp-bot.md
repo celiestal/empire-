@@ -195,3 +195,24 @@ Mostly sideways and choppy; coins drifted down again (since 11-13: BTC -8.3%, ET
   - 60m VWAP: 3/5 (+$2.11)
   - 60m pullback: 1/6 (-$6.19)
 - **Pullback** (v1's 15m and v2's 60m) is the consistent loser in the sideways market. It's the first candidate for a walk-forward "drop it" test at the weekly review (~11-20).
+
+## Weekly review 1 (2026-11-20)
+Coins since 11-13: BTC -10.0%, ETH -9.7%, SOL -7.7%, XRP -4.4%, DOGE -9.9%. A falling, then sideways, week.
+
+| Test | Started | Result | Trades / wins | Worst pot DD | Verdict |
+|---|---|---|---|---|---|
+| v1 | 11-13 | $9,943.88 (-0.56%) | 176 / 75 | 4.0% | keep as baseline; its 1m/5m scalps are dead weight |
+| v2 | 11-14 | $10,002.71 (+0.03%) | 49 / 29 | 1.9% | keep; best live test, but gave back most of its gain on 11-19 |
+| 4h | 11-14 | $10,000 | 0 | – | keep; no signal in 6 days (by design it skips falling markets) |
+| v3 | 11-15 | $9,975.93 (-0.24%) | 15 / 2 | 1.6% | keep one more week; 60m breakout 0/5 (-$29), tsmom +$5.37 |
+| **v4** | **11-20 (new)** | – | – | – | see below |
+
+- **Last 24h:** v2 lost -$20.20, with 8 stop-outs (mostly 15m VWAP longs) while the coins slid 2–3% in a slow grind that the detector called "range". v1 made +$5.14; v3 lost -$11.19 (breakout).
+- **Planned test, "drop pullback from v2": rejected.** On fresh 30 days, v2's 60m pullback with the skip filter is its best row (+2.03%/coin, PF 2.63, all stresses non-negative, MC DD 2.8%). Its 1/8 live record looks like small-sample noise. Live and research disagree on v2's VWAP too (research negative, live mostly positive). More live time will settle it.
+- **New test v4** (`LIVE=v4 WARMUP_DAYS=20`, 10 × $1,000, from 11-20 06:20 UTC): 60m tsmom + 60m pullback, long+short, no entries in down or chop markets.
+  - 60m tsmom with the skip filter is the strongest row so far: +4.89%/coin, PF 2.65, 3/4 windows, positive on all 5 coins.
+  - It survives 0.25% fees (+1.82%), 3× slippage (+4.81%) and dropping the top 10% of trades (+0.51%). MC p95 drawdown 4.2%.
+  - Last week's run pointed the same way (+3.21%, PF 1.79), though the two 30-day windows overlap.
+- **Next weekly review: 2026-11-27.**
+
+Restart v4: `env NODE_USE_ENV_PROXY=1 NODE_NO_WARNINGS=1 LIVE=v4 WARMUP_DAYS=20 setsid nohup npx tsx scripts/paper/live.ts loop >> .paper-data/live-v4/loop.log 2>&1 < /dev/null & disown`
