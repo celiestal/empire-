@@ -1,0 +1,247 @@
+{
+ "cells": {
+  "original5 w1": {
+   "vt25": {
+    "totalPct": 49.6,
+    "cagrPct": 23.3,
+    "avgDailyPct": 0.06,
+    "sharpe": 1.6,
+    "maxDDPct": 9.6,
+    "cagrPerDD": 2.42,
+    "avgWeightWhenIn": 0.44,
+    "rebalances": 1422,
+    "feesPct": 5.6
+   },
+   "vt30": {
+    "totalPct": 60.8,
+    "cagrPct": 28,
+    "avgDailyPct": 0.071,
+    "sharpe": 1.6,
+    "maxDDPct": 11.3,
+    "cagrPerDD": 2.47,
+    "avgWeightWhenIn": 0.53,
+    "rebalances": 1407,
+    "feesPct": 6.7
+   },
+   "vt35": {
+    "totalPct": 70.6,
+    "cagrPct": 32,
+    "avgDailyPct": 0.081,
+    "sharpe": 1.59,
+    "maxDDPct": 13.1,
+    "cagrPerDD": 2.44,
+    "avgWeightWhenIn": 0.61,
+    "rebalances": 1368,
+    "feesPct": 7.6
+   },
+   "vt40": {
+    "totalPct": 79.7,
+    "cagrPct": 35.6,
+    "avgDailyPct": 0.089,
+    "sharpe": 1.58,
+    "maxDDPct": 14.8,
+    "cagrPerDD": 2.4,
+    "avgWeightWhenIn": 0.68,
+    "rebalances": 1307,
+    "feesPct": 8.3
+   },
+   "vt60": {
+    "totalPct": 106.4,
+    "cagrPct": 45.7,
+    "avgDailyPct": 0.113,
+    "sharpe": 1.56,
+    "maxDDPct": 17.6,
+    "cagrPerDD": 2.6,
+    "avgWeightWhenIn": 0.86,
+    "rebalances": 936,
+    "feesPct": 10.2
+   },
+   "vt30AtStress": 47.9
+  },
+  "original5 w2": {
+   "vt25": {
+    "totalPct": 19.2,
+    "cagrPct": 9.2,
+    "avgDailyPct": 0.026,
+    "sharpe": 0.73,
+    "maxDDPct": 11.7,
+    "cagrPerDD": 0.79,
+    "avgWeightWhenIn": 0.45,
+    "rebalances": 1253,
+    "feesPct": 5
+   },
+   "vt30": {
+    "totalPct": 21.2,
+    "cagrPct": 10.1,
+    "avgDailyPct": 0.03,
+    "sharpe": 0.7,
+    "maxDDPct": 14,
+    "cagrPerDD": 0.72,
+    "avgWeightWhenIn": 0.53,
+    "rebalances": 1210,
+    "feesPct": 5.9
+   },
+   "vt35": {
+    "totalPct": 23.1,
+    "cagrPct": 11,
+    "avgDailyPct": 0.033,
+    "sharpe": 0.68,
+    "maxDDPct": 16.1,
+    "cagrPerDD": 0.68,
+    "avgWeightWhenIn": 0.61,
+    "rebalances": 1167,
+    "feesPct": 6.7
+   },
+   "vt40": {
+    "totalPct": 25.2,
+    "cagrPct": 11.9,
+    "avgDailyPct": 0.036,
+    "sharpe": 0.67,
+    "maxDDPct": 18,
+    "cagrPerDD": 0.66,
+    "avgWeightWhenIn": 0.67,
+    "rebalances": 1124,
+    "feesPct": 7.3
+   },
+   "vt60": {
+    "totalPct": 31.4,
+    "cagrPct": 14.6,
+    "avgDailyPct": 0.046,
+    "sharpe": 0.66,
+    "maxDDPct": 23,
+    "cagrPerDD": 0.64,
+    "avgWeightWhenIn": 0.85,
+    "rebalances": 884,
+    "feesPct": 8.9
+   },
+   "vt30AtStress": 12.6
+  },
+  "h2_8 w1": {
+   "vt25": {
+    "totalPct": 21.1,
+    "cagrPct": 10.5,
+    "avgDailyPct": 0.029,
+    "sharpe": 0.84,
+    "maxDDPct": 11.5,
+    "cagrPerDD": 0.91,
+    "avgWeightWhenIn": 0.39,
+    "rebalances": 2076,
+    "feesPct": 4.7
+   },
+   "vt30": {
+    "totalPct": 25.6,
+    "cagrPct": 12.6,
+    "avgDailyPct": 0.036,
+    "sharpe": 0.85,
+    "maxDDPct": 13.6,
+    "cagrPerDD": 0.92,
+    "avgWeightWhenIn": 0.47,
+    "rebalances": 2069,
+    "feesPct": 5.7
+   },
+   "vt35": {
+    "totalPct": 30.1,
+    "cagrPct": 14.6,
+    "avgDailyPct": 0.042,
+    "sharpe": 0.86,
+    "maxDDPct": 15.5,
+    "cagrPerDD": 0.94,
+    "avgWeightWhenIn": 0.55,
+    "rebalances": 2045,
+    "feesPct": 6.5
+   },
+   "vt40": {
+    "totalPct": 34.6,
+    "cagrPct": 16.7,
+    "avgDailyPct": 0.048,
+    "sharpe": 0.87,
+    "maxDDPct": 16.8,
+    "cagrPerDD": 0.99,
+    "avgWeightWhenIn": 0.62,
+    "rebalances": 1983,
+    "feesPct": 7.3
+   },
+   "vt60": {
+    "totalPct": 51.4,
+    "cagrPct": 24,
+    "avgDailyPct": 0.069,
+    "sharpe": 0.93,
+    "maxDDPct": 19.3,
+    "cagrPerDD": 1.24,
+    "avgWeightWhenIn": 0.82,
+    "rebalances": 1590,
+    "feesPct": 9.4
+   },
+   "vt30AtStress": 17
+  },
+  "h2_8 w2": {
+   "vt25": {
+    "totalPct": 5,
+    "cagrPct": 2.4,
+    "avgDailyPct": 0.008,
+    "sharpe": 0.26,
+    "maxDDPct": 13.7,
+    "cagrPerDD": 0.18,
+    "avgWeightWhenIn": 0.34,
+    "rebalances": 1872,
+    "feesPct": 4
+   },
+   "vt30": {
+    "totalPct": 5.5,
+    "cagrPct": 2.7,
+    "avgDailyPct": 0.01,
+    "sharpe": 0.26,
+    "maxDDPct": 16.4,
+    "cagrPerDD": 0.16,
+    "avgWeightWhenIn": 0.41,
+    "rebalances": 1864,
+    "feesPct": 4.8
+   },
+   "vt35": {
+    "totalPct": 5.7,
+    "cagrPct": 2.8,
+    "avgDailyPct": 0.011,
+    "sharpe": 0.25,
+    "maxDDPct": 19.1,
+    "cagrPerDD": 0.15,
+    "avgWeightWhenIn": 0.48,
+    "rebalances": 1848,
+    "feesPct": 5.6
+   },
+   "vt40": {
+    "totalPct": 5.4,
+    "cagrPct": 2.7,
+    "avgDailyPct": 0.012,
+    "sharpe": 0.23,
+    "maxDDPct": 21.9,
+    "cagrPerDD": 0.12,
+    "avgWeightWhenIn": 0.54,
+    "rebalances": 1818,
+    "feesPct": 6.3
+   },
+   "vt60": {
+    "totalPct": 5.1,
+    "cagrPct": 2.5,
+    "avgDailyPct": 0.016,
+    "sharpe": 0.22,
+    "maxDDPct": 29.7,
+    "cagrPerDD": 0.08,
+    "avgWeightWhenIn": 0.75,
+    "rebalances": 1654,
+    "feesPct": 8.4
+   },
+   "vt30AtStress": -0.7
+  }
+ },
+ "gates": {
+  "lowerDDall4": true,
+  "ratioAtLeast3of4": true,
+  "positiveAndStressAll": false,
+  "neighboursAllPositive": true
+ },
+ "adopt30": false,
+ "ddLower": "4/4",
+ "ratioAtLeastAs40": "3/4",
+ "neighboursPositive": "8/8",
+ "note": "60% is reported for information only and cannot be adopted (house rule)."
+}
