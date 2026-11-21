@@ -1,0 +1,140 @@
+{
+ "cells": {
+  "original5 w1": {
+   "band10": {
+    "totalPct": 86,
+    "cagrPct": 38,
+    "avgDailyPct": 0.094,
+    "sharpe": 1.65,
+    "maxDDPct": 14.4,
+    "cagrPerDD": 2.64,
+    "rebalances": 537,
+    "feesPct": 8.07,
+    "meanGap": 0.019
+   },
+   "e1": {
+    "totalPct": 79.7,
+    "cagrPct": 35.6,
+    "avgDailyPct": 0.089,
+    "sharpe": 1.58,
+    "maxDDPct": 14.8,
+    "cagrPerDD": 2.4,
+    "rebalances": 1307,
+    "feesPct": 8.32,
+    "meanGap": 0
+   },
+   "bandAtStress": 68.1,
+   "e1AtStress": 62,
+   "neighbours": [
+    82.6,
+    88.3,
+    91.1
+   ]
+  },
+  "original5 w2": {
+   "band10": {
+    "totalPct": 27.2,
+    "cagrPct": 12.8,
+    "avgDailyPct": 0.038,
+    "sharpe": 0.71,
+    "maxDDPct": 18,
+    "cagrPerDD": 0.71,
+    "rebalances": 468,
+    "feesPct": 7.1,
+    "meanGap": 0.018
+   },
+   "e1": {
+    "totalPct": 25.2,
+    "cagrPct": 11.9,
+    "avgDailyPct": 0.036,
+    "sharpe": 0.67,
+    "maxDDPct": 18,
+    "cagrPerDD": 0.66,
+    "rebalances": 1124,
+    "feesPct": 7.33,
+    "meanGap": 0
+   },
+   "bandAtStress": 16.4,
+   "e1AtStress": 14.2,
+   "neighbours": [
+    25.8,
+    25.8,
+    28.3
+   ]
+  },
+  "h2_8 w1": {
+   "band10": {
+    "totalPct": 39.6,
+    "cagrPct": 18.9,
+    "avgDailyPct": 0.053,
+    "sharpe": 0.95,
+    "maxDDPct": 16.7,
+    "cagrPerDD": 1.13,
+    "rebalances": 830,
+    "feesPct": 7.03,
+    "meanGap": 0.021
+   },
+   "e1": {
+    "totalPct": 34.6,
+    "cagrPct": 16.7,
+    "avgDailyPct": 0.048,
+    "sharpe": 0.87,
+    "maxDDPct": 16.8,
+    "cagrPerDD": 0.99,
+    "rebalances": 1983,
+    "feesPct": 7.27,
+    "meanGap": 0
+   },
+   "bandAtStress": 27.8,
+   "e1AtStress": 22.9,
+   "neighbours": [
+    36,
+    40.8,
+    43.1
+   ]
+  },
+  "h2_8 w2": {
+   "band10": {
+    "totalPct": 6.8,
+    "cagrPct": 3.3,
+    "avgDailyPct": 0.014,
+    "sharpe": 0.27,
+    "maxDDPct": 21.8,
+    "cagrPerDD": 0.15,
+    "rebalances": 774,
+    "feesPct": 6.09,
+    "meanGap": 0.019
+   },
+   "e1": {
+    "totalPct": 5.4,
+    "cagrPct": 2.7,
+    "avgDailyPct": 0.012,
+    "sharpe": 0.23,
+    "maxDDPct": 21.9,
+    "cagrPerDD": 0.12,
+    "rebalances": 1818,
+    "feesPct": 6.26,
+    "meanGap": 0
+   },
+   "bandAtStress": -1,
+   "e1AtStress": -2.5,
+   "neighbours": [
+    6.1,
+    8.5,
+    6.8
+   ]
+  }
+ },
+ "gates": {
+  "positive": true,
+  "sharpe05": false,
+  "stressPositive": false,
+  "dd25": true,
+  "neighbours80": true,
+  "betterThanE1_3of4": true,
+  "lowerFeesAll4": true
+ },
+ "passed": false,
+ "neighboursPositive": "12/12",
+ "betterThanE1": "4/4"
+}
