@@ -216,3 +216,23 @@ Coins since 11-13: BTC -10.0%, ETH -9.7%, SOL -7.7%, XRP -4.4%, DOGE -9.9%. A fa
 - **Next weekly review: 2026-11-27.**
 
 Restart v4: `env NODE_USE_ENV_PROXY=1 NODE_NO_WARNINGS=1 LIVE=v4 WARMUP_DAYS=20 setsid nohup npx tsx scripts/paper/live.ts loop >> .paper-data/live-v4/loop.log 2>&1 < /dev/null & disown`
+
+## Day 8 (2026-11-21): the crash
+Coins fell about 10% in 24h (since 11-13: BTC -19.2%, ETH -19.4%, SOL -17.1%, XRP -14.4%, DOGE -19.8%). The detector called most hours "down".
+
+| Test | Since start | Last 24h |
+|---|---|---|
+| v1 | $9,933.84 (-0.66%), 223 trades | -$25.31; 1m/5m VWAP dip-buys in down -$33 (10/32); 15m pullback shorts 8/10 (+$14) |
+| v2 | $9,980.79 (-0.19%), 63 trades | -$18.86; 14 trades all entered in "range" just before or between legs down; 2 wins |
+| 4h | $10,000 | no trades (skips down by design) |
+| **v3** | **$10,148.21 (+1.48%)**, 21 trades | **+$110.90**; 60m tsmom shorts 4/5 at target (+$102), breakout +$14 |
+| v4 | $10,019.91 (+0.20%) | 1 open tsmom trade (+$19.91), no closed trades |
+
+- **Why:** a sharp, steady fall is exactly what trend following is built for.
+  - v3 has no market-state filter, so it shorted the fall.
+  - The skip filter (v2, v4, 4h) kept them out of down markets. It also blocked the profitable shorts.
+  - Dip-buying and VWAP reversion lost, as on 11-14.
+- **The filter's trade-off is now clear:** it avoids dip-buy losses in falls but gives up the trend-short gains.
+  - On fresh 30-day research (11-20), 60m tsmom made more with the filter (+4.89%) than without (+2.39%).
+  - The live crash day points the other way.
+- **No change on one day.** This goes into the 11-27 weekly review: re-run the research including the crash, and compare "trend methods unfiltered + reversion filtered" against v2/v4.
