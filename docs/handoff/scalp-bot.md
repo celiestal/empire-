@@ -236,3 +236,18 @@ Coins fell about 10% in 24h (since 11-13: BTC -19.2%, ETH -19.4%, SOL -17.1%, XR
   - On fresh 30-day research (11-20), 60m tsmom made more with the filter (+4.89%) than without (+2.39%).
   - The live crash day points the other way.
 - **No change on one day.** This goes into the 11-27 weekly review: re-run the research including the crash, and compare "trend methods unfiltered + reversion filtered" against v2/v4.
+
+## Day 9 (2026-11-22): rebound after the crash
+Coins bounced about 5–6% (since 11-13: BTC -14.2%, ETH -14.0%, SOL -12.4%, XRP -9.6%, DOGE -15.5%).
+
+| Test | Since start | Last 24h |
+|---|---|---|
+| v1 | $9,919.40 (-0.81%), 246 trades | -$5.03 |
+| v2 | $9,986.59 (-0.13%), 66 trades | -$0.67 (3 trades); 7 open |
+| 4h | $10,000 | no trades yet (9 days) |
+| v3 | $10,039.87 (+0.40%), 31 trades | **-$48.60, 0/9**: late tsmom/breakout shorts entered in "down" and stopped out by the bounce |
+| v4 | $10,021.02 (+0.21%) | 5 open tsmom trades (+$21 open), no closed trades yet |
+
+- **Why:** trend shorts opened late in a fall get stopped out when the market snaps back. That's the normal cost of trend following, and it's why its edge needs weeks to show.
+  - v3's tsmom is still +$79.89 overall. Its 60m breakout is -$40.02 (1/11) and is the weak part of v3.
+- **For the 11-27 review:** test v3 without breakout (tsmom only). Also test the hybrid: trend unfiltered, reversion filtered.
