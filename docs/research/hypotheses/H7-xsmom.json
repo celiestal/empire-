@@ -1,0 +1,81 @@
+{
+ "cells": {
+  "w1": {
+   "xsmom": {
+    "totalPct": 76,
+    "cagrPct": 34.1,
+    "avgDailyPct": 0.089,
+    "sharpe": 1.27,
+    "maxDDPct": 22.1,
+    "cagrPerDD": 1.55,
+    "changes": 1317,
+    "feesPct": 14.3,
+    "avgCoinsHeld": 1.51,
+    "topCoinShareOfGains": 0.27
+   },
+   "e1_13coins": {
+    "totalPct": 51.1,
+    "cagrPct": 23.9,
+    "avgDailyPct": 0.064,
+    "sharpe": 1.21,
+    "maxDDPct": 14.5,
+    "cagrPerDD": 1.65,
+    "changes": 3290,
+    "feesPct": 7.7,
+    "avgCoinsHeld": 4.14,
+    "topCoinShareOfGains": 0.16
+   },
+   "atStress": 47.2,
+   "neighbours": [
+    71.6,
+    90.5,
+    131.1,
+    108.9
+   ]
+  },
+  "w2": {
+   "xsmom": {
+    "totalPct": -15.6,
+    "cagrPct": -8.1,
+    "avgDailyPct": -0.014,
+    "sharpe": -0.2,
+    "maxDDPct": 42.8,
+    "cagrPerDD": -0.19,
+    "changes": 1270,
+    "feesPct": 14.5,
+    "avgCoinsHeld": 1.36,
+    "topCoinShareOfGains": 0.43
+   },
+   "e1_13coins": {
+    "totalPct": 12.9,
+    "cagrPct": 6.3,
+    "avgDailyPct": 0.021,
+    "sharpe": 0.43,
+    "maxDDPct": 20.2,
+    "cagrPerDD": 0.31,
+    "changes": 2942,
+    "feesPct": 6.7,
+    "avgCoinsHeld": 3.54,
+    "topCoinShareOfGains": 0.18
+   },
+   "atStress": -29.6,
+   "neighbours": [
+    -23.2,
+    -10,
+    -16.1,
+    -4.3
+   ]
+  }
+ },
+ "gates": {
+  "positive": false,
+  "sharpe05": false,
+  "stressPositive": false,
+  "dd25": false,
+  "neighbours80": false,
+  "betterThanE1both": false
+ },
+ "passed": false,
+ "neighboursPositive": "4/8",
+ "betterThanE1": "0/2"
+}

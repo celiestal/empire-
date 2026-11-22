@@ -1,9 +1,9 @@
 {
  "experimentId": "exp-trend-daily-2026-11",
- "updatedAt": "2026-11-21T00:42:06.394Z",
+ "updatedAt": "2026-11-22T00:42:11.823Z",
  "startedAt": "2026-11-14T00:00:00.000Z",
- "dataThrough": "2026-11-21T00:00:00.000Z",
- "daysLive": 7,
+ "dataThrough": "2026-11-22T00:00:00.000Z",
+ "daysLive": 8,
  "startCash": 10000,
  "equity": 10000,
  "returnPct": 0,
@@ -17,21 +17,21 @@
   "fee 0.5% + slip 0.05%": 0
  },
  "buyHoldPctSinceStart": {
-  "BTC_USD": -13.82,
-  "ETH_USD": -16.02,
-  "SOL_USD": -12.03,
-  "XRP_USD": -10.07,
-  "DOGE_USD": -15.84,
-  "ADA_USD": -15.18,
-  "LINK_USD": -13.39,
-  "AVAX_USD": -20.88,
-  "LTC_USD": -17.78,
-  "DOT_USD": -19.14,
-  "XLM_USD": -12.8,
-  "NEAR_USD": -17.36,
-  "BCH_USD": -12.26
+  "BTC_USD": -11.95,
+  "ETH_USD": -12.76,
+  "SOL_USD": -10.19,
+  "XRP_USD": -7.93,
+  "DOGE_USD": -14.42,
+  "ADA_USD": -14.42,
+  "LINK_USD": -12.71,
+  "AVAX_USD": -20.09,
+  "LTC_USD": -19.48,
+  "DOT_USD": -20.18,
+  "XLM_USD": -11.7,
+  "NEAR_USD": -16.11,
+  "BCH_USD": -10.02
  },
- "buyHoldAvgPct": -15.12,
+ "buyHoldAvgPct": -14,
  "btcGateOpenNow": false,
  "targetWeightsForNextDay": {
   "BTC_USD": 0,
@@ -91,6 +91,10 @@
   },
   {
    "day": "2026-11-20",
+   "equity": 10000
+  },
+  {
+   "day": "2026-11-21",
    "equity": 10000
   }
  ]
