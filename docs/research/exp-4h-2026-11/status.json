@@ -1,15 +1,15 @@
 {
- "updatedAt": "2026-11-21T20:08:08.553Z",
+ "updatedAt": "2026-11-22T00:08:42.966Z",
  "startedAt": "2026-11-13T16:00:00.000Z",
- "dataThrough": "2026-11-21T20:00:00.000Z",
- "hoursLive": 196,
+ "dataThrough": "2026-11-22T00:00:00.000Z",
+ "hoursLive": 200,
  "startCash": 10000,
- "equity": 10091.973205168457,
- "pnl": 91.97320516845684,
- "returnPct": 0.9197320516845631,
+ "equity": 10093.51010439025,
+ "pnl": 93.51010439025049,
+ "returnPct": 0.9351010439025087,
  "trades": 14,
  "wins": 10,
- "fees": 2.65470980414002,
+ "fees": 2.712554372909563,
  "maxSleeveDrawdownPct": 0.9840206195004999,
  "sleevesStoppedForDay": 0,
  "sleevesKilled": 0,
@@ -20,22 +20,22 @@
    "wins": 0
   },
   "breakout-long-short": {
-   "pnl": 34.2843112770787,
+   "pnl": 35.08080724673175,
    "trades": 3,
    "wins": 3
   },
   "tsmom-long-short": {
-   "pnl": 57.68889389137928,
+   "pnl": 58.42929714351965,
    "trades": 11,
    "wins": 7
   }
  },
  "buyHoldPct": {
-  "BTC_USD": -12.509221485148958,
-  "ETH_USD": -12.907262985871215,
-  "SOL_USD": -11.85296324081021,
-  "XRP_USD": -8.293304577982552,
-  "DOGE_USD": -15.249969291241861
+  "BTC_USD": -12.702910801095225,
+  "ETH_USD": -12.990008481413295,
+  "SOL_USD": -12.265566391597904,
+  "XRP_USD": -8.812861484168222,
+  "DOGE_USD": -15.256111042869435
  },
  "openPositions": [
   {
@@ -107,6 +107,16 @@
    "qty": 0.8486669627644984,
    "stop": 76.36047034488861,
    "target": 60.50066096533415
+  },
+  {
+   "market": "XRP_USD",
+   "method": "tsmom-long-short",
+   "side": -1,
+   "entryT": 1795291200000,
+   "entry": 0.9353129,
+   "qty": 61.84515232233322,
+   "stop": 0.9897211994801728,
+   "target": 0.7720880015594815
   },
   {
    "market": "DOGE_USD",
@@ -303,8 +313,8 @@
   },
   "breakout-long-short": {
    "cash": 3333.333333333333,
-   "equity": 3367.617644610412,
-   "returnPct": 1.0285293383123673,
+   "equity": 3368.4141405800647,
+   "returnPct": 1.0524242174019482,
    "trades": 3,
    "wins": 3,
    "fees": 0.7623936514979968,
@@ -313,12 +323,12 @@
   },
   "tsmom-long-short": {
    "cash": 3333.333333333333,
-   "equity": 3391.022227224713,
-   "returnPct": 1.7306668167413886,
+   "equity": 3391.762630476853,
+   "returnPct": 1.7528789143056,
    "trades": 11,
    "wins": 7,
-   "fees": 1.8923161526420231,
-   "open": 4,
+   "fees": 1.9501607214115664,
+   "open": 5,
    "maxDrawdownPct": 0.9516120160907908
   }
  },
@@ -344,48 +354,48 @@
  },
  "baselines": {
   "randomEntry": {
-   "returnPct": -0.06472608721846962,
+   "returnPct": -0.06673922178248581,
    "trades": 1
   },
-  "buyHoldAvgPct": -12.162544316210958
+  "buyHoldAvgPct": -12.405491640228817
  },
  "spreads": {
   "BTC_USD": {
-   "samples": 55,
-   "medianPct": 0.000015564203549023264,
+   "samples": 56,
+   "medianPct": 0.000015610846575487255,
    "p90Pct": 0.000017118663583659157
   },
   "ETH_USD": {
-   "samples": 55,
-   "medianPct": 0.0005526739748583582,
+   "samples": 56,
+   "medianPct": 0.0005545588899944214,
    "p90Pct": 0.0006156251827631663
   },
   "SOL_USD": {
-   "samples": 55,
-   "medianPct": 0.013790250293030276,
+   "samples": 56,
+   "medianPct": 0.013794054762404463,
    "p90Pct": 0.014535940111913519
   },
   "XRP_USD": {
-   "samples": 55,
-   "medianPct": 0.010400956888032553,
+   "samples": 56,
+   "medianPct": 0.010402038799603577,
    "p90Pct": 0.010988407230370747
   },
   "DOGE_USD": {
-   "samples": 55,
-   "medianPct": 0.015331283483952508,
+   "samples": 56,
+   "medianPct": 0.017106005918683286,
    "p90Pct": 0.03222824381515427
   }
  },
  "feeScenarios": {
   "fee 0.25% + slip 0.02%": {
    "breakout-long": 0,
-   "breakout-long-short": 0.994,
-   "tsmom-long-short": 1.645
+   "breakout-long-short": 1.018,
+   "tsmom-long-short": 1.665
   },
   "fee 0.5% + slip 0.05%": {
    "breakout-long": 0,
-   "breakout-long-short": 0.263,
-   "tsmom-long-short": 0.871
+   "breakout-long-short": 0.286,
+   "tsmom-long-short": 0.895
   }
  },
  "events": [
@@ -2267,6 +2277,28 @@
    "at": "2026-11-21T16:00:00.000Z"
   },
   {
+   "market": "BTC_USD",
+   "config": "tsmom-long-short",
+   "role": "strategy",
+   "type": "signal",
+   "t": 1795291200000,
+   "side": -1,
+   "price": 60101.75,
+   "stopDist": 2931.180459063764,
+   "targetDist": 8793.541377191292,
+   "at": "2026-11-21T20:00:00.000Z"
+  },
+  {
+   "market": "BTC_USD",
+   "config": "tsmom-long-short",
+   "role": "strategy",
+   "type": "reject",
+   "t": 1795291200000,
+   "side": -1,
+   "reason": "position-open",
+   "at": "2026-11-21T20:00:00.000Z"
+  },
+  {
    "market": "ETH_USD",
    "config": "tsmom-long-short",
    "role": "strategy",
@@ -3383,6 +3415,28 @@
    "side": -1,
    "reason": "position-open",
    "at": "2026-11-21T16:00:00.000Z"
+  },
+  {
+   "market": "ETH_USD",
+   "config": "tsmom-long-short",
+   "role": "strategy",
+   "type": "signal",
+   "t": 1795291200000,
+   "side": -1,
+   "price": 1682.46,
+   "stopDist": 95.68611056704907,
+   "targetDist": 287.0583317011472,
+   "at": "2026-11-21T20:00:00.000Z"
+  },
+  {
+   "market": "ETH_USD",
+   "config": "tsmom-long-short",
+   "role": "strategy",
+   "type": "reject",
+   "t": 1795291200000,
+   "side": -1,
+   "reason": "position-open",
+   "at": "2026-11-21T20:00:00.000Z"
   },
   {
    "market": "SOL_USD",
@@ -4530,6 +4584,28 @@
    "at": "2026-11-21T16:00:00.000Z"
   },
   {
+   "market": "SOL_USD",
+   "config": "tsmom-long-short",
+   "role": "strategy",
+   "type": "signal",
+   "t": 1795291200000,
+   "side": -1,
+   "price": 70.17,
+   "stopDist": 3.9489350491378645,
+   "targetDist": 11.846805147413594,
+   "at": "2026-11-21T20:00:00.000Z"
+  },
+  {
+   "market": "SOL_USD",
+   "config": "tsmom-long-short",
+   "role": "strategy",
+   "type": "reject",
+   "t": 1795291200000,
+   "side": -1,
+   "reason": "position-open",
+   "at": "2026-11-21T20:00:00.000Z"
+  },
+  {
    "market": "XRP_USD",
    "config": "tsmom-long-short",
    "role": "strategy",
@@ -5655,11 +5731,46 @@
    "market": "XRP_USD",
    "config": "tsmom-long-short",
    "role": "strategy",
-   "type": "reject",
+   "type": "order",
    "t": 1795276800000,
    "side": -1,
-   "reason": "last-bar",
    "at": "2026-11-21T16:00:00.000Z"
+  },
+  {
+   "market": "XRP_USD",
+   "config": "tsmom-long-short",
+   "role": "strategy",
+   "type": "fill",
+   "t": 1795291200000,
+   "side": -1,
+   "price": 0.9353129,
+   "qty": 61.84515232233322,
+   "fee": 0.05784456876954323,
+   "stop": 0.9897211994801728,
+   "target": 0.7720880015594815,
+   "at": "2026-11-21T20:00:00.000Z"
+  },
+  {
+   "market": "XRP_USD",
+   "config": "tsmom-long-short",
+   "role": "strategy",
+   "type": "signal",
+   "t": 1795291200000,
+   "side": -1,
+   "price": 0.9302,
+   "stopDist": 0.05168035962905119,
+   "targetDist": 0.15504107888715357,
+   "at": "2026-11-21T20:00:00.000Z"
+  },
+  {
+   "market": "XRP_USD",
+   "config": "tsmom-long-short",
+   "role": "strategy",
+   "type": "reject",
+   "t": 1795291200000,
+   "side": -1,
+   "reason": "position-open",
+   "at": "2026-11-21T20:00:00.000Z"
   },
   {
    "market": "DOGE_USD",
@@ -6832,6 +6943,28 @@
    "side": -1,
    "reason": "position-open",
    "at": "2026-11-21T16:00:00.000Z"
+  },
+  {
+   "market": "DOGE_USD",
+   "config": "tsmom-long-short",
+   "role": "strategy",
+   "type": "signal",
+   "t": 1795291200000,
+   "side": -1,
+   "price": 0.055192,
+   "stopDist": 0.003099072898281082,
+   "targetDist": 0.009297218694843245,
+   "at": "2026-11-21T20:00:00.000Z"
+  },
+  {
+   "market": "DOGE_USD",
+   "config": "tsmom-long-short",
+   "role": "strategy",
+   "type": "reject",
+   "t": 1795291200000,
+   "side": -1,
+   "reason": "position-open",
+   "at": "2026-11-21T20:00:00.000Z"
   },
   {
    "market": "ETH_USD",
