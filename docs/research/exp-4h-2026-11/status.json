@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-23T00:08:14.474Z",
+ "updatedAt": "2026-11-23T00:42:01.407Z",
  "startedAt": "2026-11-13T16:00:00.000Z",
  "dataThrough": "2026-11-23T00:00:00.000Z",
  "hoursLive": 224,
@@ -375,27 +375,27 @@
  },
  "spreads": {
   "BTC_USD": {
-   "samples": 63,
-   "medianPct": 0.00001568313665561858,
+   "samples": 64,
+   "medianPct": 0.00001568868995601012,
    "p90Pct": 0.00001699501748921096
   },
   "ETH_USD": {
-   "samples": 63,
-   "medianPct": 0.0005567820226215472,
+   "samples": 64,
+   "medianPct": 0.0005576856047525007,
    "p90Pct": 0.0006076017049298315
   },
   "SOL_USD": {
-   "samples": 63,
+   "samples": 64,
    "medianPct": 0.013963555121140983,
    "p90Pct": 0.014500108750823049
   },
   "XRP_USD": {
-   "samples": 63,
-   "medianPct": 0.010431335732539404,
+   "samples": 64,
+   "medianPct": 0.010442228371533335,
    "p90Pct": 0.010988407230370747
   },
   "DOGE_USD": {
-   "samples": 63,
+   "samples": 64,
    "medianPct": 0.015312763188108999,
    "p90Pct": 0.03221403684268222
   }
