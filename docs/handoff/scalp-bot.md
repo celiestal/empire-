@@ -251,3 +251,20 @@ Coins bounced about 5–6% (since 11-13: BTC -14.2%, ETH -14.0%, SOL -12.4%, XRP
 - **Why:** trend shorts opened late in a fall get stopped out when the market snaps back. That's the normal cost of trend following, and it's why its edge needs weeks to show.
   - v3's tsmom is still +$79.89 overall. Its 60m breakout is -$40.02 (1/11) and is the weak part of v3.
 - **For the 11-27 review:** test v3 without breakout (tsmom only). Also test the hybrid: trend unfiltered, reversion filtered.
+
+## Day 10 (2026-11-23)
+The rebound continued, about +4% (since 11-13: BTC -10.2%, ETH -10.3%, SOL -8.5%, XRP -6.7%, DOGE -12.7%). Mostly range/chop with some up hours.
+
+| Test | Since start | Last 24h |
+|---|---|---|
+| v1 | $9,903.59 (-0.96%), 255 trades | -$9.31 |
+| v2 | $9,966.44 (-0.34%), 75 trades | -$9.99 (60m pullback longs stopped out in "up" hours) |
+| 4h | $10,000 | no trades in 9 days |
+| v3 | $10,012.56 (+0.13%), 32 trades | -$5.59 |
+| v4 | $9,976.12 (-0.24%), 4 trades | -$22.12, first 4 closed trades, all stops (pullback 0/3, tsmom 0/1) |
+
+- **Why:** choppy rebound days stop out both styles.
+  - Trend entries (v4's pullback/tsmom) get reversed.
+  - Dip-buys get stopped on the swings.
+  - There's no clean trend and no clean range.
+- **Pattern after 10 days:** no test holds up across every market state. v3's tsmom is the only method with a clear net gain (+$49), all from the crash day.
