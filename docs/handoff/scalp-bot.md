@@ -268,3 +268,20 @@ The rebound continued, about +4% (since 11-13: BTC -10.2%, ETH -10.3%, SOL -8.5%
   - Dip-buys get stopped on the swings.
   - There's no clean trend and no clean range.
 - **Pattern after 10 days:** no test holds up across every market state. v3's tsmom is the only method with a clear net gain (+$49), all from the crash day.
+
+## Day 11 (2026-11-24)
+Mostly range with brief "up" spells (since 11-13: BTC -12.1%, ETH -11.9%, SOL -9.0%, XRP -6.0%, DOGE -11.3%).
+
+| Test | Since start | Last 24h |
+|---|---|---|
+| v1 | $9,881.33 (-1.19%), 305 trades | -$22.74 |
+| v2 | $9,973.18 (-0.27%), 96 trades | -$1.98 (8/8 targets won, 12/12 stops lost) |
+| 4h | $10,000 | no trades in 10 days |
+| v3 | $9,972.06 (-0.28%), 45 trades | -$51.05 (1/13) |
+| v4 | $9,940.22 (-0.60%), 14 trades | -$43.11 (1/10) |
+
+- **Why:** trend entries in brief "up" spells inside a range reversed and hit stops.
+  - v3 breakout is now -$50.24 (2/16). v3 tsmom is +$22.29, down from +$121 at its peak.
+  - v4 tsmom is -$46.83 (1/11).
+- **Over 11 days:** hourly trend made money only on the crash and gave most of it back in the chop. Filtered reversion (v2) has stayed closest to flat, with the smallest drawdowns.
+- **For 11-27:** decide whether to stop v1 (persistent losses from 1m/5m scalps) and v3's breakout. Re-run the research.
