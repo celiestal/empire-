@@ -1,0 +1,146 @@
+{
+ "cells": {
+  "original5 w1": {
+   "h0": {
+    "totalPct": 79.6,
+    "sharpe": 1.57,
+    "maxDDPct": 14.8
+   },
+   "h4": {
+    "totalPct": 83.7,
+    "sharpe": 1.6,
+    "maxDDPct": 13.7
+   },
+   "h8": {
+    "totalPct": 97.4,
+    "sharpe": 1.82,
+    "maxDDPct": 11.8
+   },
+   "h12": {
+    "totalPct": 109.2,
+    "sharpe": 1.96,
+    "maxDDPct": 10.7
+   },
+   "h16": {
+    "totalPct": 113.2,
+    "sharpe": 2.03,
+    "maxDDPct": 9.2
+   },
+   "h20": {
+    "totalPct": 122.3,
+    "sharpe": 2.02,
+    "maxDDPct": 14
+   },
+   "spreadPts": 42.7,
+   "h0Rank": 6
+  },
+  "original5 w2": {
+   "h0": {
+    "totalPct": 25.1,
+    "sharpe": 0.67,
+    "maxDDPct": 18
+   },
+   "h4": {
+    "totalPct": 23.7,
+    "sharpe": 0.64,
+    "maxDDPct": 18.9
+   },
+   "h8": {
+    "totalPct": 28.9,
+    "sharpe": 0.75,
+    "maxDDPct": 19.3
+   },
+   "h12": {
+    "totalPct": 18.8,
+    "sharpe": 0.54,
+    "maxDDPct": 21.6
+   },
+   "h16": {
+    "totalPct": -2.4,
+    "sharpe": 0.02,
+    "maxDDPct": 26.8
+   },
+   "h20": {
+    "totalPct": 2.9,
+    "sharpe": 0.17,
+    "maxDDPct": 26.4
+   },
+   "spreadPts": 31.3,
+   "h0Rank": 2
+  },
+  "h2_8 w1": {
+   "h0": {
+    "totalPct": 34.7,
+    "sharpe": 0.86,
+    "maxDDPct": 16.9
+   },
+   "h4": {
+    "totalPct": 42.6,
+    "sharpe": 1.01,
+    "maxDDPct": 13.9
+   },
+   "h8": {
+    "totalPct": 52.9,
+    "sharpe": 1.2,
+    "maxDDPct": 11.5
+   },
+   "h12": {
+    "totalPct": 64.4,
+    "sharpe": 1.4,
+    "maxDDPct": 11.7
+   },
+   "h16": {
+    "totalPct": 71.3,
+    "sharpe": 1.48,
+    "maxDDPct": 13.8
+   },
+   "h20": {
+    "totalPct": 75.7,
+    "sharpe": 1.4,
+    "maxDDPct": 19.7
+   },
+   "spreadPts": 41,
+   "h0Rank": 6
+  },
+  "h2_8 w2": {
+   "h0": {
+    "totalPct": 4.6,
+    "sharpe": 0.21,
+    "maxDDPct": 22.2
+   },
+   "h4": {
+    "totalPct": 5.5,
+    "sharpe": 0.24,
+    "maxDDPct": 21.5
+   },
+   "h8": {
+    "totalPct": 7.4,
+    "sharpe": 0.29,
+    "maxDDPct": 22.6
+   },
+   "h12": {
+    "totalPct": -0.2,
+    "sharpe": 0.08,
+    "maxDDPct": 22.9
+   },
+   "h16": {
+    "totalPct": -12.1,
+    "sharpe": -0.27,
+    "maxDDPct": 28.2
+   },
+   "h20": {
+    "totalPct": -8.4,
+    "sharpe": -0.17,
+    "maxDDPct": 30.5
+   },
+   "spreadPts": 19.5,
+   "h0Rank": 3
+  }
+ },
+ "allPositive": "20/24",
+ "criterion1": false,
+ "h0BestIn": "0/4",
+ "criterion2": true,
+ "passed": false,
+ "missingHourlyBars": 0
+}
